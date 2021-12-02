@@ -1,0 +1,75 @@
+---
+title: "Analiza Szeregow Czasowych"
+settings:
+  loaddata: 
+    header: "Wczytaj Dane"
+    import: "Zaimportuj Dane"
+    select: "Akceptuj"
+  charts:
+    header: "Wykresy"
+    select: "Wykresy"
+    titlechanger: "Nazwa wykresu"
+    delete: "Usun wykres"
+    update: "Wyswietl"
+  modules:
+    header: "Moduly"
+    active: "Aktywny"
+    modules: "Dostepne moduly"
+    update: "Zaaktualizuj"
+output:
+  statistics: 
+    header: "Statystyki"
+    modules: "Moduly"
+  logger: 
+    header: "Logger"
+  exportdata:
+    header: "Wyeksportuj dane"
+    exportlogs: "Wyeksportuj logi"
+    exportchart: "Wyeksportuj wykres"
+    exportstats: "Wyeksportuj statystyki"
+    successexportlogs: "Logi zostaly wyeksportowane do:\n"
+    successexportchart: "Wykres zostal wyeksportowane do:\n"
+    successexportstats: "Dane statystyczne zostaly wyeksportowane do:\n"
+    failedexport: "Nie wyeksportowano pliku,\ngdyz zadne dane nie sa wyswietlane!"
+importer-xls:
+  defaultTitle: "Nazwa"
+  sheets: "Arkusze"
+  xseries: "Os Kategorii (x)"
+  yseries: "Serie danych (y)"
+  preview: "Podglad i weryfikacja danych"
+  wrongimport: "Wskazano nieprawidlowe dane!\nNalezy zapewnic ze podane kolumny zostaly wybrane\noraz unikalne."
+  successimport: "Dane zostaly poprawnie zaimportowane! Pojawia sie one w zakladce 'Wykresy'."
+importer-csv:
+  defaultTitle: "Nazwa"
+  xseries: "Os Kategorii (x)"
+  yseries: "Serie danych (y)"
+  preview: "Podglad i weryfikacja danych"
+  wrongimport: "Wskazano nieprawidlowe dane!\nNalezy zapewnic ze podane kolumny zostaly wybrane\noraz unikalne."
+  successimport: "Dane zostaly poprawnie zaimportowane! Pojawia sie one w zakladce 'Wykresy'."
+modules:
+  isactive: "Aktywny"
+  display:
+    header: "Oryginalne dane"
+  changepoints:
+    header: "Punkty Zmian"
+    cpcount: "Liczba punktow zmian"
+    useowncpcount: "Uzyj wlasnej liczby punktow zmian"
+    cpstart: "Pkt. zmiany"
+    cpend: "Koniec pkt. zmiany"
+    means: "Srednia"
+    sigmas: "Odch. std."
+  rollingmean: 
+    header: "Srednia ruchoma"
+    count: "Wielkosc ruchomej"
+    rollingdisplay: "Srednia ruchoma"
+  rollingstd: 
+    header: "Odchylenie std. ruchome"
+    count: "Wielkosc ruchomej"
+    rollingdisplay: "Odch. std. ruchome"
+  differentiation:
+    header: "Rozniczowanie"
+    diffdisplay: "Roznicowane"
+messagebox:
+  error: "Blad"
+  warning: "Ostrzezenie"
+  info: "Informacja"

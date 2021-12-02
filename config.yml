@@ -1,0 +1,15 @@
+---
+language: "pl"
+app:
+  width: 810
+  height: 540
+directories:
+  icon: "assets/icon.ico"
+  lang: "lang"
+  exportlogname: "bin/latest.log"
+  exportstats: "bin/statistics.txt"
+  exportchart: "bin/latest.png"
+languages:
+  pl:
+    filename: "pl.yml"
+    displayname: "Polski"

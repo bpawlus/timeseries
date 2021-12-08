@@ -5,8 +5,9 @@ import numpy as np
 import matplotlib.patches as patches
 import math
 import colorsys
-
+import statsmodels.api as sm
 from pandas.core.frame import DataFrame
+import pandas as pd
 
 import logger
 
@@ -326,6 +327,109 @@ class DifferentiationModule(ChartModule):
         self.outputDataframe[plotdf.columns[1]] = [v[0] for v in df.values]
         df.diff().plot(kind='line', legend=True, ax=ax, color='g',marker='o', fontsize=5, markersize=2)
 
+class AutocorrelationModule(ChartModule):
+    outputDataframe = DataFrame()
+    lagentryvar = None
+
+    def getOutputDataframe(self) -> DataFrame:
+        return self.outputDataframe
+
+    def clearOutputDataframe(self):
+        self.outputDataframe = DataFrame()
+
+    def displayModule(self, ax, plotdf):
+        if self.lagentryvar.get() > 0: 
+            self.outputDataframe[lang["modules"]["autocorrelation"]["lag"]] = [i+1 for i in range(0, int(self.lagentryvar.get()))]
+
+            autocorrs = []
+            for i in range(0,self.lagentryvar.get()):
+                autocorrs.append(plotdf[plotdf.columns[1]].autocorr(lag=i+1))
+            self.outputDataframe[lang["modules"]["autocorrelation"]["corr"]] = autocorrs
+
+    def buildConfig(self, subsection: ttk.Frame):
+        lablag = Label(subsection, text=lang["modules"]["autocorrelation"]["lag"], pady=5, width=int((subsection.winfo_width()-13)/7)+1)
+        lablag.grid(row=1)
+        if not self.lagentryvar:
+            self.lagentryvar = IntVar()
+            self.lagentryvar.set(1)
+        vcmd = (subsection.register(self.validate_lagentry),'%P')
+        lagentry = Entry(subsection, textvariable=self.lagentryvar, validate='all', validatecommand=vcmd, width=int((subsection.winfo_width()-13)/7)+1)
+        cpyval = self.lagentryvar.get()
+        lagentry.delete(0,END)
+        lagentry.insert(0,cpyval)
+        lagentry.grid(row=2)
+
+    def validate_lagentry(self, val):
+        if str.isdigit(val) or val == "":
+            return True
+        else:
+            return False
+
+class SeasonalDecomposeModule(ChartModule):
+    outputDataframe = DataFrame()
+    lagentryvar = None
+    componentsvarlist = []
+    componentslist = ["lag", "trend", "resid"]
+
+    def getOutputDataframe(self) -> DataFrame:
+        return self.outputDataframe
+
+    def clearOutputDataframe(self):
+        self.outputDataframe = DataFrame()
+
+    def displayModule(self, ax, plotdf):
+        if self.lagentryvar.get() > 0:
+
+            self.outputDataframe[plotdf.columns[0]]= plotdf[plotdf.columns[0]]
+
+            series = pd.Series(x for x in plotdf[plotdf.columns[1]])
+            res = sm.tsa.seasonal_decompose(series.values, period=self.lagentryvar.get())
+            reslist = [res.seasonal, res.trend, res.resid, res.observed]
+            i=0
+            for comp in self.componentslist:
+                if self.componentsvarlist[i].get():
+                    self.outputDataframe[plotdf.columns[0] + " " + lang["modules"]["seasonaldecompose"][comp]] = reslist[i]
+                i+=1
+        
+        if len(self.outputDataframe.columns) > 1:
+            origdf = self.outputDataframe.dropna()
+            print("origdf", origdf)
+            origdf = self.outputDataframe[[col for col in self.outputDataframe.columns]].groupby(self.outputDataframe.columns[0]).sum()
+            origdf.plot(kind='line', legend=True, ax=ax, color='y',marker='o', fontsize=4, markersize=2)
+
+    def buildConfig(self, subsection: ttk.Frame):
+        lablag = Label(subsection, text=lang["modules"]["seasonaldecompose"]["lag"], pady=5, width=int((subsection.winfo_width()-13)/7)+1)
+        lablag.grid(row=1)
+
+        if not self.lagentryvar:
+            self.lagentryvar = IntVar()
+            self.lagentryvar.set(1)
+
+        vcmd = (subsection.register(self.validate_lagentry),'%P')
+        lagentry = Entry(subsection, textvariable=self.lagentryvar, validate='all', validatecommand=vcmd, width=int((subsection.winfo_width()-13)/7)+1)
+        cpyval = self.lagentryvar.get()
+        lagentry.delete(0,END)
+        lagentry.insert(0,cpyval)
+        lagentry.grid(row=2)
+
+        i = 0
+        for comp in self.componentslist:
+            labcomp = Label(subsection, text=lang["modules"]["seasonaldecompose"]["show"]+" "+lang["modules"]["seasonaldecompose"][comp], pady=5, width=int((subsection.winfo_width()-13)/7)+1)
+            labcomp.grid(row=(i*2)+3)
+            if len(self.componentsvarlist) != 3:
+                self.componentsvarlist.append(BooleanVar())
+            compbtn = Checkbutton(subsection ,variable=self.componentsvarlist[i], onvalue=1, offvalue=0)
+            compbtn.grid(row=(i*2)+4)
+            i+=1
+
+
+    def validate_lagentry(self, val):
+        if str.isdigit(val) or val == "":
+            return True
+        else:
+            return False
+
+
 def postConfigInit(_appconfig, _directories, _lang):
     global appconfig, directories, lang
     appconfig, directories, lang = _appconfig, _directories, _lang
@@ -334,3 +438,5 @@ def postConfigInit(_appconfig, _directories, _lang):
     rollingMean = RollingMeanModule(lang["modules"]["rollingmean"]["header"])
     rollingStd = RollingStdModule(lang["modules"]["rollingstd"]["header"])
     differentiation = DifferentiationModule(lang["modules"]["differentiation"]["header"])
+    autocorrelation = AutocorrelationModule(lang["modules"]["autocorrelation"]["header"])
+    seasonaldecompose = SeasonalDecomposeModule(lang["modules"]["seasonaldecompose"]["header"])

@@ -1,0 +1,8 @@
+Kolejne puknty zmian
+0 36 84 117 153
+
+Srednia przed nalozeniem szumu w kolejnych obszarych
+-0.34781807919887875 -2.673304882088985 -0.4555383195923297 -1.6599871297282
+
+Odch. std. przed nalozeniem szumu w kolejnych obszarach
+1.0 1.0 1.0 1.0

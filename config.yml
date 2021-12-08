@@ -9,6 +9,8 @@ directories:
   exportlogname: "bin/latest.log"
   exportstats: "bin/statistics.txt"
   exportchart: "bin/latest.png"
+  gen: "data/generated.csv"
+  geninfo: "data/generated.txt"
 languages:
   pl:
     filename: "pl.yml"

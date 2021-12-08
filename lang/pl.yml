@@ -1,5 +1,6 @@
 ---
 title: "Analiza Szeregow Czasowych"
+titlegen: "Analiza Szeregow Czasowych - generator"
 settings:
   loaddata: 
     header: "Wczytaj Dane"
@@ -31,6 +32,26 @@ output:
     successexportchart: "Wykres zostal wyeksportowane do:\n"
     successexportstats: "Dane statystyczne zostaly wyeksportowane do:\n"
     failedexport: "Nie wyeksportowano pliku,\ngdyz zadne dane nie sa wyswietlane!"
+settings-gen:
+  generator:
+    header: "Opcje generatora"
+    cpcount: "Liczba punktow zmian"
+    samples: "Liczba danych"
+    mean: "Srednia danych"
+    spread: "Odch. std. danych"
+    cpspread: "Odch. std. w punktach zmian"
+    spreadcpspread: "Zmiennosc odch. std. w punktach zmian"
+    samples: "Liczba danych"
+  output:
+    header: "Aktualizuj i Eksportuj"
+    update: "Aktualizuj"
+    export: "Eksportuj"
+  chartname: "Wygenerowane Dane"
+  results:
+    cps: "Kolejne puknty zmian"
+    means: "Srednia przed nalozeniem szumu w kolejnych obszarych"
+    spreads: "Odch. std. przed nalozeniem szumu w kolejnych obszarach"
+    exportinfo: "Wygenerowane wyniki zostaly zapisane w:"
 importer-xls:
   defaultTitle: "Nazwa"
   sheets: "Arkusze"
@@ -69,6 +90,18 @@ modules:
   differentiation:
     header: "Rozniczowanie"
     diffdisplay: "Roznicowane"
+  autocorrelation:
+    header: "Autokorelacja"
+    lag: "Opoznienie"
+    corr: "Autokorelacja"
+  seasonaldecompose:
+    header: "Dekompozycja Seznonowosci"
+    lag: "Opoznienie"
+    model: "Model dekompozycji"
+    seasonal: "Seasonal"
+    trend: "Trend"
+    resid: "Resid"
+    show: "Wyswietl"
 messagebox:
   error: "Blad"
   warning: "Ostrzezenie"

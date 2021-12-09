@@ -3,11 +3,14 @@ from tkinter import ttk, filedialog, messagebox
 import os
 import re
 
+import loader
+loader.loadConfig()
+
+from loader import lang, appconfig, directories
 import importer
 import charts
 import logger
-import modules
-import loader
+import tsmodules
 
 root = None
 
@@ -32,7 +35,7 @@ def updateChart():
         outputModulescb.set('')
         for i in statisticstab.get_children():
             statisticstab.delete(i)
-        outputModulescb['values'] = [mod.name for mod in modules.allmodules if mod.isactive and mod.isactive.get() and not mod.getOutputDataframe().empty]
+        outputModulescb['values'] = [mod.name for mod in tsmodules.allmodules if mod.isactive and mod.isactive.get() and not mod.getOutputDataframe().empty]
         statisticstab['columns'] = []
 
 def deleteChart():
@@ -49,11 +52,6 @@ def deleteChart():
         widget.destroy()
 
 importdriver = None
-
-appconfig = None
-directories = None
-lang = None
-
 
 def buildSubSectionLoadData(subsection: Frame):
     subsection.grid_columnconfigure(0, weight=1)
@@ -151,24 +149,24 @@ def buildSubSectionCharts(subsection: Frame):
 def buildSubSectionModules(subsection: Frame):
     subsection.grid_columnconfigure(0, weight=1)
 
-    labmodules = Label(subsection, text=lang["settings"]["modules"]["modules"], pady=5, width=int((subsection.winfo_width()-13)/7)+1)
-    labmodules.grid(row=1)
-    modulesentry = StringVar()
-    modulesentrycb = ttk.Combobox(subsection, state="readonly", textvariable=modulesentry, width=int((subsection.winfo_width()-13)/7)+1)
-    modulesentrycb.grid(row=2)
-    modulesentrycb['values'] = [mod.name for mod in modules.allmodules]
+    labtsmodules = Label(subsection, text=lang["settings"]["modules"]["modules"], pady=5, width=int((subsection.winfo_width()-13)/7)+1)
+    labtsmodules.grid(row=1)
+    tsmodulesentry = StringVar()
+    tsmodulesentrycb = ttk.Combobox(subsection, state="readonly", textvariable=tsmodulesentry, width=int((subsection.winfo_width()-13)/7)+1)
+    tsmodulesentrycb.grid(row=2)
+    tsmodulesentrycb['values'] = [mod.name for mod in tsmodules.allmodules]
 
-    modulesFrame = Frame(subsection, width=subsection.winfo_width())
-    modulesFrame.grid(row=3)
+    tsmodulesFrame = Frame(subsection, width=subsection.winfo_width())
+    tsmodulesFrame.grid(row=3)
     
     btnexport = Button(subsection, text=lang["settings"]["modules"]["update"], command=updateChart, pady=5, width=int((subsection.winfo_width()-13)/7)+1)
     btnexport.grid(row=4)
 
     def selectModule(event):
-        mod = next(mod for mod in modules.allmodules if modulesentry.get() == mod.name)
-        mod.buildMenu(modulesFrame)
+        mod = next(mod for mod in tsmodules.allmodules if tsmodulesentry.get() == mod.name)
+        mod.buildMenu(tsmodulesFrame)
 
-    modulesentrycb.bind('<<ComboboxSelected>>', selectModule)   
+    tsmodulesentrycb.bind('<<ComboboxSelected>>', selectModule)   
 
 def buildSubSectionStatisctics(subsection: Frame):
     global outputModulescb, statisticstab
@@ -191,7 +189,7 @@ def buildSubSectionStatisctics(subsection: Frame):
         statisticstab.column("#0", width=0, stretch=NO)
         statisticstab.heading("#0",text="",anchor=CENTER)
 
-        df = next((mod.getOutputDataframe() for mod in modules.allmodules if mod.name == outputModules.get()), None)
+        df = next((mod.getOutputDataframe() for mod in tsmodules.allmodules if mod.name == outputModules.get()), None)
         columns = df.columns.values.tolist()
         statisticstab['columns'] = columns
 
@@ -239,7 +237,7 @@ def buildSubSectionExportData(subsection: Frame):
     def exportStats():
         if(chartid != -1):
             f = open(directories["exportstats"], "w")
-            mods = [mod for mod in modules.allmodules if mod.isactive and mod.isactive.get() and not mod.getOutputDataframe().empty]
+            mods = [mod for mod in tsmodules.allmodules if mod.isactive and mod.isactive.get() and not mod.getOutputDataframe().empty]
             for mod in mods:
                 f.write(mod.name)
                 f.write("\n")
@@ -274,35 +272,35 @@ def buildSectionSettings(section: Frame):
 
     loaddatasubsection = Frame(settingsnotebook,width=section.winfo_width(),height=section.winfo_height())
     chartssubsection = Frame(settingsnotebook,width=section.winfo_width(),height=section.winfo_height())
-    modulessubsection = Frame(settingsnotebook,width=section.winfo_width(),height=section.winfo_height())
+    tsmodulessubsection = Frame(settingsnotebook,width=section.winfo_width(),height=section.winfo_height())
 
     settingsnotebook.add(loaddatasubsection, text=lang["settings"]["loaddata"]["header"])
     settingsnotebook.add(chartssubsection, text=lang["settings"]["charts"]["header"])
-    settingsnotebook.add(modulessubsection, text=lang["settings"]["modules"]["header"])
+    settingsnotebook.add(tsmodulessubsection, text=lang["settings"]["modules"]["header"])
 
     settingsnotebook.pack(expand=1, fill='both')
 
     loaddatasubsection.update()
     chartssubsection.update()
-    modulessubsection.update()
+    tsmodulessubsection.update()
     settingsnotebook.select(0)
     buildSubSectionLoadData(loaddatasubsection)
 
     loaddatasubsection.update()
     chartssubsection.update()
-    modulessubsection.update()
+    tsmodulessubsection.update()
     settingsnotebook.select(1)
     buildSubSectionCharts(chartssubsection)
 
     loaddatasubsection.update()
     chartssubsection.update()
-    modulessubsection.update()
+    tsmodulessubsection.update()
     settingsnotebook.select(2)
-    buildSubSectionModules(modulessubsection)
+    buildSubSectionModules(tsmodulessubsection)
 
     loaddatasubsection.update()
     chartssubsection.update()
-    modulessubsection.update()
+    tsmodulessubsection.update()
     settingsnotebook.select(0)
 
 def buildSectionOutput(section: Frame):
@@ -374,9 +372,4 @@ def buildRoot():
 
     root.mainloop()
     
-appconfig, directories, lang = loader.loadConfig()
-charts.postConfigInit(appconfig, directories, lang)
-importer.postConfigInit(appconfig, directories, lang)
-logger.postConfigInit(appconfig, directories, lang)
-modules.postConfigInit(appconfig, directories, lang)
 buildRoot()

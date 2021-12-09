@@ -5,12 +5,9 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from pandas import DataFrame
 
-import modules
 import logger
-
-appconfig = None
-directories = None
-lang = None
+import tsmodules
+from loader import lang, appconfig, directories
 
 allcharts = []
 id = 0
@@ -48,11 +45,7 @@ class Chart:
         figure = FigureCanvasTkAgg(figure, display)
         figure.get_tk_widget().grid(row=0)
 
-        modules.ChartModule.displayModules(ax, self.df)
+        tsmodules.displayModules(ax, self.df)
         ax.set_title(self.title)
         
         self.figure = figure
-
-def postConfigInit(_appconfig, _directories, _lang):
-    global appconfig, directories, lang
-    appconfig, directories, lang = _appconfig, _directories, _lang

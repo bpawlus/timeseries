@@ -1,10 +1,6 @@
-from logging import disable
 from tkinter import *
 from tkinter import ttk, messagebox
-import os
-import re
 import numpy
-import pandas as pd
 from pandas.core.frame import DataFrame
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -12,6 +8,9 @@ import random
 import matplotlib.patches as patches
 
 import loader
+loader.loadConfig()
+
+from loader import lang, appconfig, directories
 
 root = None
 sectionchart = None
@@ -27,10 +26,6 @@ meanVar = None
 spreadVar = None
 cpspreadVar = None
 spreadcpspreadVar = None
-
-appconfig = None
-directories = None
-lang = None
 
 def buildSubSectionChartGenerator(subsection: Frame):
     global cpCount, samples, meanVar, spreadVar, cpspreadVar, spreadcpspreadVar, df
@@ -252,5 +247,4 @@ def buildRoot():
 
     root.mainloop()
 
-appconfig, directories, lang = loader.loadConfig()
 buildRoot()

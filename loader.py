@@ -1,7 +1,12 @@
 import yaml
 
+appconfig = None
+directories = None
+lang = None
+
 def loadConfig():
     with open("config.yml", 'r') as stream:
+        global appconfig, directories, lang
         try:
             config = yaml.safe_load(stream)
             appconfig = config["app"]
@@ -15,8 +20,7 @@ def loadConfig():
                 except yaml.YAMLError as exc:
                     print("YAML EXCEPTION:" + exc)
                     language = None
-            return appconfig, directories, language
+            appconfig, directories, lang = appconfig, directories, language
 
         except yaml.YAMLError as exc:
             print("YAML EXCEPTION:" + exc)
-            return None, None, None

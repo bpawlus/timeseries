@@ -6,10 +6,7 @@ import pandas as pd
 from pandas import DataFrame
 
 import logger
-
-appconfig = None
-directories = None
-lang = None
+from loader import lang, appconfig, directories
 
 allmethods = ()
 alldrivers = ()
@@ -136,6 +133,11 @@ class XlsImportMethod(ImportMethod):
             preview.heading("x",text="",anchor=CENTER)
             preview.heading("y",text="",anchor=CENTER)
 
+            for i in preview.get_children():
+                preview.delete(i)
+            self.datax.clear()
+            self.datay.clear()
+
         sheetcb.bind('<<ComboboxSelected>>', onSheetChange)    
 
     def extractData(self) -> DataFrame:
@@ -245,9 +247,5 @@ class CsvImportMethod(ImportMethod):
             messagebox.showerror(lang["messagebox"]["error"], lang["importer-csv"]["wrongimport"])
             return DataFrame()
 
-
-def postConfigInit(_appconfig, _directories, _lang):
-    global appconfig, directories, lang
-    appconfig, directories, lang = _appconfig, _directories, _lang
-    methodxls = XlsImportMethod(".xls", "xls")
-    methodcsv = CsvImportMethod(".csv", "csv")
+methodxls = XlsImportMethod(".xls", "xls")
+methodcsv = CsvImportMethod(".csv", "csv")

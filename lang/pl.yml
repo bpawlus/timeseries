@@ -102,6 +102,15 @@ modules:
     trend: "Trend"
     resid: "Resid"
     show: "Wyswietl"
+  rupturemods:
+    pelt:
+      header: "Punkty Zmian - Metoda PELT"
+    binseg:
+      header: "Punkty Zmian - Metoda Segmentacji Binarnej"
+    window:
+      header: "Punkty Zmian - Ruchome okno"
+    dynp:
+      header: "Punkty Zmian - Programowanie dynamiczne"
 messagebox:
   error: "Blad"
   warning: "Ostrzezenie"

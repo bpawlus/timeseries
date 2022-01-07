@@ -1,26 +1,26 @@
 import yaml
 
-appconfig = None
-directories = None
+conf = None
+dirs = None
 lang = None
 
-def loadConfig():
-    with open("config.yml", 'r') as stream:
-        global appconfig, directories, lang
-        try:
-            config = yaml.safe_load(stream)
-            appconfig = config["app"]
-            directories = config["directories"]
-            languages = config["languages"]
-            language = None
- 
-            with open(directories["lang"] + "/" + languages[config["language"]]["filename"], 'r') as streamlang:
-                try:
-                    language = yaml.safe_load(streamlang)
-                except yaml.YAMLError as exc:
-                    print("YAML EXCEPTION:" + exc)
-                    language = None
-            appconfig, directories, lang = appconfig, directories, language
+class Loader:
+    @staticmethod
+    def loadConfig():
+        global conf, dirs, lang
+        with open("config.yml", 'r') as stream:
+            try:
+                configloaded = yaml.safe_load(stream)
+                conf = configloaded["app"]
+                dirs = configloaded["directories"]
+                languages = configloaded["languages"]
 
-        except yaml.YAMLError as exc:
-            print("YAML EXCEPTION:" + exc)
+                with open(dirs["lang"] + "/" + languages[configloaded["language"]]["filename"], 'r') as streamlang:
+                    try:
+                        lang = yaml.safe_load(streamlang)
+                    except yaml.YAMLError as exc:
+                        print("YAML EXCEPTION:" + exc)
+                        lang = None
+
+            except yaml.YAMLError as exc:
+                print("YAML EXCEPTION:" + exc)

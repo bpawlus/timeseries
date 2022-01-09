@@ -1,5 +1,6 @@
+import loader
 import gui
-from loader import Loader
 
-Loader.loadConfig()
-gui.AnalyzerGui().buildGui()
+if loader.loadConfig("pl"):
+    gui.AnalyzerGui().buildGui()
+

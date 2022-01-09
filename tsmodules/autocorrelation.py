@@ -1,43 +1,43 @@
-from tsmodules import basemod
 from pandas.core.frame import DataFrame
+from tsmodules import basemod
 from tkinter import *
 from tkinter import ttk
 import loader
+import entryvalidators
+from statsmodels.graphics.tsaplots import acf, pacf
 
-class AutocorrelationModule(basemod.TSModule):
-    outputDataframe = DataFrame()
+class AutocorrelationsModule(basemod.TSModule):
+    """Class implementing autocorrelation and partial autocorrelation time series module.
+    """
+
     lagentryvar = None
+    """The length of the lag."""
 
-    def getOutputDataframe(self) -> DataFrame:
-        return self.outputDataframe
+    def displayModule(self, ax, plotdf: DataFrame):
+        """Processes analyzing module and displays results on chart's axes.
 
-    def clearOutputDataframe(self):
-        self.outputDataframe = DataFrame()
-
-    def displayModule(self, ax, plotdf):
+        :param ax: Reference to plot's axes.
+        :param plotdf: Data frame with original signal.
+        """
         if self.lagentryvar.get() > 0: 
-            self.outputDataframe[loader.lang["modules"]["autocorrelation"]["lag"]] = [i+1 for i in range(0, int(self.lagentryvar.get()))]
+            self.outputDataframe[loader.lang["modules"]["autocorrelations"]["lag"]] = [i+1 for i in range(0, int(self.lagentryvar.get()))]
+        acft = acf([v[1] for v in plotdf.values], nlags=self.lagentryvar.get()).tolist()
+        pacft = pacf([v[1] for v in plotdf.values], nlags=self.lagentryvar.get()).tolist()
+        acft.pop(0)
+        pacft.pop(0)
+        self.outputDataframe[loader.lang["modules"]["autocorrelations"]["acorr"]] = acft
+        self.outputDataframe[loader.lang["modules"]["autocorrelations"]["partacorr"]] = pacft
 
-            autocorrs = []
-            for i in range(0,self.lagentryvar.get()):
-                autocorrs.append(plotdf[plotdf.columns[1]].autocorr(lag=i+1))
-            self.outputDataframe[loader.lang["modules"]["autocorrelation"]["corr"]] = autocorrs
+    def buildConfig(self, section: ttk.Frame):
+        """Provides GUI elements for time series module configuration.
 
-    def buildConfig(self, subsection: ttk.Frame):
-        lablag = Label(subsection, text=loader.lang["modules"]["autocorrelation"]["lag"], pady=5, width=int((subsection.winfo_width()-13)/7)+1)
+        :param section: GUI component where module configuration should be displayed.
+        """
+        lablag = Label(section, text=loader.lang["modules"]["autocorrelations"]["lag"], pady=5, width=int((section.winfo_width()-13)/7)+1)
         lablag.grid(row=1)
         if not self.lagentryvar:
             self.lagentryvar = IntVar()
-            self.lagentryvar.set(1)
-        vcmd = (subsection.register(self.validate_lagentry),'%P')
-        lagentry = Entry(subsection, textvariable=self.lagentryvar, validate='all', validatecommand=vcmd, width=int((subsection.winfo_width()-13)/7)+1)
-        cpyval = self.lagentryvar.get()
-        lagentry.delete(0,END)
-        lagentry.insert(0,cpyval)
+            self.lagentryvar.set(2)
+        vcmd = (section.register(entryvalidators.validate_digit),'%P')
+        lagentry = Entry(section, textvariable=self.lagentryvar, validate='all', validatecommand=vcmd, width=int((section.winfo_width()-13)/7)+1)
         lagentry.grid(row=2)
-
-    def validate_lagentry(self, val):
-        if str.isdigit(val) or val == "":
-            return True
-        else:
-            return False

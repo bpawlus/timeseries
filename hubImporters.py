@@ -37,4 +37,3 @@ class HubImporters:
         """
         self.addMethod(csvimport.CsvImportMethod(".csv", "csv", loader.lang["importer-xls"]["defaultTitle"]))
         self.addMethod(xlsimport.XlsImportMethod(".xls", "xls", loader.lang["importer-csv"]["defaultTitle"]))
-

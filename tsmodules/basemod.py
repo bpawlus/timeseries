@@ -4,45 +4,92 @@ from tkinter import ttk
 import loader
 
 class TSModule:
+    """Base class for implementation of single time series module.
+    """
+
     name = "Unnamed Module"
+    """Name of time series module."""
     isactive = None
+    """Should this module be considered in time series data analysis."""
+    outputDataframe = DataFrame()
+    """Data frame with processed time series module data, that was displayed on chart's axes, or that couldn't be displayed with line graph."""
+    colorDict = None
+    """Dictionary of colors, that can be used to display module's data."""
+    colorcbvar = None
+    """Chosen color used to display module's data."""
 
-    def buildMenu(self, subsection: ttk.Frame):
-        for widget in subsection.winfo_children():
+    def getDisplayColor(self) -> str:
+        """ Returns color used to display module's data.
+
+        :returns: Color used to display module's data.
+        """
+        return self.colorDict[self.colorcbvar.get()]
+
+    def buildMenu(self, section: ttk.Frame):
+        """Provides GUI elements for time series module items.
+
+        :param section: GUI component where module items should be displayed.
+        """
+        for widget in section.winfo_children():
             widget.destroy()
-        subsection.update()
+        section.update()
 
-        moduleFrameHeader = Frame(subsection, width=subsection.winfo_width())
+        moduleFrameHeader = Frame(section, width=section.winfo_width())
         moduleFrameHeader.grid(row=1)
 
-        moduleFrameConfig = Frame(subsection, width=subsection.winfo_width())
+        moduleFrameConfig = Frame(section, width=section.winfo_width())
         moduleFrameConfig.grid(row=2)
 
         moduleFrameHeader.update()
         moduleFrameConfig.update()
 
-        self.buildCheckbox(subsection=moduleFrameHeader)
-        self.buildConfig(subsection=moduleFrameConfig)
+        self.buildCheckbox(section=moduleFrameHeader)
+        self.buildConfig(section=moduleFrameConfig)
 
     def __init__(self, name):
         self.name = name
+        self.colorDict =  {
+            loader.lang["modules"]["colors"]["red"]: "red",
+            loader.lang["modules"]["colors"]["orange"]: "orange",
+            loader.lang["modules"]["colors"]["yellow"]: "yellow",
+            loader.lang["modules"]["colors"]["green"]: "green",
+            loader.lang["modules"]["colors"]["blue"]: "blue"
+        }
 
-    def buildCheckbox(self, subsection: ttk.Frame):
-        lab = Label(subsection, text=loader.lang["modules"]["isactive"], pady=5, width=int((subsection.winfo_width()-13)/7)+1)
-        lab.grid(row=1)
+    def buildCheckbox(self, section: ttk.Frame):
+        """Provides GUI elements for time series module activation.
+
+        :param section: GUI component where module activation should be displayed.
+        """
+        labactive = Label(section, text=loader.lang["modules"]["isactive"], pady=5, width=int((section.winfo_width()-13)/7)+1)
+        labactive.grid(row=1)
         if not self.isactive:
             self.isactive = BooleanVar()
-        moduleCheck = Checkbutton(subsection ,variable=self.isactive, onvalue=1, offvalue=0)
+        moduleCheck = Checkbutton(section ,variable=self.isactive, onvalue=1, offvalue=0)
         moduleCheck.grid(row=2)
 
-    def buildConfig(self, subsection: ttk.Frame):
+        labcolor = Label(section, text=loader.lang["modules"]["color"], pady=5, width=int((section.winfo_width()-13)/7)+1)
+        labcolor.grid(row=3)
+        if not self.colorcbvar:
+            self.colorcbvar = StringVar()
+            self.colorcbvar.set(loader.lang["modules"]["colors"]["red"])
+        colorcb = ttk.Combobox(section, state="readonly", textvariable=self.colorcbvar, width=int((section.winfo_width()-13)/7)+1)
+        colorcb.grid(row=4)
+        colorcb['values'] = list(self.colorDict.keys())
+
+    def buildConfig(self, section: ttk.Frame):
+        """Method meant to be overwritten.
+        Provides GUI elements for time series module configuration.
+
+        :param section: GUI component where module configuration should be displayed.
+        """
         pass
 
-    def displayModule(self, ax, plotdf):
-        pass
+    def displayModule(self, ax, plotdf: DataFrame):
+        """Method meant to be overwritten.
+        Processes analyzing module and displays results on chart's axes.
 
-    def getOutputDataframe(self) -> DataFrame:
-        return DataFrame()
-
-    def clearOutputDataframe(self):
+        :param ax: Reference to plot's axes.
+        :param plotdf: Data frame with original signal.
+        """
         pass

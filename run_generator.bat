@@ -1,1 +1,1 @@
-python starter.py generator
+python starter.py generator pl

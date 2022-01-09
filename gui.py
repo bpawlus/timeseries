@@ -8,7 +8,14 @@ from hubCharts import HubCharts
 from hubImporters import HubImporters
 from hubTSModules import HubTSModules
 from importers import baseimport
+import numpy
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import random
+import matplotlib.patches as patches
 import logger
+import entryvalidators
+
 
 class Gui():
     """Base class responsible for constructing window application.
@@ -18,7 +25,7 @@ class Gui():
     """Reference to root window."""
 
     def buildSections(self):
-        """Class meant to be overwritten.
+        """Method meant to be overwritten.
         Constructs all sections of an application.
         """
         pass
@@ -202,7 +209,7 @@ class AnalyzerGui(Gui):
         self.statisticstab.column("#0", width=0, stretch=NO)
         self.statisticstab.heading("#0",text="",anchor=CENTER)
 
-        df = self.hubtsmodules.getModuleByName(self.outputModules.get()).getOutputDataframe()
+        df = self.hubtsmodules.getModuleByName(self.outputModules.get()).outputDataframe
         columns = df.columns.values.tolist()
         self.statisticstab['columns'] = columns
 
@@ -247,7 +254,7 @@ class AnalyzerGui(Gui):
             for mod in mods:
                 f.write(mod.name)
                 f.write("\n")
-                f.write(mod.getOutputDataframe().to_string())
+                f.write(mod.outputDataframe.to_string())
                 f.write("\n\n")
             f.close()
             messagebox.showinfo(loader.lang["messagebox"]["info"], f'{loader.lang["output"]["exportdata"]["successexportstats"]}{loader.dirs["exportstats"]}')
@@ -470,12 +477,6 @@ class AnalyzerGui(Gui):
         self.buildSectionSettings()
         self.buildSectionOutput()
 
-import numpy
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import random
-import matplotlib.patches as patches
-
 class GeneratorGui(Gui):
     sectionChart: Frame = None
     """Section with chart that displays current generated data."""
@@ -508,20 +509,6 @@ class GeneratorGui(Gui):
     """Variance in areas between change points in generated signal."""
     spreadcpspreadVar = None
     """Spread of variance in areas between change points in generated signal."""
-
-    def validate_floatentries(self, val):
-        """Checks if value in some text entries is positive float value.
-
-        :param val: Value to check.
-        :returns: If val is float positive. Rollbacks operation if false.
-        """
-        try:
-            fval = float(val)
-            if fval < 0:
-                return False
-        except:
-            return False
-        return True
 
     def subsectionExportdata_btnupdate_action(self):
         """Method called when activating export button in
@@ -627,11 +614,8 @@ class GeneratorGui(Gui):
         if not self.meanVar:
             self.meanVar = DoubleVar()
             self.meanVar.set(0.0)
-        vcmd = (self.subsectionChartgenerator.register(self.validate_floatentries),'%P')
+        vcmd = (self.subsectionChartgenerator.register(entryvalidators.validate_floatentries),'%P')
         meanentry = Entry(self.subsectionChartgenerator, textvariable=self.meanVar, validate='all', validatecommand=vcmd, width=int((self.subsectionChartgenerator.winfo_width()-13)/7)+1)
-        cpyval = self.meanVar.get()
-        meanentry.delete(0,END)
-        meanentry.insert(0,cpyval)
         meanentry.grid(row=6)
 
         labspread = Label(self.subsectionChartgenerator, text=loader.lang["settings-gen"]["generator"]["spread"], pady=5, width=int((self.subsectionChartgenerator.winfo_width()-13)/7)+1)
@@ -639,11 +623,8 @@ class GeneratorGui(Gui):
         if not self.spreadVar:
             self.spreadVar = DoubleVar()
             self.spreadVar.set(2.5)
-        vcmd = (self.subsectionChartgenerator.register(self.validate_floatentries),'%P')
+        vcmd = (self.subsectionChartgenerator.register(entryvalidators.validate_floatentries),'%P')
         spreadentry = Entry(self.subsectionChartgenerator, textvariable=self.spreadVar, validate='all', validatecommand=vcmd, width=int((self.subsectionChartgenerator.winfo_width()-13)/7)+1)
-        cpyval = self.spreadVar.get()
-        spreadentry.delete(0,END)
-        spreadentry.insert(0,cpyval)
         spreadentry.grid(row=8)
 
         cpspread = Label(self.subsectionChartgenerator, text=loader.lang["settings-gen"]["generator"]["cpspread"], pady=5, width=int((self.subsectionChartgenerator.winfo_width()-13)/7)+1)
@@ -651,11 +632,8 @@ class GeneratorGui(Gui):
         if not self.cpspreadVar:
             self.cpspreadVar = DoubleVar()
             self.cpspreadVar.set(0.75)
-        vcmd = (self.subsectionChartgenerator.register(self.validate_floatentries),'%P')
+        vcmd = (self.subsectionChartgenerator.register(entryvalidators.validate_floatentries),'%P')
         cpspreadentry = Entry(self.subsectionChartgenerator, textvariable=self.cpspreadVar, validate='all', validatecommand=vcmd, width=int((self.subsectionChartgenerator.winfo_width()-13)/7)+1)
-        cpyval = self.cpspreadVar.get()
-        cpspreadentry.delete(0,END)
-        cpspreadentry.insert(0,cpyval)
         cpspreadentry.grid(row=10)
 
         labspreadcpspread = Label(self.subsectionChartgenerator, text=loader.lang["settings-gen"]["generator"]["spreadcpspread"], pady=5, width=int((self.subsectionChartgenerator.winfo_width()-13)/7)+1)
@@ -663,11 +641,8 @@ class GeneratorGui(Gui):
         if not self.spreadcpspreadVar:
             self.spreadcpspreadVar = DoubleVar()
             self.spreadcpspreadVar.set(0.0)
-        vcmd = (self.subsectionChartgenerator.register(self.validate_floatentries),'%P')
+        vcmd = (self.subsectionChartgenerator.register(entryvalidators.validate_floatentries),'%P')
         spreadcpspreadentry = Entry(self.subsectionChartgenerator, textvariable=self.spreadcpspreadVar, validate='all', validatecommand=vcmd, width=int((self.subsectionChartgenerator.winfo_width()-13)/7)+1)
-        cpyval = self.spreadcpspreadVar.get()
-        spreadcpspreadentry.delete(0,END)
-        spreadcpspreadentry.insert(0,cpyval)
         spreadcpspreadentry.grid(row=12)
 
     def buildSubSectionExportData(self):

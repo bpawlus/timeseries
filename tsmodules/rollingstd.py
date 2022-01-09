@@ -5,28 +5,32 @@ from tkinter import ttk
 import loader
 
 class RollingStdModule(basemod.TSModule):
+    """Class implementing rolling standard deviation time series module.
+    """
     rollCount = 5
-    outputDataframe = DataFrame()
+    "Quanity of rolling value."
 
-    def getOutputDataframe(self) -> DataFrame:
-        return self.outputDataframe
+    def displayModule(self, ax, plotdf: DataFrame):
+        """Processes analyzing module and displays results on chart's axes.
 
-    def clearOutputDataframe(self):
-        self.outputDataframe = DataFrame()
-
-    def displayModule(self, ax, plotdf):
+        :param ax: Reference to plot's axes.
+        :param plotdf: Data frame with original signal.
+        """
         dfrolling = plotdf.rename(columns={f'{plotdf.columns[1]}': f'{plotdf.columns[1]} {loader.lang["modules"]["rollingstd"]["rollingdisplay"]} {self.rollCount}'})        
         self.outputDataframe[plotdf.columns[0]] = [v[0] for v in plotdf.values]
         dfrolling = dfrolling[[col for col in dfrolling.columns]].groupby(dfrolling.columns[0]).sum()
         dfrolling = dfrolling.rolling(self.rollCount).std()
-        for i in range(len(dfrolling.values)):
-            self.outputDataframe.values[i][1] = dfrolling.values[i][0]
-        dfrolling.plot(kind='line', legend=True, ax=ax, color='b',marker='o', fontsize=5, markersize=2)
+        self.outputDataframe[dfrolling.columns[0]] = [v[0] for v in dfrolling.values]
+        dfrolling.plot(kind='line', legend=True, ax=ax, color=self.getDisplayColor(),marker='o', fontsize=5, markersize=2)
 
-    def buildConfig(self, subsection: ttk.Frame):
-        labroll = Label(subsection, text=loader.lang["modules"]["rollingstd"]["count"], pady=5, width=int((subsection.winfo_width()-13)/7)+1)
+    def buildConfig(self, section: ttk.Frame):
+        """Provides GUI elements for time series module configuration.
+
+        :param section: GUI component where module configuration should be displayed.
+        """
+        labroll = Label(section, text=loader.lang["modules"]["rollingstd"]["count"], pady=5, width=int((section.winfo_width()-13)/7)+1)
         labroll.grid(row=1)
-        rollCountScale = Scale(subsection, from_=2, to=16, tickinterval=7, orient=HORIZONTAL, length=int(subsection.winfo_width()))
+        rollCountScale = Scale(section, from_=2, to=16, tickinterval=7, orient=HORIZONTAL, length=int(section.winfo_width()))
         rollCountScale.set(self.rollCount)
         rollCountScale.grid(row=2)
 

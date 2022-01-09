@@ -20,9 +20,11 @@ class ImportMethod:
         self.displayname = displayname
         self.defaultTitle = defaultTitle
 
-    def importSettingsGui(self, section: ttk.Frame, lang):
+    def importSettingsGui(self, section: ttk.Frame):
         """Method meant to be overwritten.
-        Provides GUI elements to select specific signal from provided data.
+        Provides GUI elements for selection of specific signal from provided data.
+
+        :param section: GUI component where chart should be displayed.
         """
         pass
 

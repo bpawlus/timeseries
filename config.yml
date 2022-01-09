@@ -1,8 +1,7 @@
 ---
-language: "pl"
 app:
-  width: 810
-  height: 540
+  width: 972
+  height: 648
 directories:
   icon: "assets/icon.ico"
   lang: "lang"

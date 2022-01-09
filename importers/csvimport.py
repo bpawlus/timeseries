@@ -61,7 +61,7 @@ class CsvImportMethod(baseimport.ImportMethod):
             self.onXYprovided()
 
     def importSettingsGui(self, section: ttk.Frame):
-        """Provides GUI elements to select specific signal from provided data.
+        """Provides GUI elements for selection of specific signal from provided data.
         """
         logger.log("Started importing CSV file from: " + self.directory)
         

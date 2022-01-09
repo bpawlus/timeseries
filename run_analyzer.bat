@@ -1,1 +1,1 @@
-python starter.py analyzer
+python starter.py analyzer pl

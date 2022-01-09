@@ -513,7 +513,7 @@ class GeneratorGui(Gui):
     def subsectionExportdata_btnupdate_action(self):
         """Method called when activating export button in
         subsection of settings section that allows exporting generated chart and statistics.
-        Exports generated data to text format and csv spreadsheet.
+        Generates a new, randomized signal.
         """
         for widget in self.sectionChart.winfo_children():
             widget.destroy()
@@ -534,13 +534,14 @@ class GeneratorGui(Gui):
         self.dfdatay = []
         rects = []
         self.cps.append(self.samples)
-            
+
         for i in range(len(self.cps)-1):
             cplen = self.cps[i+1]-self.cps[i]
             data = numpy.random.normal(self.means[i], self.spreads[i], cplen)
             self.dfdatay.extend(data)
             rects.append(patches.Rectangle((self.cps[i], self.means[i]-self.spreads[i]), cplen, 2*self.spreads[i], linewidth=2, edgecolor='#FFFF00', facecolor='none'))
 
+        self.cps[len(self.cps)-1] -= 1
         self.dfdata = {
             "X": [x for x in range(self.samples)],
             "Y": self.dfdatay

@@ -7,7 +7,7 @@ import matplotlib.patches as patches
 import loader
 import entryvalidators
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 class RupturesModule(basemod.TSModule):
     """Class implementing change point detection algorithms in time series modules.
@@ -32,36 +32,46 @@ class RupturesModule(basemod.TSModule):
         :param plotdf: Data frame with original signal.
         """
         signal = np.array(plotdf[plotdf.columns[1]])
-        cps = self.calculateChangePoints(signal)
-        cps.insert(0,0)
-        cps[len(cps)-1]
-        cpstarts = []
-        cpends = []
-        means = []
-        sigmas = []
-        for c in range(len(cps)-1):
-            mean = np.mean([signal[i] for i in range(cps[c], cps[c+1])])
-            sum = 0
-            for i in range(cps[c], cps[c+1]):
-                sum += math.pow((signal[i] - mean),2)
-            sum = sum/(cps[c+1]-cps[c]+1)
-            sum = math.sqrt(sum)
-            
-            means.append(mean)
-            sigmas.append(sum)
-            cpstarts.append(plotdf[plotdf.columns[0]][cps[c]])
-            cpends.append(plotdf[plotdf.columns[0]][cps[c+1]-1])
+        if not self.cpointsconsidervar.get() or (self.cpointsconsidervar.get() and self.cpointsvar.get() <= np.size(signal)/10):
+            cps = self.calculateChangePoints(signal)
 
-            start = plotdf[plotdf.columns[0]][cps[c]]
-            width = plotdf[plotdf.columns[0]][cps[c+1]-1]-plotdf[plotdf.columns[0]][cps[c]]
+            cps.insert(0,0)
+            cps[len(cps)-1]
+            cpstarts = []
+            cpends = []
+            cpstartsidx = []
+            cpendsidx = []
+            means = []
+            sigmas = []
+            for c in range(len(cps)-1):
+                mean = np.mean([signal[i] for i in range(cps[c], cps[c+1])])
+                sum = 0
+                for i in range(cps[c], cps[c+1]):
+                    sum += math.pow((signal[i] - mean),2)
+                sum = sum/(cps[c+1]-cps[c]+1)
+                sum = math.sqrt(sum)
+                
+                means.append(mean)
+                sigmas.append(sum)
+                cpstarts.append(plotdf[plotdf.columns[0]][cps[c]])
+                cpstartsidx.append(cps[c])
+                cpends.append(plotdf[plotdf.columns[0]][cps[c+1]-1])
+                cpendsidx.append(cps[c+1]-1)
 
-            rect = patches.Rectangle((start, mean-sum), width, sum*2, linewidth=1, edgecolor=self.getDisplayColor(), facecolor='none')
-            ax.add_patch(rect)
+                start = plotdf[plotdf.columns[0]][cps[c]]
+                width = plotdf[plotdf.columns[0]][cps[c+1]-1]-plotdf[plotdf.columns[0]][cps[c]]+1
 
-        self.outputDataframe[loader.lang["modules"]["changepoints"]["cpstart"]] = cpstarts
-        self.outputDataframe[loader.lang["modules"]["changepoints"]["cpend"]] = cpends
-        self.outputDataframe[loader.lang["modules"]["changepoints"]["means"]] = means
-        self.outputDataframe[loader.lang["modules"]["changepoints"]["sigmas"]] = sigmas
+                rect = patches.Rectangle((start, mean-sum), width, sum*2, linewidth=1, edgecolor=self.getDisplayColor(), facecolor='none')
+                ax.add_patch(rect)
+
+            self.outputDataframe[loader.lang["modules"]["changepoints"]["cpstart"]] = cpstarts
+            self.outputDataframe[loader.lang["modules"]["changepoints"]["cpstartidx"]] = cpstarts
+            self.outputDataframe[loader.lang["modules"]["changepoints"]["cpend"]] = cpends
+            self.outputDataframe[loader.lang["modules"]["changepoints"]["cpendidx"]] = cpends
+            self.outputDataframe[loader.lang["modules"]["changepoints"]["means"]] = means
+            self.outputDataframe[loader.lang["modules"]["changepoints"]["sigmas"]] = sigmas
+        else:
+            messagebox.showerror(loader.lang["messagebox"]["error"], loader.lang["modules"]["changepoints"]["toomanycp"]+str(math.floor(np.size(signal)/10)))
 
     def calculateChangePoints(self, signal) -> list:
         """Method meant to be overwritten.
@@ -149,7 +159,8 @@ class RupturesPeltModule(RupturesModule):
         """
         algo = rpt.Pelt(model=self.costDict[self.costcbvar.get()]).fit(signal)
         if self.cpointsconsidervar.get():
-            result = algo.predict(n_bkps=self.cpointsvar.get())
+            messagebox.showerror(loader.lang["messagebox"]["error"], loader.lang["modules"]["changepoints"]["pelt"]["unsupported"])
+            return []
         else:
             result = algo.predict(pen=self.penaltyvar.get())
         return result

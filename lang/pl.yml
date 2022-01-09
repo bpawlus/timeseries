@@ -81,7 +81,9 @@ modules:
   changepoints:
     header: "Punkty Zmian"
     cpstart: "Pkt. zmiany"
+    cpstartidx: "Indeks pkt. zmiany"
     cpend: "Koniec pkt. zmiany"
+    cpendidx: "Indeks konca pkt. zmiany"
     means: "Srednia"
     sigmas: "Odch. std."
     penalty: "Wartosc parametru wygladzania"
@@ -95,14 +97,16 @@ modules:
       rbf: "Z jadrem Gaussowskim"
       rank: "Oparta na rangach"
     pelt:
-      header: "Punkty Zmian - Metoda PELT"
+      header: "Punkty Zmian - PELT"
+      unsupported: "Algorytm PELT nie obsluguje znanej liczby punktow zmian!"
     binseg:
-      header: "Punkty Zmian - Metoda Segmentacji binarnej"
+      header: "Punkty Zmian - Segmentacja binarna"
     window:
-      header: "Punkty Zmian - Metoda okna przesuwnego"
+      header: "Punkty Zmian - Okno przesuwne"
       width: "Szerokosc okna"
     botup:
-      header: "Punkty Zmian - Metoda Segmentacji oddolnej"
+      header: "Punkty Zmian - Segmentacja oddolna"
+    toomanycp: "Podano za duzo znanych punktow zmian!\nMaksymalna ilosc: "
   evaluation:
     header: "Ewaluacja pkt. zmian"
     set1: "Zestaw 1"

@@ -19,6 +19,7 @@ class AutocorrelationsModule(basemod.TSModule):
         :param ax: Reference to plot's axes.
         :param plotdf: Data frame with original signal.
         """
+        
         if self.lagentryvar.get() > 0: 
             self.outputDataframe[loader.lang["modules"]["autocorrelations"]["lag"]] = [i+1 for i in range(0, int(self.lagentryvar.get()))]
         acft = acf([v[1] for v in plotdf.values], nlags=self.lagentryvar.get()).tolist()

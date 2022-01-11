@@ -3,8 +3,8 @@ title: "Analiza Szeregow Czasowych"
 titlegen: "Analiza Szeregow Czasowych - generator"
 settings:
   loaddata: 
-    header: "Wczytaj Dane"
-    import: "Zaimportuj Dane"
+    header: "Wczytaj dane"
+    import: "Zaimportuj dane"
     select: "Akceptuj"
   charts:
     header: "Wykresy"
@@ -16,7 +16,7 @@ settings:
     header: "Moduly"
     active: "Aktywny"
     modules: "Dostepne moduly"
-    update: "Zaaktualizuj"
+    update: "Zaktualizuj"
 output:
   statistics: 
     header: "Statystyki"
@@ -38,22 +38,22 @@ settings-gen:
     cpcount: "Liczba punktow zmian"
     samples: "Liczba danych"
     mean: "Srednia danych"
-    spread: "Odch. std. danych"
-    cpspread: "Odch. std. w punktach zmian"
-    spreadcpspread: "Zmiennosc odch. std. w punktach zmian"
+    spread: "Rozpietosc sredniej danych"
+    cpspread: "Rozpietosc danych miedzy punktami zmian"
+    spreadcpspread: "Zmiana rozpietosci danych miedzy punktami zmian"
     samples: "Liczba danych"
   output:
     header: "Aktualizuj i Eksportuj"
     update: "Aktualizuj"
     export: "Eksportuj"
-  chartname: "Wygenerowane Dane"
+  chartname: "Wygenerowane dane"
   results:
     cps: "Kolejne puknty zmian"
     means: "Srednia przed nalozeniem szumu w kolejnych obszarych"
-    spreads: "Odch. std. przed nalozeniem szumu w kolejnych obszarach"
+    spreads: "Rozpietosc przed nalozeniem szumu w kolejnych obszarach"
     exportinfo: "Wygenerowane wyniki zostaly zapisane w:"
 importer-xls:
-  defaultTitle: "Nazwa"
+  defaultTitle: "NazwaXLS"
   sheets: "Arkusze"
   xseries: "Os Kategorii (x)"
   yseries: "Serie danych (y)"
@@ -61,15 +61,15 @@ importer-xls:
   wrongimport: "Wskazano nieprawidlowe dane!\nNalezy zapewnic ze podane kolumny zostaly wybrane\noraz unikalne."
   successimport: "Dane zostaly poprawnie zaimportowane! Pojawia sie one w zakladce 'Wykresy'."
 importer-csv:
-  defaultTitle: "Nazwa"
+  defaultTitle: "NazwaCSV"
   xseries: "Os Kategorii (x)"
   yseries: "Serie danych (y)"
   preview: "Podglad i weryfikacja danych"
-  wrongimport: "Wskazano nieprawidlowe dane!\nNalezy zapewnic ze podane kolumny zostaly wybrane\noraz unikalne."
+  wrongimport: "Wskazano nieprawidlowe dane!\nNalezy zapewnic ze podane kolumny zostaly wybrane\noraz sa unikalne."
   successimport: "Dane zostaly poprawnie zaimportowane! Pojawia sie one w zakladce 'Wykresy'."
 modules:
   isactive: "Aktywny"
-  color: "Kolor danych na wykresie"
+  color: "Kolor latek na wykresie"
   colors:
     red: "Czerwony"
     orange: "Pomaranczowy"
@@ -89,13 +89,11 @@ modules:
     penalty: "Wartosc parametru wygladzania"
     costfcs: "Funkcje kosztu"
     cpoints: "Liczba punktow zmian"
-    cpointsconsider: "Znana liczba pkt. zmian znana"
+    cpointsconsider: "Znana liczba pkt. zmian"
     costs:
       l1: "Najmniejsze odchylenie bezwzgledne"
-      l2: "Najmniej kwadratowe odchylenie "
+      l2: "Najmniejsze odchylenie kwadratowe"
       normal: "Zmiana procesu Gaussowskiego"
-      rbf: "Z jadrem Gaussowskim"
-      rank: "Oparta na rangach"
     pelt:
       header: "Punkty Zmian - PELT"
       unsupported: "Algorytm PELT nie obsluguje znanej liczby punktow zmian!"

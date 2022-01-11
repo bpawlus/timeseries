@@ -10,7 +10,3 @@ directories:
   exportchart: "bin/latest.png"
   gen: "generated/generated.csv"
   geninfo: "generated/generated.txt"
-languages:
-  pl:
-    filename: "pl.yml"
-    displayname: "Polski"

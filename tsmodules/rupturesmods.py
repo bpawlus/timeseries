@@ -141,9 +141,7 @@ class RupturesModule(basemod.TSModule):
         self.costDict = {
             loader.lang["modules"]["changepoints"]["costs"]["l1"]: "l1",
             loader.lang["modules"]["changepoints"]["costs"]["l2"]: "l2",
-            loader.lang["modules"]["changepoints"]["costs"]["normal"]: "normal",
-            loader.lang["modules"]["changepoints"]["costs"]["rbf"]: "rbf",
-            loader.lang["modules"]["changepoints"]["costs"]["rank"]: "rank"
+            loader.lang["modules"]["changepoints"]["costs"]["normal"]: "normal"
         }
 
 

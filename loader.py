@@ -1,4 +1,5 @@
 import yaml
+import os
 
 conf = None
 """List with application configurations."""
@@ -19,13 +20,12 @@ def loadConfig(language: str) -> bool:
             configloaded = yaml.safe_load(stream)
             conf = configloaded["app"]
             dirs = configloaded["directories"]
-            languages = configloaded["languages"]
 
-            if not languages[language]:
+            if not os.path.isfile(dirs["lang"] + "/" + language + ".yml"):
                 print("Language: " + language + " doesn't exist!")
                 return False
 
-            with open(dirs["lang"] + "/" + languages[language]["filename"], 'r') as streamlang:
+            with open(dirs["lang"] + "/" + language + ".yml", 'r') as streamlang:
                 try:
                     lang = yaml.safe_load(streamlang)
                     return True

@@ -11,6 +11,8 @@ class DecomposeModule(basemod.TSModule):
     """Class implementing decomposition of time series.
     """
 
+    modelDict = None
+    """Dictionary of decompose models, that can be used in seasonal decomposition function."""
     lagentryvar = None
     """The length of the lag."""
     modelscbvar = None
@@ -30,18 +32,19 @@ class DecomposeModule(basemod.TSModule):
             self.outputDataframe[plotdf.columns[0]]= plotdf[plotdf.columns[0]]
 
             series = pd.Series(x for x in plotdf[plotdf.columns[1]])
-            res = sm.tsa.seasonal_decompose(series.values, period=self.lagentryvar.get(),model=self.modelscbvar.get())
+            print("Model ", self.modelDict[self.modelscbvar.get()])
+            res = sm.tsa.seasonal_decompose(series.values, period=self.lagentryvar.get(), model=self.modelDict[self.modelscbvar.get()], extrapolate_trend='freq')
             reslist = [res.seasonal, res.trend, res.resid]
             i=0
 
             for comp in self.componentslist:
                 if self.componentsvarlist[i].get():
-                    self.outputDataframe[plotdf.columns[0] + " " + loader.lang["modules"]["decompose"][comp]] = reslist[i]
+                    self.outputDataframe[plotdf.columns[1] + " " + loader.lang["modules"]["decompose"][comp]] = reslist[i]
                 i+=1
         
         if len(self.outputDataframe.columns) > 1:
-            origdf = self.outputDataframe.dropna()
             origdf = self.outputDataframe[[col for col in self.outputDataframe.columns]].groupby(self.outputDataframe.columns[0]).sum()
+            origdf = self.outputDataframe.dropna()
             origdf.plot(kind='line', legend=True, ax=ax, color=self.getDisplayColor(),marker='o', fontsize=4, markersize=2)
 
     def buildConfig(self, section: ttk.Frame):
@@ -67,6 +70,7 @@ class DecomposeModule(basemod.TSModule):
         modelscb = ttk.Combobox(section, state="readonly", textvariable=self.modelscbvar, width=int((section.winfo_width()-13)/7)+1)
         modelscb.grid(row=4)
         modelscb['values'] = [loader.lang["modules"]["decompose"]["additive"], loader.lang["modules"]["decompose"]["multiplicative"]]
+        modelscb.set(loader.lang["modules"]["decompose"]["additive"])
 
         i = 0
         for comp in self.componentslist:
@@ -77,3 +81,10 @@ class DecomposeModule(basemod.TSModule):
             compbtn = Checkbutton(section ,variable=self.componentsvarlist[i], onvalue=1, offvalue=0)
             compbtn.grid(row=(i*2)+6)
             i+=1
+
+    def __init__(self, name) -> None:
+        super().__init__(name)
+        self.modelDict = {
+            loader.lang["modules"]["decompose"]["additive"]: "additive",
+            loader.lang["modules"]["decompose"]["multiplicative"]: "multiplicative",
+        }

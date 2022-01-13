@@ -50,7 +50,7 @@ settings-gen:
   results:
     cps: "Kolejne puknty zmian"
     means: "Srednia przed nalozeniem szumu w kolejnych obszarych"
-    spreads: "Rozpietosc przed nalozeniem szumu w kolejnych obszarach"
+    spreads: "Rozpietosc nakladanego szumu w kolejnych obszarach"
     exportinfo: "Wygenerowane wyniki zostaly zapisane w:"
 importer-xls:
   defaultTitle: "NazwaXLS"
@@ -107,14 +107,14 @@ modules:
     toomanycp: "Podano za duzo znanych punktow zmian!\nMaksymalna ilosc: "
   evaluation:
     header: "Ewaluacja pkt. zmian"
-    set1: "Zestaw 1"
-    set2: "Zestaw 2"
+    set1: "Zestaw prawdziwy"
+    set2: "Zestaw estymowany"
     hausdorff: "Metryka Hausdorffa"
     randindex: "Rand index"
     precision: "Precyzja"
     recall: "Wycofanie"
     margin: "Margines bledu"
-    wrongset: "Niepoprawny zbior indeksow punktow zmian!\nPrzykladowy poprawny format: 1,2,4,9\nMinimalna dlugosc: 3"
+    wrongset: "Niepoprawny zbior indeksow punktow zmian!\nPrzykladowy poprawny format: 1,2,4,9\nMinimalna dlugosc: 1"
   rollingmean: 
     header: "Srednia ruchoma"
     count: "Wielkosc ruchomej"

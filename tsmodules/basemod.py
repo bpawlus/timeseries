@@ -13,9 +13,9 @@ class TSModule:
     """Should this module be considered in time series data analysis."""
     outputDataframe = DataFrame()
     """Data frame with processed time series module data, that was displayed on chart's axes, or that couldn't be displayed with line graph."""
-    colorDict = None
+    __colorDict = None
     """Dictionary of colors, that can be used to display module's data."""
-    colorcbvar = None
+    __colorcbvar = None
     """Chosen color used to display module's data."""
 
     def getDisplayColor(self) -> str:
@@ -23,7 +23,7 @@ class TSModule:
 
         :returns: Color used to display module's data.
         """
-        return self.colorDict[self.colorcbvar.get()]
+        return self.__colorDict[self.__colorcbvar.get()]
 
     def buildMenu(self, section: ttk.Frame):
         """Provides GUI elements for time series module items.
@@ -48,7 +48,7 @@ class TSModule:
 
     def __init__(self, name):
         self.name = name
-        self.colorDict =  {
+        self.__colorDict =  {
             loader.lang["modules"]["colors"]["red"]: "red",
             loader.lang["modules"]["colors"]["orange"]: "orange",
             loader.lang["modules"]["colors"]["yellow"]: "yellow",
@@ -70,12 +70,12 @@ class TSModule:
 
         labcolor = Label(section, text=loader.lang["modules"]["color"], pady=5, width=int((section.winfo_width()-13)/7)+1)
         labcolor.grid(row=3)
-        if not self.colorcbvar:
-            self.colorcbvar = StringVar()
-            self.colorcbvar.set(loader.lang["modules"]["colors"]["red"])
-        colorcb = ttk.Combobox(section, state="readonly", textvariable=self.colorcbvar, width=int((section.winfo_width()-13)/7)+1)
+        if not self.__colorcbvar:
+            self.__colorcbvar = StringVar()
+            self.__colorcbvar.set(loader.lang["modules"]["colors"]["red"])
+        colorcb = ttk.Combobox(section, state="readonly", textvariable=self.__colorcbvar, width=int((section.winfo_width()-13)/7)+1)
         colorcb.grid(row=4)
-        colorcb['values'] = list(self.colorDict.keys())
+        colorcb['values'] = list(self.__colorDict.keys())
 
     def buildConfig(self, section: ttk.Frame):
         """Method meant to be overwritten.

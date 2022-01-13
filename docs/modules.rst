@@ -6,6 +6,7 @@ Projekt
 
    chart
    devstart
+   entryvalidators
    gui
    hubCharts
    hubImporters
@@ -13,5 +14,6 @@ Projekt
    importers
    loader
    logger
+   sandbox
    starter
    tsmodules

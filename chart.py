@@ -18,9 +18,9 @@ class Chart:
     id: int = 0
     """ID of the chart."""
 
-    figure: FigureCanvasTkAgg = None
+    __figure: FigureCanvasTkAgg = None
     """Canvas of the chart."""
-    ax = None
+    __ax = None
     """Axes of the chart."""
 
     def __init__(self, df: DataFrame, title: str, id: int):
@@ -34,7 +34,7 @@ class Chart:
         
         :param filename: Directory where canvas should be saved.
         """
-        self.figure.print_png(filename)
+        self.__figure.print_png(filename)
 
     def displayChart(self, display: Frame, moduleDisplayer):
         """Displays chart on screen.
@@ -44,13 +44,13 @@ class Chart:
         """
         logger.log("Displaying chart id = " + str(self.id))
 
-        figure = plt.Figure(dpi=100)
-        self.ax = figure.add_subplot(111)
+        __figure = plt.Figure(dpi=100)
+        self.__ax = __figure.add_subplot(111)
 
-        figure = FigureCanvasTkAgg(figure, display)
-        figure.get_tk_widget().grid(row=0)
+        __figure = FigureCanvasTkAgg(__figure, display)
+        __figure.get_tk_widget().grid(row=0)
 
-        moduleDisplayer(self.ax, self.df)
+        moduleDisplayer(self.__ax, self.df)
 
-        self.ax.set_title(self.title)        
-        self.figure = figure
+        self.__ax.set_title(self.title)        
+        self.__figure = __figure

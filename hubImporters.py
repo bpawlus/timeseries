@@ -7,10 +7,16 @@ class HubImporters:
     """Class with methods concerning data importers.
     """
 
-    allMethods = ()
+    __allMethods = ()
     """List containing all import method names."""
-    allDrivers = ()
+    __allDrivers = ()
     """List containing all import methods."""
+
+    def getAllMethods(self):
+        return self.__allMethods
+
+    def getAllDrivers(self):
+        return self.__allDrivers
 
     def getImporterByFileextension(self, fileextension: str) -> baseimport.ImportMethod:
         """Returns import method based on operated file extension.
@@ -18,7 +24,7 @@ class HubImporters:
         :param fileextension: File extension of operated method.
         :returns: Requested method.
         """
-        driverlist = [driv for ext, driv in self.allDrivers if ext == fileextension]
+        driverlist = [driv for ext, driv in self.__allDrivers if ext == fileextension]
         if len(driverlist):
             return driverlist[0]
         else:
@@ -29,8 +35,8 @@ class HubImporters:
         
         :param module: Import method to add.
         """
-        self.allMethods = ((method.extension, method.displayname),) + self.allMethods
-        self.allDrivers = ((method.extension, method),)+self.allDrivers
+        self.__allMethods = ((method.extension, method.displayname),) + self.__allMethods
+        self.__allDrivers = ((method.extension, method),)+self.__allDrivers
 
     def loadImporters(self) -> None:
         """Loads the list with all provided importers.

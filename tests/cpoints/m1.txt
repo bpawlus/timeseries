@@ -4,5 +4,5 @@ Kolejne puknty zmian
 Srednia przed nalozeniem szumu w kolejnych obszarych
 2.6213985804982713 3.891972904174985 7.3747668954129 6.110949649808987 3.803573261995398
 
-Rozpietosc przed nalozeniem szumu w kolejnych obszarach
+Rozpietosc nakladanego szumu w kolejnych obszarach
 0.9552104652227943 1.0458876258664975 1.0526689825845088 0.9037497021082923 0.9384876891433903

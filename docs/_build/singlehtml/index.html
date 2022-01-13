@@ -45,12 +45,6 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class contains loaded time series data in form of charts.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="chart.Chart.ax">
-<span class="sig-name descname"><span class="pre">ax</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#chart.Chart.ax" title="Permalink to this definition">¶</a></dt>
-<dd><p>Axes of the chart.</p>
-</dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="chart.Chart.df">
 <span class="sig-name descname"><span class="pre">df</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">pandas.core.frame.DataFrame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#chart.Chart.df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data frame of loaded signal.</p>
@@ -82,12 +76,6 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="chart.Chart.figure">
-<span class="sig-name descname"><span class="pre">figure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">matplotlib.backends.backend_tkagg.FigureCanvasTkAgg</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#chart.Chart.figure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Canvas of the chart.</p>
-</dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="chart.Chart.id">
 <span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">int</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">0</span></em><a class="headerlink" href="#chart.Chart.id" title="Permalink to this definition">¶</a></dt>
 <dd><p>ID of the chart.</p>
@@ -99,6 +87,37 @@
 <dd><p>Title of the chart.</p>
 </dd></dl>
 
+</dd></dl>
+
+</section>
+<span id="document-entryvalidators"></span><section id="module-entryvalidators">
+<span id="entryvalidators-module"></span><h3>entryvalidators module<a class="headerlink" href="#module-entryvalidators" title="Permalink to this headline">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="entryvalidators.validate_digit">
+<span class="sig-prename descclassname"><span class="pre">entryvalidators.</span></span><span class="sig-name descname"><span class="pre">validate_digit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entryvalidators.validate_digit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if values in text entries are positive integer value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> – Value to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If val is positive int. Rollbacks operation if false.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="entryvalidators.validate_floatentries">
+<span class="sig-prename descclassname"><span class="pre">entryvalidators.</span></span><span class="sig-name descname"><span class="pre">validate_floatentries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entryvalidators.validate_floatentries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if values in text entries are positive float value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> – Value to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If val is positive float. Rollbacks operation if false.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -169,15 +188,9 @@
 <dd><p>Builds subsection of settings section that allows user to choose displayed time series analyzing modules.</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.chartId">
-<span class="sig-name descname"><span class="pre">chartId</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">int</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">-1</span></em><a class="headerlink" href="#gui.AnalyzerGui.chartId" title="Permalink to this definition">¶</a></dt>
-<dd><p>ID of currently displayed chart</p>
-</dd></dl>
-
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.clearsectionChart">
-<span class="sig-name descname"><span class="pre">clearsectionChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.clearsectionChart" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.clear_sectionChart">
+<span class="sig-name descname"><span class="pre">clear_sectionChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.clear_sectionChart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method clears the view of section with chart.</p>
 </dd></dl>
 
@@ -187,168 +200,10 @@
 <dd><p>Deletes the current viewed chart.</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.hubcharts">
-<span class="sig-name descname"><span class="pre">hubcharts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><a class="reference internal" href="index.html#hubCharts.HubCharts" title="hubCharts.HubCharts"><span class="pre">hubCharts.HubCharts</span></a></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">&lt;hubCharts.HubCharts</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#gui.AnalyzerGui.hubcharts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Functional component with methods concerning loaded data in form of charts.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.hubimporters">
-<span class="sig-name descname"><span class="pre">hubimporters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><a class="reference internal" href="index.html#hubImporters.HubImporters" title="hubImporters.HubImporters"><span class="pre">hubImporters.HubImporters</span></a></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">&lt;hubImporters.HubImporters</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#gui.AnalyzerGui.hubimporters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Functional component with methods concerning data importers.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.hubtsmodules">
-<span class="sig-name descname"><span class="pre">hubtsmodules</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><a class="reference internal" href="index.html#hubTSModules.HubTSModules" title="hubTSModules.HubTSModules"><span class="pre">hubTSModules.HubTSModules</span></a></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">&lt;hubTSModules.HubTSModules</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#gui.AnalyzerGui.hubtsmodules" title="Permalink to this definition">¶</a></dt>
-<dd><p>Functional component with methods concerning time series analyzing modules.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.importer">
-<span class="sig-name descname"><span class="pre">importer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><a class="reference internal" href="index.html#importers.baseimport.ImportMethod" title="importers.baseimport.ImportMethod"><span class="pre">importers.baseimport.ImportMethod</span></a></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.importer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Chosen by user importer function (ex. .xls import when loading microsoft excel spreadsheet).</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.sectionChart">
-<span class="sig-name descname"><span class="pre">sectionChart</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.sectionChart" title="Permalink to this definition">¶</a></dt>
-<dd><p>Section with chart that displays current data.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.sectionOutput">
-<span class="sig-name descname"><span class="pre">sectionOutput</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.sectionOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Section with output functions that display and export data.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.sectionSettings">
-<span class="sig-name descname"><span class="pre">sectionSettings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.sectionSettings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Section with settings that set properties of data.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.AnalyzerGui.statisticstabRefresh">
 <span class="sig-name descname"><span class="pre">statisticstabRefresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.statisticstabRefresh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes the content of combobox and table view with all active time series modules.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionDataSelection">
-<span class="sig-name descname"><span class="pre">subsectionDataSelection</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.subsectionDataSelection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Subsection of settings section that allows user to choose displayed data, which was previously loaded.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionDataSelection_btndelete_action">
-<span class="sig-name descname"><span class="pre">subsectionDataSelection_btndelete_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionDataSelection_btndelete_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when activating delete button in
-subsection of settings section that allows user to choose displayed data, which was previously loaded.
-Deletes selected data.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionDataSelection_btnupdate_action">
-<span class="sig-name descname"><span class="pre">subsectionDataSelection_btnupdate_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionDataSelection_btnupdate_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when activating update button in
-subsection of settings section that allows user to choose displayed data, which was previously loaded.
-Updates chart displays with chosen data.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionDataSelection_chartscb_action">
-<span class="sig-name descname"><span class="pre">subsectionDataSelection_chartscb_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionDataSelection_chartscb_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when updating charts combobox in
-subsection of settings section that allows user to choose displayed data, which was previously loaded.
-Updates the preview of selected data.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionExportData">
-<span class="sig-name descname"><span class="pre">subsectionExportData</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.subsectionExportData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Subsection of output section that allows exporting logs, chart and statistics.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionExportData_btnexportchart_action">
-<span class="sig-name descname"><span class="pre">subsectionExportData_btnexportchart_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionExportData_btnexportchart_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when activating export button in
-subsection of output section that allows exporting logs, chart and statistics
-Exports displayed chart to image format.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionExportData_btnexportlogs_action">
-<span class="sig-name descname"><span class="pre">subsectionExportData_btnexportlogs_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionExportData_btnexportlogs_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when activating export button in
-subsection of output section that allows exporting logs, chart and statistics
-Exports logs to text format.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionExportData_btnexportstats_action">
-<span class="sig-name descname"><span class="pre">subsectionExportData_btnexportstats_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionExportData_btnexportstats_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when activating export button in
-subsection of output section that allows exporting logs, chart and statistics
-Exports output modules data to text format.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionLoadData">
-<span class="sig-name descname"><span class="pre">subsectionLoadData</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.subsectionLoadData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Subsection of settings section that loads of data from memory.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionLoadData_btnexport_action">
-<span class="sig-name descname"><span class="pre">subsectionLoadData_btnexport_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionLoadData_btnexport_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when activating export button in
-subsection of settings section that loads of data from memory.
-Exports data from importer to application’s memory.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionLoadData_btnimport_action">
-<span class="sig-name descname"><span class="pre">subsectionLoadData_btnimport_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionLoadData_btnimport_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when activating import button in
-subsection of settings section that loads of data from memory.
-Configures chosen importer function.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionLogger">
-<span class="sig-name descname"><span class="pre">subsectionLogger</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.subsectionLogger" title="Permalink to this definition">¶</a></dt>
-<dd><p>Subsection of output section that logs user’s actions.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionStatisctics">
-<span class="sig-name descname"><span class="pre">subsectionStatisctics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.subsectionStatisctics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Subsection of output section that displays data of modules in tabular form.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionStatisctics_outputModulescb_action">
-<span class="sig-name descname"><span class="pre">subsectionStatisctics_outputModulescb_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionStatisctics_outputModulescb_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when updating modules combobox in
-subsection of output section that displays data of modules in tabular form.
-Rebuilds a table view of analyzing module data.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionTSModules">
-<span class="sig-name descname"><span class="pre">subsectionTSModules</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.subsectionTSModules" title="Permalink to this definition">¶</a></dt>
-<dd><p>Subsection of settings section that allows user to choose displayed time series analyzing modules.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.subsectionTSModules_tsmodulesentrycb_action">
-<span class="sig-name descname"><span class="pre">subsectionTSModules_tsmodulesentrycb_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.subsectionTSModules_tsmodulesentrycb_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when updating modules combobox in
-subsection of settings section that allows user to choose displayed time series analyzing modules.
-Rebuilds a menu with module parameters.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -399,120 +254,6 @@ Rebuilds a menu with module parameters.</p>
 <dd><p>Builds subsection of settings section that allows exporting generated chart and statistics.</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.cpCount">
-<span class="sig-name descname"><span class="pre">cpCount</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">2</span></em><a class="headerlink" href="#gui.GeneratorGui.cpCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of change points in generated signal.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.cps">
-<span class="sig-name descname"><span class="pre">cps</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.cps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generated change point indexes.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.cpspreadVar">
-<span class="sig-name descname"><span class="pre">cpspreadVar</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.cpspreadVar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Variance in areas between change points in generated signal.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.df">
-<span class="sig-name descname"><span class="pre">df</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">Empty</span> <span class="pre">DataFrame</span> <span class="pre">Columns:</span> <span class="pre">[]</span> <span class="pre">Index:</span> <span class="pre">[]</span></em><a class="headerlink" href="#gui.GeneratorGui.df" title="Permalink to this definition">¶</a></dt>
-<dd><p>Data frame of generated signal.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.meanVar">
-<span class="sig-name descname"><span class="pre">meanVar</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.meanVar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mean of all data in generated signal.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.means">
-<span class="sig-name descname"><span class="pre">means</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.means" title="Permalink to this definition">¶</a></dt>
-<dd><p>Means in area between change points, before applying noise.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.samples">
-<span class="sig-name descname"><span class="pre">samples</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">100</span></em><a class="headerlink" href="#gui.GeneratorGui.samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of samples (data length) in generated signal.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.sectionChart">
-<span class="sig-name descname"><span class="pre">sectionChart</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.sectionChart" title="Permalink to this definition">¶</a></dt>
-<dd><p>Section with chart that displays current generated data.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.sectionSettings">
-<span class="sig-name descname"><span class="pre">sectionSettings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.sectionSettings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Section with settings that set properties of generated data.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.spreadVar">
-<span class="sig-name descname"><span class="pre">spreadVar</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.spreadVar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Spread of mean of all data in generated signal.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.spreadcpspreadVar">
-<span class="sig-name descname"><span class="pre">spreadcpspreadVar</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.spreadcpspreadVar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Spread of variance in areas between change points in generated signal.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.spreads">
-<span class="sig-name descname"><span class="pre">spreads</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.spreads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Variances in area between change points, before applying noise.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.subsectionChartgenerator">
-<span class="sig-name descname"><span class="pre">subsectionChartgenerator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.subsectionChartgenerator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Subsection of settings section that configures parameters of generated chart.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.GeneratorGui.subsectionExportdata">
-<span class="sig-name descname"><span class="pre">subsectionExportdata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.subsectionExportdata" title="Permalink to this definition">¶</a></dt>
-<dd><p>Subsection of settings section that allows exporting generated chart and statistics.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.GeneratorGui.subsectionExportdata_btnexport_action">
-<span class="sig-name descname"><span class="pre">subsectionExportdata_btnexport_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.subsectionExportdata_btnexport_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when activating export button in
-subsection of settings section that allows exporting generated chart and statistics.
-Exports generated data to text format and csv spreadsheet.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.GeneratorGui.subsectionExportdata_btnupdate_action">
-<span class="sig-name descname"><span class="pre">subsectionExportdata_btnupdate_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.subsectionExportdata_btnupdate_action" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method called when activating export button in
-subsection of settings section that allows exporting generated chart and statistics.
-Exports generated data to text format and csv spreadsheet.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.GeneratorGui.validate_floatentries">
-<span class="sig-name descname"><span class="pre">validate_floatentries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.validate_floatentries" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if value in some text entries is positive float value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>val</strong> – Value to check.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>If val is positive float. Rollbacks operation if false.</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -531,12 +272,6 @@ Exports generated data to text format and csv spreadsheet.</p>
 <span class="sig-name descname"><span class="pre">buildSections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.Gui.buildSections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method meant to be overwritten.
 Constructs all sections of an application.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gui.Gui.root">
-<span class="sig-name descname"><span class="pre">root</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.Gui.root" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reference to root window.</p>
 </dd></dl>
 
 </dd></dl>
@@ -561,12 +296,6 @@ Constructs all sections of an application.</p>
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hubCharts.HubCharts.allCharts">
-<span class="sig-name descname"><span class="pre">allCharts</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">[]</span></em><a class="headerlink" href="#hubCharts.HubCharts.allCharts" title="Permalink to this definition">¶</a></dt>
-<dd><p>List containing loaded data.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -596,6 +325,11 @@ Constructs all sections of an application.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="hubCharts.HubCharts.getAllCharts">
+<span class="sig-name descname"><span class="pre">getAllCharts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hubCharts.HubCharts.getAllCharts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="hubCharts.HubCharts.getChartById">
 <span class="sig-name descname"><span class="pre">getChartById</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chartId</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="index.html#chart.Chart" title="chart.Chart"><span class="pre">chart.Chart</span></a></span></span><a class="headerlink" href="#hubCharts.HubCharts.getChartById" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns chart of argument’s id.
@@ -622,12 +356,6 @@ Names should be unique in order to find a single instance</p>
 <dd class="field-even"><p>Requested list.</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hubCharts.HubCharts.id">
-<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">0</span></em><a class="headerlink" href="#hubCharts.HubCharts.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>ID that will be assigned to next generated chart.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -662,17 +390,15 @@ Names should be unique in order to find a single instance</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hubImporters.HubImporters.allDrivers">
-<span class="sig-name descname"><span class="pre">allDrivers</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">()</span></em><a class="headerlink" href="#hubImporters.HubImporters.allDrivers" title="Permalink to this definition">¶</a></dt>
-<dd><p>List containing all import methods.</p>
-</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="hubImporters.HubImporters.getAllDrivers">
+<span class="sig-name descname"><span class="pre">getAllDrivers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hubImporters.HubImporters.getAllDrivers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hubImporters.HubImporters.allMethods">
-<span class="sig-name descname"><span class="pre">allMethods</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">()</span></em><a class="headerlink" href="#hubImporters.HubImporters.allMethods" title="Permalink to this definition">¶</a></dt>
-<dd><p>List containing all import method names.</p>
-</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="hubImporters.HubImporters.getAllMethods">
+<span class="sig-name descname"><span class="pre">getAllMethods</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hubImporters.HubImporters.getAllMethods" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hubImporters.HubImporters.getImporterByFileextension">
@@ -724,12 +450,6 @@ import pandas as pd</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="hubTSModules.HubTSModules.allModules">
-<span class="sig-name descname"><span class="pre">allModules</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">[]</span></em><a class="headerlink" href="#hubTSModules.HubTSModules.allModules" title="Permalink to this definition">¶</a></dt>
-<dd><p>List containing all loaded time series modules.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="hubTSModules.HubTSModules.displayModules">
 <span class="sig-name descname"><span class="pre">displayModules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hubTSModules.HubTSModules.displayModules" title="Permalink to this definition">¶</a></dt>
@@ -765,6 +485,22 @@ import pandas as pd</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hubTSModules.HubTSModules.getAllModuleNames">
+<span class="sig-name descname"><span class="pre">getAllModuleNames</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hubTSModules.HubTSModules.getAllModuleNames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all module names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>All module names.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="hubTSModules.HubTSModules.getAllModules">
+<span class="sig-name descname"><span class="pre">getAllModules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#hubTSModules.HubTSModules.getAllModules" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="hubTSModules.HubTSModules.getModuleByName">
@@ -842,6 +578,11 @@ Extracts signal from provided data.</p>
 <span class="sig-name descname"><span class="pre">importSettingsGui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.baseimport.ImportMethod.importSettingsGui" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method meant to be overwritten.
 Provides GUI elements for selection of specific signal from provided data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>section</strong> – GUI component where chart should be displayed.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -854,18 +595,6 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">importers.csvimport.</span></span><span class="sig-name descname"><span class="pre">CsvImportMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">displayname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultTitle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.csvimport.CsvImportMethod" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#importers.baseimport.ImportMethod" title="importers.baseimport.ImportMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">importers.baseimport.ImportMethod</span></code></a></p>
 <p>Class responsible for loading time series data from .csv files.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.datax">
-<span class="sig-name descname"><span class="pre">datax</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">[]</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.datax" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loaded X-axis data. Should contain indexes with constant intervals.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.datay">
-<span class="sig-name descname"><span class="pre">datay</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">[]</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.datay" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loaded Y-axis data. Should data of observed phenomenon.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.extractData">
 <span class="sig-name descname"><span class="pre">extractData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#importers.csvimport.CsvImportMethod.extractData" title="Permalink to this definition">¶</a></dt>
@@ -901,30 +630,6 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <dd><p>Determines behaviour of import method’s GUI behaviour when Y axis data is provided.</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.xseries">
-<span class="sig-name descname"><span class="pre">xseries</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.xseries" title="Permalink to this definition">¶</a></dt>
-<dd><p>Chosen X-axis name from chosen sheet</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.xseriesprovided">
-<span class="sig-name descname"><span class="pre">xseriesprovided</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">False</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.xseriesprovided" title="Permalink to this definition">¶</a></dt>
-<dd><p>Auxiliary variable, determines if user provided X-axis data.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.yseries">
-<span class="sig-name descname"><span class="pre">yseries</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.yseries" title="Permalink to this definition">¶</a></dt>
-<dd><p>Chosen Y-axis name from chosen sheet.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.yseriesprovided">
-<span class="sig-name descname"><span class="pre">yseriesprovided</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">False</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.yseriesprovided" title="Permalink to this definition">¶</a></dt>
-<dd><p>Auxiliary variable, determines if user provided Y-axis data.</p>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -935,18 +640,6 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">importers.xlsimport.</span></span><span class="sig-name descname"><span class="pre">XlsImportMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">displayname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultTitle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.xlsimport.XlsImportMethod" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#importers.baseimport.ImportMethod" title="importers.baseimport.ImportMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">importers.baseimport.ImportMethod</span></code></a></p>
 <p>Class responsible for loading time series data from .xls files.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.datax">
-<span class="sig-name descname"><span class="pre">datax</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">[]</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.datax" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loaded X-axis data. Should contain indexes with constant intervals.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.datay">
-<span class="sig-name descname"><span class="pre">datay</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">[]</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.datay" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loaded Y-axis data. Should data of observed phenomenon.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.extractData">
 <span class="sig-name descname"><span class="pre">extractData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.extractData" title="Permalink to this definition">¶</a></dt>
@@ -988,36 +681,6 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <dd><p>Determines behaviour of import method’s GUI behaviour when Y axis data is provided.</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.sheet">
-<span class="sig-name descname"><span class="pre">sheet</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.sheet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Chosen sheet name from spreadsheet.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.xseries">
-<span class="sig-name descname"><span class="pre">xseries</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.xseries" title="Permalink to this definition">¶</a></dt>
-<dd><p>Chosen X-axis name from chosen sheet</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.xseriesprovided">
-<span class="sig-name descname"><span class="pre">xseriesprovided</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">False</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.xseriesprovided" title="Permalink to this definition">¶</a></dt>
-<dd><p>Auxiliary variable, determines if user provided X-axis data.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.yseries">
-<span class="sig-name descname"><span class="pre">yseries</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.yseries" title="Permalink to this definition">¶</a></dt>
-<dd><p>Chosen Y-axis name from chosen sheet.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.yseriesprovided">
-<span class="sig-name descname"><span class="pre">yseriesprovided</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">False</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.yseriesprovided" title="Permalink to this definition">¶</a></dt>
-<dd><p>Auxiliary variable, determines if user provided Y-axis data.</p>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -1047,8 +710,16 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="loader.loadConfig">
-<span class="sig-prename descclassname"><span class="pre">loader.</span></span><span class="sig-name descname"><span class="pre">loadConfig</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#loader.loadConfig" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">loader.</span></span><span class="sig-name descname"><span class="pre">loadConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#loader.loadConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads with configuration lists from config.yml file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>language</strong> – Language to load.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Should program be started.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -1080,13 +751,13 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <section id="module-tsmodules.autocorrelation">
 <span id="tsmodules-autocorrelation-module"></span><h4>tsmodules.autocorrelation module<a class="headerlink" href="#module-tsmodules.autocorrelation" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
-<dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationModule">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.autocorrelation.</span></span><span class="sig-name descname"><span class="pre">AutocorrelationModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationModule" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationsModule">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.autocorrelation.</span></span><span class="sig-name descname"><span class="pre">AutocorrelationsModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationsModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
-<p>Class implementing autocorrelation time series module.</p>
+<p>Class implementing autocorrelation and partial autocorrelation time series module.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationModule.buildConfig">
-<span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationModule.buildConfig" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationsModule.buildConfig">
+<span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationsModule.buildConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Provides GUI elements for time series module configuration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1096,8 +767,8 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationModule.displayModule">
-<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationModule.displayModule" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationsModule.displayModule">
+<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationsModule.displayModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Processes analyzing module and displays results on chart’s axes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1105,26 +776,6 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <li><p><strong>ax</strong> – Reference to plot’s axes.</p></li>
 <li><p><strong>plotdf</strong> – Data frame with original signal.</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationModule.lagentryvar">
-<span class="sig-name descname"><span class="pre">lagentryvar</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationModule.lagentryvar" title="Permalink to this definition">¶</a></dt>
-<dd><p>The length of the lag.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationModule.validate_digit">
-<span class="sig-name descname"><span class="pre">validate_digit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationModule.validate_digit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if value in some text entries is positive integer value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>val</strong> – Value to check.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>If val is positive int. Rollbacks operation if false.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1175,7 +826,7 @@ Provides GUI elements for time series module configuration.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.basemod.TSModule.displayModule">
-<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.basemod.TSModule.displayModule" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.basemod.TSModule.displayModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method meant to be overwritten.
 Processes analyzing module and displays results on chart’s axes.</p>
 <dl class="field-list simple">
@@ -1184,6 +835,17 @@ Processes analyzing module and displays results on chart’s axes.</p>
 <li><p><strong>ax</strong> – Reference to plot’s axes.</p></li>
 <li><p><strong>plotdf</strong> – Data frame with original signal.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.getDisplayColor">
+<span class="sig-name descname"><span class="pre">getDisplayColor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tsmodules.basemod.TSModule.getDisplayColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns color used to display module’s data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Color used to display module’s data.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1209,6 +871,41 @@ Processes analyzing module and displays results on chart’s axes.</p>
 </dd></dl>
 
 </section>
+<section id="module-tsmodules.decompose">
+<span id="tsmodules-decompose-module"></span><h4>tsmodules.decompose module<a class="headerlink" href="#module-tsmodules.decompose" title="Permalink to this headline">¶</a></h4>
+<dl class="py class">
+<dt class="sig sig-object py" id="tsmodules.decompose.DecomposeModule">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.decompose.</span></span><span class="sig-name descname"><span class="pre">DecomposeModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.decompose.DecomposeModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
+<p>Class implementing decomposition of time series.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.decompose.DecomposeModule.buildConfig">
+<span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.decompose.DecomposeModule.buildConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides GUI elements for time series module configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>section</strong> – GUI component where module configuration should be displayed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.decompose.DecomposeModule.displayModule">
+<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.decompose.DecomposeModule.displayModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processes analyzing module and displays results on chart’s axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – Reference to plot’s axes.</p></li>
+<li><p><strong>plotdf</strong> – Data frame with original signal.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-tsmodules.differentation">
 <span id="tsmodules-differentation-module"></span><h4>tsmodules.differentation module<a class="headerlink" href="#module-tsmodules.differentation" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
@@ -1217,8 +914,19 @@ Processes analyzing module and displays results on chart’s axes.</p>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
 <p>Class implementing differentiation time series module.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.differentation.DifferentiationModule.buildConfig">
+<span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.differentation.DifferentiationModule.buildConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides GUI elements for time series module configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>section</strong> – GUI component where module configuration should be displayed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.differentation.DifferentiationModule.displayModule">
-<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.differentation.DifferentiationModule.displayModule" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.differentation.DifferentiationModule.displayModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Processes analyzing module and displays results on chart’s axes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1242,7 +950,7 @@ Processes analyzing module and displays results on chart’s axes.</p>
 <p>Class implementing original data display time series module.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.originaldata.OriginalDataDisplayModule.displayModule">
-<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.originaldata.OriginalDataDisplayModule.displayModule" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.originaldata.OriginalDataDisplayModule.displayModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Processes analyzing module and displays results on chart’s axes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1277,7 +985,7 @@ Processes analyzing module and displays results on chart’s axes.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.rollingmean.RollingMeanModule.displayModule">
-<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingmean.RollingMeanModule.displayModule" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingmean.RollingMeanModule.displayModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Processes analyzing module and displays results on chart’s axes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1287,12 +995,6 @@ Processes analyzing module and displays results on chart’s axes.</p>
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tsmodules.rollingmean.RollingMeanModule.rollCount">
-<span class="sig-name descname"><span class="pre">rollCount</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">5</span></em><a class="headerlink" href="#tsmodules.rollingmean.RollingMeanModule.rollCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Quanity of rolling value.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1318,7 +1020,7 @@ Processes analyzing module and displays results on chart’s axes.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.rollingstd.RollingStdModule.displayModule">
-<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingstd.RollingStdModule.displayModule" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingstd.RollingStdModule.displayModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Processes analyzing module and displays results on chart’s axes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1330,10 +1032,40 @@ Processes analyzing module and displays results on chart’s axes.</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tsmodules.rollingstd.RollingStdModule.rollCount">
-<span class="sig-name descname"><span class="pre">rollCount</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">5</span></em><a class="headerlink" href="#tsmodules.rollingstd.RollingStdModule.rollCount" title="Permalink to this definition">¶</a></dt>
-<dd><p>Quanity of rolling value.</p>
+</dd></dl>
+
+</section>
+<section id="module-tsmodules.ruptureeval">
+<span id="tsmodules-ruptureeval-module"></span><h4>tsmodules.ruptureeval module<a class="headerlink" href="#module-tsmodules.ruptureeval" title="Permalink to this headline">¶</a></h4>
+<dl class="py class">
+<dt class="sig sig-object py" id="tsmodules.ruptureeval.RupturesEvaluation">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.ruptureeval.</span></span><span class="sig-name descname"><span class="pre">RupturesEvaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
+<p>Class implementing change point detection evaluation in time series modules.
+Evaluations include Hausdorff metric, rand index, precision and recall.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.ruptureeval.RupturesEvaluation.buildConfig">
+<span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation.buildConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides GUI elements for time series module configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>section</strong> – GUI component where module configuration should be displayed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.ruptureeval.RupturesEvaluation.displayModule">
+<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation.displayModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processes analyzing module and displays results on chart’s axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – Reference to plot’s axes.</p></li>
+<li><p><strong>plotdf</strong> – Data frame with original signal.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1341,27 +1073,6 @@ Processes analyzing module and displays results on chart’s axes.</p>
 </section>
 <section id="module-tsmodules.rupturesmods">
 <span id="tsmodules-rupturesmods-module"></span><h4>tsmodules.rupturesmods module<a class="headerlink" href="#module-tsmodules.rupturesmods" title="Permalink to this headline">¶</a></h4>
-<dl class="py class">
-<dt class="sig sig-object py" id="tsmodules.rupturesmods.BottomUpDynpModule">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rupturesmods.</span></span><span class="sig-name descname"><span class="pre">BottomUpDynpModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.BottomUpDynpModule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#tsmodules.rupturesmods.RupturesModule" title="tsmodules.rupturesmods.RupturesModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.rupturesmods.RupturesModule</span></code></a></p>
-<p>Class implementing Bottom-Up algorithm that detects change points.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="tsmodules.rupturesmods.BottomUpDynpModule.calculateChangePoints">
-<span class="sig-name descname"><span class="pre">calculateChangePoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tsmodules.rupturesmods.BottomUpDynpModule.calculateChangePoints" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates change point indexes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>signal</strong> – Time series data.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Indexes of change points.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesBinsegModule">
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rupturesmods.</span></span><span class="sig-name descname"><span class="pre">RupturesBinsegModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesBinsegModule" title="Permalink to this definition">¶</a></dt>
@@ -1384,10 +1095,54 @@ Processes analyzing module and displays results on chart’s axes.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesBottomUpModule">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rupturesmods.</span></span><span class="sig-name descname"><span class="pre">RupturesBottomUpModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesBottomUpModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tsmodules.rupturesmods.RupturesModule" title="tsmodules.rupturesmods.RupturesModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.rupturesmods.RupturesModule</span></code></a></p>
+<p>Class implementing Bottom-Up algorithm that detects change points.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesBottomUpModule.calculateChangePoints">
+<span class="sig-name descname"><span class="pre">calculateChangePoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesBottomUpModule.calculateChangePoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates change point indexes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>signal</strong> – Time series data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Indexes of change points.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule">
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rupturesmods.</span></span><span class="sig-name descname"><span class="pre">RupturesModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
-<p>Class implementing change point detection time series modules.</p>
+<p>Class implementing change point detection algorithms in time series modules.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.buildConfig">
+<span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.buildConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides GUI elements for time series module configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>section</strong> – GUI component where module configuration should be displayed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.buildConfigAlgoParams">
+<span class="sig-name descname"><span class="pre">buildConfigAlgoParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.buildConfigAlgoParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method meant to be overwritten.
+Provides GUI elements for specific change point detection algorithms’ parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>section</strong> – GUI component where specific parameters should be displayed.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.calculateChangePoints">
 <span class="sig-name descname"><span class="pre">calculateChangePoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.calculateChangePoints" title="Permalink to this definition">¶</a></dt>
@@ -1405,7 +1160,7 @@ Calculates change point indexes.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.displayModule">
-<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.displayModule" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.displayModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Processes analyzing module and displays results on chart’s axes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1446,6 +1201,17 @@ Calculates change point indexes.</p>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.rupturesmods.RupturesModule" title="tsmodules.rupturesmods.RupturesModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.rupturesmods.RupturesModule</span></code></a></p>
 <p>Class implementing Window algorithm that detects change points.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesWindowModule.buildConfigAlgoParams">
+<span class="sig-name descname"><span class="pre">buildConfigAlgoParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesWindowModule.buildConfigAlgoParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides GUI elements for specific change point detection algorithms’ parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>section</strong> – GUI component where specific parameters should be displayed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesWindowModule.calculateChangePoints">
 <span class="sig-name descname"><span class="pre">calculateChangePoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesWindowModule.calculateChangePoints" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates change point indexes.</p>
@@ -1455,73 +1221,6 @@ Calculates change point indexes.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Indexes of change points.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-tsmodules.seasonaldecompose">
-<span id="tsmodules-seasonaldecompose-module"></span><h4>tsmodules.seasonaldecompose module<a class="headerlink" href="#module-tsmodules.seasonaldecompose" title="Permalink to this headline">¶</a></h4>
-<dl class="py class">
-<dt class="sig sig-object py" id="tsmodules.seasonaldecompose.SeasonalDecomposeModule">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.seasonaldecompose.</span></span><span class="sig-name descname"><span class="pre">SeasonalDecomposeModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.seasonaldecompose.SeasonalDecomposeModule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
-<p>Class implementing seasonal decomposition of time series.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="tsmodules.seasonaldecompose.SeasonalDecomposeModule.buildConfig">
-<span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.seasonaldecompose.SeasonalDecomposeModule.buildConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provides GUI elements for time series module configuration.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>section</strong> – GUI component where module configuration should be displayed.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tsmodules.seasonaldecompose.SeasonalDecomposeModule.componentslist">
-<span class="sig-name descname"><span class="pre">componentslist</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">['lag',</span> <span class="pre">'trend',</span> <span class="pre">'resid']</span></em><a class="headerlink" href="#tsmodules.seasonaldecompose.SeasonalDecomposeModule.componentslist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Components of explanatory parts of time series.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tsmodules.seasonaldecompose.SeasonalDecomposeModule.componentsvarlist">
-<span class="sig-name descname"><span class="pre">componentsvarlist</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">[]</span></em><a class="headerlink" href="#tsmodules.seasonaldecompose.SeasonalDecomposeModule.componentsvarlist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Selected components of explanatory parts of time series.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tsmodules.seasonaldecompose.SeasonalDecomposeModule.displayModule">
-<span class="sig-name descname"><span class="pre">displayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotdf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.seasonaldecompose.SeasonalDecomposeModule.displayModule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Processes analyzing module and displays results on chart’s axes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ax</strong> – Reference to plot’s axes.</p></li>
-<li><p><strong>plotdf</strong> – Data frame with original signal.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tsmodules.seasonaldecompose.SeasonalDecomposeModule.lagentryvar">
-<span class="sig-name descname"><span class="pre">lagentryvar</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.seasonaldecompose.SeasonalDecomposeModule.lagentryvar" title="Permalink to this definition">¶</a></dt>
-<dd><p>The length of the lag.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="tsmodules.seasonaldecompose.SeasonalDecomposeModule.validate_digit">
-<span class="sig-name descname"><span class="pre">validate_digit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.seasonaldecompose.SeasonalDecomposeModule.validate_digit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if value in some text entries is positive integer value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>val</strong> – Value to check.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>If val is positive int. Rollbacks operation if false.</p>
 </dd>
 </dl>
 </dd></dl>

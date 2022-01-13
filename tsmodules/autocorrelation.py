@@ -10,7 +10,7 @@ class AutocorrelationsModule(basemod.TSModule):
     """Class implementing autocorrelation and partial autocorrelation time series module.
     """
 
-    lagentryvar = None
+    __lagentryvar = None
     """The length of the lag."""
 
     def displayModule(self, ax, plotdf: DataFrame):
@@ -20,10 +20,10 @@ class AutocorrelationsModule(basemod.TSModule):
         :param plotdf: Data frame with original signal.
         """
         
-        if self.lagentryvar.get() > 0: 
-            self.outputDataframe[loader.lang["modules"]["autocorrelations"]["lag"]] = [i+1 for i in range(0, int(self.lagentryvar.get()))]
-        acft = acf([v[1] for v in plotdf.values], nlags=self.lagentryvar.get()).tolist()
-        pacft = pacf([v[1] for v in plotdf.values], nlags=self.lagentryvar.get()).tolist()
+        if self.__lagentryvar.get() > 0: 
+            self.outputDataframe[loader.lang["modules"]["autocorrelations"]["lag"]] = [i+1 for i in range(0, int(self.__lagentryvar.get()))]
+        acft = acf([v[1] for v in plotdf.values], nlags=self.__lagentryvar.get()).tolist()
+        pacft = pacf([v[1] for v in plotdf.values], nlags=self.__lagentryvar.get()).tolist()
         acft.pop(0)
         pacft.pop(0)
         self.outputDataframe[loader.lang["modules"]["autocorrelations"]["acorr"]] = acft
@@ -36,9 +36,9 @@ class AutocorrelationsModule(basemod.TSModule):
         """
         lablag = Label(section, text=loader.lang["modules"]["autocorrelations"]["lag"], pady=5, width=int((section.winfo_width()-13)/7)+1)
         lablag.grid(row=1)
-        if not self.lagentryvar:
-            self.lagentryvar = IntVar()
-            self.lagentryvar.set(2)
+        if not self.__lagentryvar:
+            self.__lagentryvar = IntVar()
+            self.__lagentryvar.set(2)
         vcmd = (section.register(entryvalidators.validate_digit),'%P')
-        lagentry = Entry(section, textvariable=self.lagentryvar, validate='all', validatecommand=vcmd, width=int((section.winfo_width()-13)/7)+1)
+        lagentry = Entry(section, textvariable=self.__lagentryvar, validate='all', validatecommand=vcmd, width=int((section.winfo_width()-13)/7)+1)
         lagentry.grid(row=2)

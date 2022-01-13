@@ -8,17 +8,20 @@ class HubCharts:
     """Class with methods concerning loaded data in form of charts.
     """
 
-    allCharts = []
+    __allCharts = []
     """List containing loaded data."""
-    id = 0
+    __id = 0
     """ID that will be assigned to next generated chart."""
+
+    def getAllCharts(self):
+        return self.__allCharts
 
     def getAllChartDisplayNames(self):
         """Returns display names for all loaded charts.
 
         :returns: Requested list.
         """
-        return [f'{ch.title} ({ch.id})' for ch in self.allCharts]
+        return [f'{ch.title} ({ch.id})' for ch in self.__allCharts]
 
     def getChartById(self, chartId: int) -> Chart:
         """Returns chart of argument's id.
@@ -27,7 +30,7 @@ class HubCharts:
         :param chartId: ID of the chart.
         :returns: Requested list.
         """
-        return next((ch for ch in self.allCharts if ch.id == chartId), None)
+        return next((ch for ch in self.__allCharts if ch.id == chartId), None)
 
     def getChartIdByDisplayName(self, name: str) -> int:
         """Returns id of chart with given display name.
@@ -43,15 +46,15 @@ class HubCharts:
         :param df: Data frame from which charty will be built.
         :param sectititleon: Title of chart.
         """
-        self.allCharts.append(Chart(df, title, self.id))
-        self.id += 1
+        self.__allCharts.append(Chart(df, title, self.__id))
+        self.__id += 1
 
     def removeChart(self, chartId: int):
         """Removes chart from list.
 
         :param chartId: ID of chart to remove.
         """
-        self.allCharts.remove(next((ch for ch in self.allCharts if ch.id == chartId),None))
+        self.__allCharts.remove(next((ch for ch in self.__allCharts if ch.id == chartId),None))
 
     def displayChart(self, chartId: int, section: Frame, moduleDisplayer):
         """Displays chart in specified location.

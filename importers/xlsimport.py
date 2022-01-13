@@ -11,28 +11,28 @@ class XlsImportMethod(baseimport.ImportMethod):
     """Class responsible for loading time series data from .xls files.
     """
 
-    xseries = None
+    __xseries = None
     """Chosen X-axis name from chosen sheet"""
-    yseries = None
+    __yseries = None
     """Chosen Y-axis name from chosen sheet."""
-    sheet = None
+    __sheet = None
     """Chosen sheet name from spreadsheet."""
-    datax = []
+    __datax = []
     """Loaded X-axis data. Should contain indexes with constant intervals."""
-    datay = []
+    __datay = []
     """Loaded Y-axis data. Should data of observed phenomenon."""
-    xseriesprovided = False
+    __xseriesprovided = False
     """Auxiliary variable, determines if user provided X-axis data."""
-    yseriesprovided = False
+    __yseriesprovided = False
     """Auxiliary variable, determines if user provided Y-axis data."""
 
     def onXYprovided(self):
         """Determines behaviour of import method's GUI behaviour when X and Y axis data are provided.
         """
-        if(self.xseries.get() != self.yseries.get()):
-            data = pd.read_excel(self.directory, sheet_name=self.sheet.get(), usecols=(self.xseries.get(), self.yseries.get())).values.tolist()
-            self.datax = [item[0] for item in data]
-            self.datay = [item[1] for item in data]
+        if(self.__xseries.get() != self.__yseries.get()):
+            data = pd.read_excel(self.directory, sheet_name=self.__sheet.get(), usecols=(self.__xseries.get(), self.__yseries.get())).values.tolist()
+            self.__datax = [item[0] for item in data]
+            self.__datay = [item[1] for item in data]
 
             for i in self.preview.get_children():
                 self.preview.delete(i)
@@ -41,41 +41,41 @@ class XlsImportMethod(baseimport.ImportMethod):
         else:
             for i in self.preview.get_children():
                 self.preview.delete(i)
-            self.datax.clear()
-            self.datay.clear()
+            self.__datax.clear()
+            self.__datay.clear()
 
     def onXchange(self, event):
         """Determines behaviour of import method's GUI behaviour when X axis data is provided.
         """
         self.preview.column("x", anchor=CENTER)
-        self.preview.heading("x",text=self.xseries.get(),anchor=CENTER)
-        self.xseriesprovided = True
-        if self.xseriesprovided and self.yseriesprovided:
+        self.preview.heading("x",text=self.__xseries.get(),anchor=CENTER)
+        self.__xseriesprovided = True
+        if self.__xseriesprovided and self.__yseriesprovided:
             self.onXYprovided()
 
     def onYchange(self, event):
         """Determines behaviour of import method's GUI behaviour when Y axis data is provided.
         """
         self.preview.column("y", anchor=CENTER)
-        self.preview.heading("y",text=self.yseries.get(),anchor=CENTER)
-        self.yseriesprovided = True
-        if self.xseriesprovided and self.yseriesprovided:
+        self.preview.heading("y",text=self.__yseries.get(),anchor=CENTER)
+        self.__yseriesprovided = True
+        if self.__xseriesprovided and self.__yseriesprovided:
             self.onXYprovided()
 
     def onSheetChange(self, event):
         """Determines behaviour of import method's GUI behaviour when sheet is chosen.
         """
-        df = pd.read_excel(self.directory, sheet_name=self.sheet.get())
+        df = pd.read_excel(self.directory, sheet_name=self.__sheet.get())
 
-        self.xseriesprovided = False
-        self.yseriesprovided = False
+        self.__xseriesprovided = False
+        self.__yseriesprovided = False
 
-        self.xseriescb.set("")
-        self.yseriescb.set("")
-        self.xseriescb['state'] = "readonly"
-        self.yseriescb['state'] = "readonly"
-        self.xseriescb['values'] = df.columns.values.tolist()
-        self.yseriescb['values'] = df.columns.values.tolist()
+        self.__xseriescb.set("")
+        self.__yseriescb.set("")
+        self.__xseriescb['state'] = "readonly"
+        self.__yseriescb['state'] = "readonly"
+        self.__xseriescb['values'] = df.columns.values.tolist()
+        self.__yseriescb['values'] = df.columns.values.tolist()
 
         self.preview.column("x", anchor=CENTER)
         self.preview.column("y", anchor=CENTER)
@@ -84,8 +84,8 @@ class XlsImportMethod(baseimport.ImportMethod):
 
         for i in self.preview.get_children():
             self.preview.delete(i)
-        self.datax.clear()
-        self.datay.clear()
+        self.__datax.clear()
+        self.__datay.clear()
 
     def importSettingsGui(self, section: ttk.Frame):
         """Provides GUI elements for selection of specific signal from provided data.
@@ -96,22 +96,22 @@ class XlsImportMethod(baseimport.ImportMethod):
 
         labsheet = Label(section, text=loader.lang["importer-xls"]["sheets"], pady=5, width=int((section.winfo_width()-13)/7)+1)
         labsheet.grid(row=1)
-        self.sheet = StringVar()
-        sheetcb = ttk.Combobox(section, state="readonly", textvariable=self.sheet, width=int((section.winfo_width()-13)/7)+1)
+        self.__sheet = StringVar()
+        sheetcb = ttk.Combobox(section, state="readonly", textvariable=self.__sheet, width=int((section.winfo_width()-13)/7)+1)
         sheetcb['values'] = pre.sheet_names
         sheetcb.grid(row=2)
 
         labxseries = Label(section, text=loader.lang["importer-xls"]["xseries"], pady=5, width=int((section.winfo_width()-13)/7)+1)
         labxseries.grid(row=3)
-        self.xseries = StringVar()
-        self.xseriescb = ttk.Combobox(section, state="disabled", textvariable=self.xseries, width=int((section.winfo_width()-13)/7)+1)
-        self.xseriescb.grid(row=4)
+        self.__xseries = StringVar()
+        self.__xseriescb = ttk.Combobox(section, state="disabled", textvariable=self.__xseries, width=int((section.winfo_width()-13)/7)+1)
+        self.__xseriescb.grid(row=4)
 
         labyseries = Label(section, text=loader.lang["importer-xls"]["yseries"], pady=5, width=int((section.winfo_width()-13)/7)+1)
         labyseries.grid(row=5)
-        self.yseries = StringVar()
-        self.yseriescb = ttk.Combobox(section, state="disabled", textvariable=self.yseries, width=int((section.winfo_width()-13)/7)+1)
-        self.yseriescb.grid(row=6)
+        self.__yseries = StringVar()
+        self.__yseriescb = ttk.Combobox(section, state="disabled", textvariable=self.__yseries, width=int((section.winfo_width()-13)/7)+1)
+        self.__yseriescb.grid(row=6)
 
         labpreview = Label(section, text=loader.lang["importer-xls"]["preview"], pady=5, width=int((section.winfo_width()-13)/7)+1)
         labpreview.grid(row=7)
@@ -126,8 +126,8 @@ class XlsImportMethod(baseimport.ImportMethod):
         self.preview.heading("y",text="",anchor=CENTER)
         self.preview.grid(row=8)
 
-        self.xseriescb.bind('<<ComboboxSelected>>', self.onXchange)            
-        self.yseriescb.bind('<<ComboboxSelected>>', self.onYchange)    
+        self.__xseriescb.bind('<<ComboboxSelected>>', self.onXchange)            
+        self.__yseriescb.bind('<<ComboboxSelected>>', self.onYchange)    
         sheetcb.bind('<<ComboboxSelected>>', self.onSheetChange)    
 
     def extractData(self) -> DataFrame:
@@ -135,15 +135,15 @@ class XlsImportMethod(baseimport.ImportMethod):
         
         :returns: Data frame of single, selected time series.
         """
-        if(len(self.datax) and len(self.datay)):
-            logger.log("Importing XLS columns (X/Y): " + self.xseries.get() + "/" + self.yseries.get() + " from sheet " + self.sheet.get())
+        if(len(self.__datax) and len(self.__datay)):
+            logger.log("Importing XLS columns (X/Y): " + self.__xseries.get() + "/" + self.__yseries.get() + " from sheet " + self.__sheet.get())
             data = {
-                f'{self.xseries.get()}': self.datax,
-                f'{self.yseries.get()}': self.datay
+                f'{self.__xseries.get()}': self.__datax,
+                f'{self.__yseries.get()}': self.__datay
             }
 
             messagebox.showinfo(loader.lang["messagebox"]["info"], loader.lang["importer-xls"]["successimport"])
-            return DataFrame(data,columns=[self.xseries.get(),self.yseries.get()])
+            return DataFrame(data,columns=[self.__xseries.get(),self.__yseries.get()])
         else:
             messagebox.showerror(loader.lang["messagebox"]["error"], loader.lang["importer-xls"]["wrongimport"])
             return DataFrame()

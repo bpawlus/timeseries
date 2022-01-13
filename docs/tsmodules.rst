@@ -20,6 +20,14 @@ tsmodules.basemod module
    :undoc-members:
    :show-inheritance:
 
+tsmodules.decompose module
+--------------------------
+
+.. automodule:: tsmodules.decompose
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 tsmodules.differentation module
 -------------------------------
 
@@ -52,18 +60,18 @@ tsmodules.rollingstd module
    :undoc-members:
    :show-inheritance:
 
-tsmodules.rupturesmods module
------------------------------
+tsmodules.ruptureeval module
+----------------------------
 
-.. automodule:: tsmodules.rupturesmods
+.. automodule:: tsmodules.ruptureeval
    :members:
    :undoc-members:
    :show-inheritance:
 
-tsmodules.seasonaldecompose module
-----------------------------------
+tsmodules.rupturesmods module
+-----------------------------
 
-.. automodule:: tsmodules.seasonaldecompose
+.. automodule:: tsmodules.rupturesmods
    :members:
    :undoc-members:
    :show-inheritance:

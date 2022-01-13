@@ -26,15 +26,18 @@ class HubTSModules:
     """Class with methods concerning loaded data in form of charts.
     """
 
-    allModules = []
+    __allModules = []
     """List containing all loaded time series modules."""
+
+    def getAllModules(self):
+        return self.__allModules
 
     def addModule(self, module: basemod.TSModule):
         """Adds time series module to list.
 
         :param module: Time series module to add.
         """
-        self.allModules.append(module)
+        self.__allModules.append(module)
 
     def displayModules(self, ax, plotdf):
         """Displays all selected modules' patches on selected plot.
@@ -42,7 +45,7 @@ class HubTSModules:
         :param ax: Reference to plot's axes.
         :param plotdf: Data frame with original signal.
         """
-        for module in self.allModules:
+        for module in self.__allModules:
             module.outputDataframe = DataFrame()
             if module.isactive and module.isactive.get():
                 logger.log("Displaying module: " + module.name)
@@ -53,14 +56,14 @@ class HubTSModules:
 
         :returns: Requested list.
         """
-        return [mod for mod in self.allModules if mod.isactive and mod.isactive.get() and not mod.outputDataframe.empty]
+        return [mod for mod in self.__allModules if mod.isactive and mod.isactive.get() and not mod.outputDataframe.empty]
 
     def getAllActiveModuleNames(self):
         """Returns all active time series module names.
 
         :returns: Requested list.
         """
-        return [mod.name for mod in self.allModules if mod.isactive and mod.isactive.get() and not mod.outputDataframe.empty]
+        return [mod.name for mod in self.__allModules if mod.isactive and mod.isactive.get() and not mod.outputDataframe.empty]
 
     def getModuleByName(self, name: str) -> basemod.TSModule:
         """Returns module of argument's name.
@@ -68,7 +71,14 @@ class HubTSModules:
         :param name: Name of the module.
         :returns: Requested module.
         """
-        return next(mod for mod in self.allModules if name == mod.name)
+        return next(mod for mod in self.__allModules if name == mod.name)
+
+    def getAllModuleNames(self):
+        """Returns all module names.
+        
+        :returns: All module names.
+        """
+        return [mod.name for mod in self.__allModules]
 
     def loadModules(self):
         """Loads the list with all provided modules.

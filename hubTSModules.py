@@ -26,18 +26,11 @@ class HubTSModules:
     """Class with methods concerning loaded data in form of charts.
     """
 
-    __allModules = []
+    __allModules = None
     """List containing all loaded time series modules."""
 
     def getAllModules(self):
         return self.__allModules
-
-    def addModule(self, module: basemod.TSModule):
-        """Adds time series module to list.
-
-        :param module: Time series module to add.
-        """
-        self.__allModules.append(module)
 
     def displayModules(self, ax, plotdf):
         """Displays all selected modules' patches on selected plot.
@@ -46,9 +39,9 @@ class HubTSModules:
         :param plotdf: Data frame with original signal.
         """
         for module in self.__allModules:
-            module.outputDataframe = DataFrame()
-            if module.isactive and module.isactive.get():
-                logger.log("Displaying module: " + module.name)
+            module.outputDf = DataFrame()
+            if module.isModelActive():
+                logger.log("Displaying module: " + module.getModuleName())
                 module.displayModule(ax, plotdf)
 
     def getAllActiveModules(self):
@@ -56,14 +49,14 @@ class HubTSModules:
 
         :returns: Requested list.
         """
-        return [mod for mod in self.__allModules if mod.isactive and mod.isactive.get() and not mod.outputDataframe.empty]
+        return [mod for mod in self.__allModules if mod.isModelActive() and not mod.outputDf.empty]
 
     def getAllActiveModuleNames(self):
         """Returns all active time series module names.
 
         :returns: Requested list.
         """
-        return [mod.name for mod in self.__allModules if mod.isactive and mod.isactive.get() and not mod.outputDataframe.empty]
+        return [mod.getModuleName() for mod in self.__allModules if mod.isModelActive() and not mod.outputDf.empty]
 
     def getModuleByName(self, name: str) -> basemod.TSModule:
         """Returns module of argument's name.
@@ -71,14 +64,21 @@ class HubTSModules:
         :param name: Name of the module.
         :returns: Requested module.
         """
-        return next(mod for mod in self.__allModules if name == mod.name)
+        return next(mod for mod in self.__allModules if name == mod.getModuleName())
 
     def getAllModuleNames(self):
         """Returns all module names.
         
         :returns: All module names.
         """
-        return [mod.name for mod in self.__allModules]
+        return [mod.getModuleName() for mod in self.__allModules]
+
+    def addModule(self, module: basemod.TSModule):
+        """Adds time series module to list.
+
+        :param module: Time series module to add.
+        """
+        self.__allModules.append(module)
 
     def loadModules(self):
         """Loads the list with all provided modules.
@@ -94,3 +94,6 @@ class HubTSModules:
         self.addModule(rupturesmods.RupturesPeltModule(loader.lang["modules"]["changepoints"]["pelt"]["header"]))
         self.addModule(rupturesmods.RupturesWindowModule(loader.lang["modules"]["changepoints"]["window"]["header"]))
         self.addModule(ruptureeval.RupturesEvaluation(loader.lang["modules"]["evaluation"]["header"]))
+
+    def __init__(self) -> None:
+        self.__allModules = []

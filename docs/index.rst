@@ -9,6 +9,7 @@ Welcome to timeseries's documentation!
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
+
    
    modules
 

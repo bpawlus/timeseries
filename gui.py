@@ -1,18 +1,15 @@
 from tkinter import *
 from tkinter import ttk, filedialog, messagebox
 import os
-import random
 from pandas.core.frame import DataFrame
+from dataGenerator import SignalGenerator
 import loader
 from hubCharts import HubCharts
 from hubImporters import HubImporters
 from hubTSModules import HubTSModules
 from importers import baseimport
-import numpy
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import random
-import matplotlib.patches as patches
 import logger
 import entryvalidators
 
@@ -21,240 +18,244 @@ class Gui():
     """Base class responsible for constructing window application.
     """
 
-    _root = None
+    __root = None
     """Reference to root window."""
 
-    def buildSections(self):
+    def _buildSections(self):
         """Method meant to be overwritten.
         Constructs all sections of an application.
         """
+        print("dsassa")
         pass
+
+    def getRoot(self):
+        return self.__root
 
     def buildGui(self):
         """Constructs and runs root window for an application.
         """
-        self._root = Tk()
-        self._root.title(loader.lang["title"])
-        self._root.iconbitmap(loader.dirs["icon"])
-        self._root.geometry(f'{loader.conf["width"]}x{loader.conf["height"]}')
-        self._root.minsize(loader.conf["width"], loader.conf["height"])
-        self._root.grid_rowconfigure(0, weight=1)
-        self._root.grid_columnconfigure(0, weight=1)
+        self.__root = Tk()
+        self.__root.title(loader.lang["title"])
+        self.__root.iconbitmap(loader.dirs["icon"])
+        self.__root.geometry(f'{loader.conf["width"]}x{loader.conf["height"]}')
+        self.__root.minsize(loader.conf["width"], loader.conf["height"])
+        self.__root.grid_rowconfigure(0, weight=1)
+        self.__root.grid_columnconfigure(0, weight=1)
 
-        self.buildSections()
-        self._root.mainloop()
+        self._buildSections()
+        self.__root.mainloop()
 
 class AnalyzerGui(Gui):
     """Class contains window application of time series analyzer.
     """
 
-    _sectionChart: Frame = None
+    __sectionChart: Frame = None
     """Section with chart that displays current data."""
 
-    _sectionSettings: Frame = None
+    __sectionSettings: Frame = None
     """Section with settings that set properties of data."""
-    _subsectionLoadData: Frame = None
+    __subsectionLoadData: Frame = None
     """Subsection of settings section that loads of data from memory."""
-    _subsectionDataSelection: Frame = None
+    __subsectionDataSelection: Frame = None
     """Subsection of settings section that allows user to choose displayed data, which was previously loaded."""
-    _subsectionTSModules: Frame = None
+    __subsectionTSModules: Frame = None
     """Subsection of settings section that allows user to choose displayed time series analyzing modules."""
 
-    _sectionOutput: Frame = None
+    __sectionOutput: Frame = None
     """Section with output functions that display and export data."""
-    _subsectionStatisctics: Frame = None
+    __subsectionStatisctics: Frame = None
     """Subsection of output section that displays data of modules in tabular form."""
-    _subsectionLogger: Frame = None
+    __subsectionLogger: Frame = None
     """Subsection of output section that logs user's actions."""
-    _subsectionExportData: Frame = None
+    __subsectionExportData: Frame = None
     """Subsection of output section that allows exporting logs, chart and statistics."""
 
-    _hubimporters: HubImporters = HubImporters()
+    __hubImporters: HubImporters = HubImporters()
     """Functional component with methods concerning data importers."""
-    _hubcharts: HubCharts = HubCharts()
+    __hubCharts: HubCharts = HubCharts()
     """Functional component with methods concerning loaded data in form of charts."""
-    _hubtsmodules: HubTSModules = HubTSModules()
+    __hubTSModules: HubTSModules = HubTSModules()
     """Functional component with methods concerning time series analyzing modules."""
 
-    _importer: baseimport.ImportMethod = None
+    __importer: baseimport.ImportMethod = None
     """Chosen by user importer function (ex. .xls import when loading microsoft excel spreadsheet)."""
-    _chartId: int = -1
+    __chartId: int = -1
     """ID of currently displayed chart"""
 
-    def clear_sectionChart(self):
+    def __clearSectionChart(self):
         """Method clears the view of section with chart.
         """
-        for widget in self._sectionChart.winfo_children():
+        for widget in self.__sectionChart.winfo_children():
             widget.destroy()
 
-    def statisticstabRefresh(self):
+    def __refreshTreeviewStatistics(self):
         """Removes the content of combobox and table view with all active time series modules.
         """
-        self.outputModulescb.set('')
-        for i in self.statisticstab.get_children():
-            self.statisticstab.delete(i)
+        self.__comboboxOutputModules.set('')
+        for i in self.__treeviewStatistics.get_children():
+            self.__treeviewStatistics.delete(i)
 
-    def updateChartsCb(self):
+    def __updateComboboxCharts(self):
         """Refreshes the content of combobox with all loaded time series modules.
         """
-        self.chartscb['values'] = self._hubcharts.getAllChartDisplayNames()
+        self.__comboboxCharts['values'] = self.__hubCharts.getAllChartDisplayNames()
 
-    def updateChart(self):
+    def __updateChart(self):
         """Updates the view of section with chart.
         """
-        self.clear_sectionChart()
+        self.__clearSectionChart()
 
-        if(self._chartId != -1):
-            self._hubcharts.displayChart(self._chartId, self._sectionChart, self._hubtsmodules.displayModules)
-            self.statisticstabRefresh()
+        if(self.__chartId != -1):
+            self.__hubCharts.displayChart(self.__chartId, self.__sectionChart, self.__hubTSModules.displayModules)
+            self.__refreshTreeviewStatistics()
 
-            self.outputModulescb['values'] = self._hubtsmodules.getAllActiveModuleNames()
-            self.statisticstab['columns'] = []
+            self.__comboboxOutputModules['values'] = self.__hubTSModules.getAllActiveModuleNames()
+            self.__treeviewStatistics['columns'] = []
 
-    def deleteChart(self):
+    def __deleteChart(self):
         """Deletes the current viewed chart.
         """
-        self._hubcharts.removeChart(self._chartId)
-        self._chartId = -1
-        self.statisticstabRefresh()
+        self.__hubCharts.removeChart(self.__chartId)
+        self.__chartId = -1
+        self.__refreshTreeviewStatistics()
 
-        self.outputModulescb['values'] = []
-        self.statisticstab['columns'] = []
+        self.__comboboxOutputModules['values'] = []
+        self.__treeviewStatistics['columns'] = []
 
-        self.clear_sectionChart()
+        self.__clearSectionChart()
 
 
-    def _subsectionLoadData_btnimport_action(self):
+    def __subsectionLoadData_buttonImportData_action(self):
         """Method called when activating import button in
         subsection of settings section that loads of data from memory.
         Configures chosen importer function.
         """
-        directory = filedialog.askopenfilename(initialdir="", title=loader.lang["settings"]["loaddata"]["import"], filetypes=(self._hubimporters.getAllMethods()))
+        directory = filedialog.askopenfilename(initialdir="", title=loader.lang["settings"]["loaddata"]["import"], filetypes=(self.__hubImporters.getAllMethods()))
         filename, fileextension = os.path.splitext(directory)
-        for widget in self.importsettings.winfo_children():
+        for widget in self.__frameImportSettings.winfo_children():
             widget.destroy()
 
-        self._importer = self._hubimporters.getImporterByFileextension(fileextension)
-        if self._importer != None:
-            self._importer.directory = directory
-            self._importer.importSettingsGui(self.importsettings)
-            self.btnexport['state'] = "normal"
+        self.__importer = self.__hubImporters.getImporterByFileextension(fileextension)
+        if self.__importer != None:
+            self.__importer.setDirectory(directory)
+            self.__importer.importSettingsGui(self.__frameImportSettings)
+            self.__buttonImportDataFromFile['state'] = "normal"
 
-    def _subsectionLoadData_btnexport_action(self):
+    def __subsectionLoadData_buttonImportDataFromFile_action(self):
         """Method called when activating export button in
         subsection of settings section that loads of data from memory.
         Exports data from importer to application's memory.
         """
-        df = self._importer.extractData()
+        df = self.__importer.extractData()
         if(not df.empty):
-            self._hubcharts.addChart(df, title=self._importer.defaultTitle)
-            self.updateChartsCb()
+            self.__hubCharts.addChart(df, title=self.__importer.getDefaultTitle())
+            self.__updateComboboxCharts()
 
-    def _subsectionDataSelection_btnupdate_action(self):
+    def __subsectionDataSelection_buttonUpdateData_action(self):
         """Method called when activating update button in
         subsection of settings section that allows user to choose displayed data, which was previously loaded.
         Updates chart displays with chosen data.
         """
-        chart = self._hubcharts.getChartById(self._chartId)
-        chart.title = self.titleentry.get()
-        self.updateChartsCb()
-        self.chartscb.set(f'{chart.title} ({chart.id})')
-        self.updateChart()
+        chart = self.__hubCharts.getChartById(self.__chartId)
+        chart.setTitle(self.__outvarRenameData.get())
+        self.__updateComboboxCharts()
+        self.__comboboxCharts.set(f'{chart.getTitle()} ({chart.getId()})')
+        self.__updateChart()
 
-    def _subsectionDataSelection_btndelete_action(self):
+    def __subsectionDataSelection_buttonDeleteData_action(self):
         """Method called when activating delete button in
         subsection of settings section that allows user to choose displayed data, which was previously loaded.
         Deletes selected data.
         """
-        self.deleteChart()
-        self.updateChartsCb()
-        self.chartscb.set("")             
+        self.__deleteChart()
+        self.__updateComboboxCharts()
+        self.__comboboxCharts.set("")             
 
-        self.textoutput['state'] = "disabled"
-        self.titleentry.set("")
-        self.btndelete['state'] = "disabled"
-        self.btnupdate['state'] = "disabled"
+        self.__entryRenameData['state'] = "disabled"
+        self.__outvarRenameData.set("")
+        self.__buttonDeleteData['state'] = "disabled"
+        self.__buttonUpdateData['state'] = "disabled"
 
-    def _subsectionDataSelection_chartscb_action(self, event):
+    def __subsectionDataSelection_chartscb_action(self, event):
         """Method called when updating charts combobox in
         subsection of settings section that allows user to choose displayed data, which was previously loaded.
         Updates the preview of selected data.
         """
-        name = self.chartscbvar.get()
-        self._chartId = self._hubcharts.getChartIdByDisplayName(name)
+        name = self.__outvarCharts.get()
+        self.__chartId = self.__hubCharts.getChartIdByDisplayName(name)
             
-        self.textoutput['state'] = "normal"
-        chart = self._hubcharts.getChartById(self._chartId)
-        self.titleentry.set(chart.title)
+        self.__entryRenameData['state'] = "normal"
+        chart = self.__hubCharts.getChartById(self.__chartId)
+        self.__outvarRenameData.set(chart.getTitle())
             
-        self.btndelete['state'] = "normal"
-        self.btnupdate['state'] = "normal"
+        self.__buttonDeleteData['state'] = "normal"
+        self.__buttonUpdateData['state'] = "normal"
 
-    def _subsectionTSModules_tsmodulesentrycb_action(self, event):
+    def __subsectionTSModules_comboboxTSModule_action(self, event):
         """Method called when updating modules combobox in
         subsection of settings section that allows user to choose displayed time series analyzing modules.
         Rebuilds a menu with module parameters.
         """
-        mod = self._hubtsmodules.getModuleByName(self.tsmodulesentry.get())
-        mod.buildMenu(self.tsmodulesFrame)
+        mod = self.__hubTSModules.getModuleByName(self.__outvarTSModule.get())
+        mod.buildMenu(self.__frameTSModules)
 
-    def _subsectionStatisctics_outputModulescb_action(self, event):
+    def __subsectionStatisctics_comboboxOutputModules_action(self, event):
         """Method called when updating modules combobox in
         subsection of output section that displays data of modules in tabular form.
         Rebuilds a table view of analyzing module data.
         """
         
-        for i in self.statisticstab.get_children():
-            self.statisticstab.delete(i)
-        self.statisticstab.column("#0", width=0, stretch=NO)
-        self.statisticstab.heading("#0",text="",anchor=CENTER)
+        for i in self.__treeviewStatistics.get_children():
+            self.__treeviewStatistics.delete(i)
+        self.__treeviewStatistics.column("#0", width=0, stretch=NO)
+        self.__treeviewStatistics.heading("#0",text="",anchor=CENTER)
 
-        df = self._hubtsmodules.getModuleByName(self.outputModules.get()).outputDataframe
+        df = self.__hubTSModules.getModuleByName(self.__outvarOutputModules.get()).outputDf
         columns = df.columns.values.tolist()
-        self.statisticstab['columns'] = columns
+        self.__treeviewStatistics['columns'] = columns
 
         for column in columns:
-            self.statisticstab.column(column, anchor=CENTER, width=int(self._subsectionStatisctics.winfo_width()/len(columns)))
-            self.statisticstab.heading(column,text=column,anchor=CENTER)
+            self.__treeviewStatistics.column(column, anchor=CENTER, width=int(self.__subsectionStatisctics.winfo_width()/len(columns)))
+            self.__treeviewStatistics.heading(column,text=column,anchor=CENTER)
 
         data = df.values.tolist()
         for v in data:
-            self.statisticstab.insert('', END, values=v)
+            self.__treeviewStatistics.insert('', END, values=v)
 
-    def _subsectionExportData_btnexportchart_action(self):
+    def __subsectionExportData_buttonExportChart_action(self):
         """Method called when activating export button in
         subsection of output section that allows exporting logs, chart and statistics
         Exports displayed chart to image format.
         """
-        if(self._chartId != -1):
-            chart = self._hubcharts.getChartById(self._chartId)
+        if(self.__chartId != -1):
+            chart = self.__hubCharts.getChartById(self.__chartId)
             chart.exportChart(loader.dirs["exportchart"])
             messagebox.showinfo(loader.lang["messagebox"]["info"], f'{loader.lang["output"]["exportdata"]["successexportchart"]}{loader.dirs["exportchart"]}')
         else:
             messagebox.showerror(loader.lang["messagebox"]["error"], loader.lang["output"]["exportdata"]["failedexport"])
 
-    def _subsectionExportData_btnexportlogs_action(self):
+    def __subsectionExportData_buttonExportLogs_action(self):
         """Method called when activating export button in
         subsection of output section that allows exporting logs, chart and statistics
         Exports logs to text format.
         """
         f = open(loader.dirs["exportlogname"], "w")
-        f.write(self.loggertextoutput.get("1.0",END))
+        f.write(self.__outtextfieldLogger.get("1.0",END))
         f.close()
         messagebox.showinfo(loader.lang["messagebox"]["info"], f'{loader.lang["output"]["exportdata"]["successexportlogs"]}{loader.dirs["exportlogname"]}')
 
-    def _subsectionExportData_btnexportstats_action(self):
+    def __subsectionExportData_buttonExportStats_action(self):
         """Method called when activating export button in
         subsection of output section that allows exporting logs, chart and statistics
         Exports output modules data to text format.
         """
-        if(self._chartId != -1):
+        if(self.__chartId != -1):
             f = open(loader.dirs["exportstats"], "w")
-            mods = self._hubtsmodules.getAllActiveModules()
+            mods = self.__hubTSModules.getAllActiveModules()
             for mod in mods:
-                f.write(mod.name)
+                f.write(mod.getModuleName())
                 f.write("\n")
-                f.write(mod.outputDataframe.to_string())
+                f.write(mod.outputDf.to_string())
                 f.write("\n\n")
             f.close()
             messagebox.showinfo(loader.lang["messagebox"]["info"], f'{loader.lang["output"]["exportdata"]["successexportstats"]}{loader.dirs["exportstats"]}')
@@ -262,452 +263,426 @@ class AnalyzerGui(Gui):
             messagebox.showerror(loader.lang["messagebox"]["error"], loader.lang["output"]["exportdata"]["failedexport"])
 
 
-    def buildSubsectionLoadData(self):
+    def __buildSubsectionLoadData(self):
         """Builds subsection of settings section that loads of data from memory.
         """
-        self._subsectionLoadData.grid_columnconfigure(0, weight=1)
+        self.__subsectionLoadData.grid_columnconfigure(0, weight=1)
 
         #Width formula: 13, 20, 27, 34... 13 + 7n
-        self.importsettings = Frame(self._subsectionLoadData, width=self._subsectionLoadData.winfo_width())
-        self.importsettings.grid(row=2)
+        self.__frameImportSettings = Frame(self.__subsectionLoadData, width=self.__subsectionLoadData.winfo_width())
+        self.__frameImportSettings.grid(row=2)
         
-        self.btnexport = Button(self._subsectionLoadData, state="disabled", text=loader.lang["settings"]["loaddata"]["select"], command=self._subsectionLoadData_btnexport_action, pady=5, width=int((self._subsectionLoadData.winfo_width()-13)/7)+1)
-        self.btnexport.grid(row=3)
+        self.__buttonImportDataFromFile = Button(self.__subsectionLoadData, state="disabled", text=loader.lang["settings"]["loaddata"]["select"], command=self.__subsectionLoadData_buttonImportDataFromFile_action, pady=5, width=int((self.__subsectionLoadData.winfo_width()-13)/7)+1)
+        self.__buttonImportDataFromFile.grid(row=3)
 
-        btnimport = Button(self._subsectionLoadData, text=loader.lang["settings"]["loaddata"]["import"], command=self._subsectionLoadData_btnimport_action, pady=5, width=int((self._subsectionLoadData.winfo_width()-13)/7)+1)
-        btnimport.grid(row=1)
+        buttonImportData = Button(self.__subsectionLoadData, text=loader.lang["settings"]["loaddata"]["import"], command=self.__subsectionLoadData_buttonImportData_action, pady=5, width=int((self.__subsectionLoadData.winfo_width()-13)/7)+1)
+        buttonImportData.grid(row=1)
 
-    def buildSubsectionDataSelection(self):
+    def __buildSubsectionDataSelection(self):
         """Builds subsection of settings section that allows user to choose displayed data, which was previously loaded.
         """
-        self._subsectionDataSelection.grid_columnconfigure(0, weight=1)
+        self.__subsectionDataSelection.grid_columnconfigure(0, weight=1)
         
-        labcharts = Label(self._subsectionDataSelection, text=loader.lang["settings"]["charts"]["select"], pady=5, width=int((self._subsectionDataSelection.winfo_width()-13)/7)+1)
-        labcharts.grid(row=1)
-        self.chartscbvar = StringVar()
-        self.chartscb = ttk.Combobox(self._subsectionDataSelection, state="readonly", textvariable=self.chartscbvar, width=int((self._subsectionDataSelection.winfo_width()-13)/7)+1)
-        self.chartscb.grid(row=2)
+        labelCharts = Label(self.__subsectionDataSelection, text=loader.lang["settings"]["charts"]["select"], pady=5, width=int((self.__subsectionDataSelection.winfo_width()-13)/7)+1)
+        labelCharts.grid(row=1)
+        self.__outvarCharts = StringVar()
+        self.__comboboxCharts = ttk.Combobox(self.__subsectionDataSelection, state="readonly", textvariable=self.__outvarCharts, width=int((self.__subsectionDataSelection.winfo_width()-13)/7)+1)
+        self.__comboboxCharts.grid(row=2)
 
-        labcharts = Label(self._subsectionDataSelection, text=loader.lang["settings"]["charts"]["titlechanger"], pady=5, width=int((self._subsectionDataSelection.winfo_width()-13)/7)+1)
-        labcharts.grid(row=3)
-        self.titleentry = StringVar()
-        self.textoutput = Entry(self._subsectionDataSelection, textvariable=self.titleentry, state="disabled", width=int((self._subsectionDataSelection.winfo_width()-13)/7)+1)
-        self.textoutput.grid(row=4)
+        labelTitleChange = Label(self.__subsectionDataSelection, text=loader.lang["settings"]["charts"]["titlechanger"], pady=5, width=int((self.__subsectionDataSelection.winfo_width()-13)/7)+1)
+        labelTitleChange.grid(row=3)
+        self.__outvarRenameData = StringVar()
+        self.__entryRenameData = Entry(self.__subsectionDataSelection, textvariable=self.__outvarRenameData, state="disabled", width=int((self.__subsectionDataSelection.winfo_width()-13)/7)+1)
+        self.__entryRenameData.grid(row=4)
 
-        self.btnupdate = Button(self._subsectionDataSelection, state="disabled", text=loader.lang["settings"]["charts"]["update"], command=self._subsectionDataSelection_btnupdate_action, pady=5, width=int((self._subsectionDataSelection.winfo_width()-13)/7)+1)
-        self.btnupdate.grid(row=5)
+        self.__buttonUpdateData = Button(self.__subsectionDataSelection, state="disabled", text=loader.lang["settings"]["charts"]["update"], command=self.__subsectionDataSelection_buttonUpdateData_action, pady=5, width=int((self.__subsectionDataSelection.winfo_width()-13)/7)+1)
+        self.__buttonUpdateData.grid(row=5)
 
-        self.btndelete = Button(self._subsectionDataSelection, state="disabled", text=loader.lang["settings"]["charts"]["delete"], command=self._subsectionDataSelection_btndelete_action, pady=5, width=int((self._subsectionDataSelection.winfo_width()-13)/7)+1)
-        self.btndelete.grid(row=6)
+        self.__buttonDeleteData = Button(self.__subsectionDataSelection, state="disabled", text=loader.lang["settings"]["charts"]["delete"], command=self.__subsectionDataSelection_buttonDeleteData_action, pady=5, width=int((self.__subsectionDataSelection.winfo_width()-13)/7)+1)
+        self.__buttonDeleteData.grid(row=6)
 
-        self.chartscb.bind('<<ComboboxSelected>>', self._subsectionDataSelection_chartscb_action)   
+        self.__comboboxCharts.bind('<<ComboboxSelected>>', self.__subsectionDataSelection_chartscb_action)   
 
-    def buildSubsectionTSModules(self):
+    def __buildSubsectionTSModules(self):
         """Builds subsection of settings section that allows user to choose displayed time series analyzing modules.
         """
-        self._subsectionTSModules.grid_columnconfigure(0, weight=1)
+        self.__subsectionTSModules.grid_columnconfigure(0, weight=1)
 
-        labtsmodules = Label(self._subsectionTSModules, text=loader.lang["settings"]["modules"]["modules"], pady=5, width=int((self._subsectionTSModules.winfo_width()-13)/7)+1)
-        labtsmodules.grid(row=1)
-        self.tsmodulesentry = StringVar()
-        tsmodulesentrycb = ttk.Combobox(self._subsectionTSModules, state="readonly", textvariable=self.tsmodulesentry, width=int((self._subsectionTSModules.winfo_width()-13)/7)+1)
-        tsmodulesentrycb.grid(row=2)
-        tsmodulesentrycb['values'] = self._hubtsmodules.getAllModuleNames()
+        labelTSModules = Label(self.__subsectionTSModules, text=loader.lang["settings"]["modules"]["modules"], pady=5, width=int((self.__subsectionTSModules.winfo_width()-13)/7)+1)
+        labelTSModules.grid(row=1)
+        self.__outvarTSModule = StringVar()
+        comboboxTSModule = ttk.Combobox(self.__subsectionTSModules, state="readonly", textvariable=self.__outvarTSModule, width=int((self.__subsectionTSModules.winfo_width()-13)/7)+1)
+        comboboxTSModule.grid(row=2)
+        comboboxTSModule['values'] = self.__hubTSModules.getAllModuleNames()
 
-        self.tsmodulesFrame = Frame(self._subsectionTSModules, width=self._subsectionTSModules.winfo_width())
-        self.tsmodulesFrame.grid(row=3)
+        self.__frameTSModules = Frame(self.__subsectionTSModules, width=self.__subsectionTSModules.winfo_width())
+        self.__frameTSModules.grid(row=3)
         
-        btnexport = Button(self._subsectionTSModules, text=loader.lang["settings"]["modules"]["update"], command=self.updateChart, pady=5, width=int((self._subsectionTSModules.winfo_width()-13)/7)+1)
-        btnexport.grid(row=4)
+        buttonUpdateData = Button(self.__subsectionTSModules, text=loader.lang["settings"]["modules"]["update"], command=self.__updateChart, pady=5, width=int((self.__subsectionTSModules.winfo_width()-13)/7)+1)
+        buttonUpdateData.grid(row=4)
 
-        tsmodulesentrycb.bind('<<ComboboxSelected>>', self._subsectionTSModules_tsmodulesentrycb_action)   
+        comboboxTSModule.bind('<<ComboboxSelected>>', self.__subsectionTSModules_comboboxTSModule_action)   
 
-    def buildSubsectionStatisctics(self):
+    def __buildSubsectionStatisctics(self):
         """Builds subsection of output section that displays data of modules in tabular form.
         """
-        self._subsectionStatisctics.grid_columnconfigure(0, weight=1)
+        self.__subsectionStatisctics.grid_columnconfigure(0, weight=1)
 
-        labcharts = Label(self._subsectionStatisctics, text=loader.lang["output"]["statistics"]["modules"], pady=5, width=int((self._subsectionStatisctics.winfo_width()-13)/7)+1)
-        labcharts.grid(row=1)
-        self.outputModules = StringVar()
-        self.outputModulescb = ttk.Combobox(self._subsectionStatisctics, state="readonly", textvariable=self.outputModules, width=int((self._subsectionStatisctics.winfo_width()-13)/7)+1)
-        self.outputModulescb.grid(row=2)
+        labelCharts = Label(self.__subsectionStatisctics, text=loader.lang["output"]["statistics"]["modules"], pady=5, width=int((self.__subsectionStatisctics.winfo_width()-13)/7)+1)
+        labelCharts.grid(row=1)
+        self.__outvarOutputModules = StringVar()
+        self.__comboboxOutputModules = ttk.Combobox(self.__subsectionStatisctics, state="readonly", textvariable=self.__outvarOutputModules, width=int((self.__subsectionStatisctics.winfo_width()-13)/7)+1)
+        self.__comboboxOutputModules.grid(row=2)
 
-        self.statisticstab = ttk.Treeview(self._subsectionStatisctics)
-        self.statisticstab.grid(row=3, sticky=NSEW)
-        self.statisticstab.column("#0", width=self._subsectionStatisctics.winfo_width(), stretch=YES)
-        self.statisticstab.heading("#0",text="",anchor=CENTER)
+        self.__treeviewStatistics = ttk.Treeview(self.__subsectionStatisctics)
+        self.__treeviewStatistics.grid(row=3, sticky=NSEW)
+        self.__treeviewStatistics.column("#0", width=self.__subsectionStatisctics.winfo_width(), stretch=YES)
+        self.__treeviewStatistics.heading("#0",text="",anchor=CENTER)
        
-        self.outputModulescb.bind('<<ComboboxSelected>>', self._subsectionStatisctics_outputModulescb_action)   
+        self.__comboboxOutputModules.bind('<<ComboboxSelected>>', self.__subsectionStatisctics_comboboxOutputModules_action)   
 
-    def buildSubsectionLogger(self):
+    def __buildSubsectionLogger(self):
         """Builds subsection of output section that logs user's actions.
         """
-        self._subsectionLogger.grid_columnconfigure(0, weight=1)
+        self.__subsectionLogger.grid_columnconfigure(0, weight=1)
 
         #Height formula: 4 + 16n
-        self.loggertextoutput = Text(self._subsectionLogger, width=self._subsectionLogger.winfo_width(), height=int(((self._subsectionLogger.winfo_height()-4)/16+1)))
-        self.loggertextoutput.grid(row=1, sticky=NSEW)
+        self.__outtextfieldLogger = Text(self.__subsectionLogger, width=self.__subsectionLogger.winfo_width(), height=int(((self.__subsectionLogger.winfo_height()-4)/16+1)))
+        self.__outtextfieldLogger.grid(row=1, sticky=NSEW)
 
-        logger.win = self.loggertextoutput
+        logger.win = self.__outtextfieldLogger
         logger.log("Initiated")
 
-    def buildSubsectionExportData(self):
+    def __buildSubsectionExportData(self):
         """Builds subsection of output section that allows exporting logs, chart and statistics.
         """
-        self._subsectionExportData.grid_columnconfigure(0, weight=1)
+        self.__subsectionExportData.grid_columnconfigure(0, weight=1)
 
-        btnexportchart = Button(self._subsectionExportData, text=loader.lang["output"]["exportdata"]["exportchart"], command=self._subsectionExportData_btnexportchart_action, pady=5, width=int((self._subsectionExportData.winfo_width()-13)/7)+1)
-        btnexportchart.grid(row=1)
+        __buttonImportDataChart = Button(self.__subsectionExportData, text=loader.lang["output"]["exportdata"]["exportchart"], command=self.__subsectionExportData_buttonExportChart_action, pady=5, width=int((self.__subsectionExportData.winfo_width()-13)/7)+1)
+        __buttonImportDataChart.grid(row=1)
 
-        btnexportlogs = Button(self._subsectionExportData, text=loader.lang["output"]["exportdata"]["exportlogs"], command=self._subsectionExportData_btnexportlogs_action, pady=5, width=int((self._subsectionExportData.winfo_width()-13)/7)+1)
-        btnexportlogs.grid(row=2)
+        __buttonImportDataLogs = Button(self.__subsectionExportData, text=loader.lang["output"]["exportdata"]["exportlogs"], command=self.__subsectionExportData_buttonExportLogs_action, pady=5, width=int((self.__subsectionExportData.winfo_width()-13)/7)+1)
+        __buttonImportDataLogs.grid(row=2)
 
-        btnexportstats = Button(self._subsectionExportData, text=loader.lang["output"]["exportdata"]["exportstats"], command=self._subsectionExportData_btnexportstats_action, pady=5, width=int((self._subsectionExportData.winfo_width()-13)/7)+1)
-        btnexportstats.grid(row=3)
+        __buttonImportDataStats = Button(self.__subsectionExportData, text=loader.lang["output"]["exportdata"]["exportstats"], command=self.__subsectionExportData_buttonExportStats_action, pady=5, width=int((self.__subsectionExportData.winfo_width()-13)/7)+1)
+        __buttonImportDataStats.grid(row=3)
 
 
-    def buildSectionChart(self):
+    def __buildSectionChart(self):
         """Builds section with chart that displays current data.
         """
-        self._sectionChart.grid_columnconfigure(0, weight=1)
-        self._sectionChart.grid_rowconfigure(0, weight=1)
+        self.__sectionChart.grid_columnconfigure(0, weight=1)
+        self.__sectionChart.grid_rowconfigure(0, weight=1)
         
-    def buildSectionSettings(self):
+    def __buildSectionSettings(self):
         """Builds section with settings that set properties of data.
         """
-        self._sectionSettings.grid_columnconfigure(0, weight=1)
-        self._sectionSettings.grid_rowconfigure(0, weight=1)
+        self.__sectionSettings.grid_columnconfigure(0, weight=1)
+        self.__sectionSettings.grid_rowconfigure(0, weight=1)
 
-        settingsnotebook = ttk.Notebook(self._sectionSettings)
+        notebookSettings = ttk.Notebook(self.__sectionSettings)
 
-        self._subsectionLoadData = Frame(settingsnotebook,width=self._sectionSettings.winfo_width(),height=self._sectionSettings.winfo_height())
-        self._subsectionDataSelection = Frame(settingsnotebook,width=self._sectionSettings.winfo_width(),height=self._sectionSettings.winfo_height())
-        self._subsectionTSModules = Frame(settingsnotebook,width=self._sectionSettings.winfo_width(),height=self._sectionSettings.winfo_height())
+        self.__subsectionLoadData = Frame(notebookSettings,width=self.__sectionSettings.winfo_width(),height=self.__sectionSettings.winfo_height())
+        self.__subsectionDataSelection = Frame(notebookSettings,width=self.__sectionSettings.winfo_width(),height=self.__sectionSettings.winfo_height())
+        self.__subsectionTSModules = Frame(notebookSettings,width=self.__sectionSettings.winfo_width(),height=self.__sectionSettings.winfo_height())
 
-        settingsnotebook.add(self._subsectionLoadData, text=loader.lang["settings"]["loaddata"]["header"])
-        settingsnotebook.add(self._subsectionDataSelection, text=loader.lang["settings"]["charts"]["header"])
-        settingsnotebook.add(self._subsectionTSModules, text=loader.lang["settings"]["modules"]["header"])
+        notebookSettings.add(self.__subsectionLoadData, text=loader.lang["settings"]["loaddata"]["header"])
+        notebookSettings.add(self.__subsectionDataSelection, text=loader.lang["settings"]["charts"]["header"])
+        notebookSettings.add(self.__subsectionTSModules, text=loader.lang["settings"]["modules"]["header"])
 
-        settingsnotebook.pack(expand=1, fill='both')
+        notebookSettings.pack(expand=1, fill='both')
 
-        self._subsectionLoadData.update()
-        self._subsectionDataSelection.update()
-        self._subsectionTSModules.update()
-        settingsnotebook.select(0)
-        self.buildSubsectionLoadData()
+        self.__subsectionLoadData.update()
+        self.__subsectionDataSelection.update()
+        self.__subsectionTSModules.update()
+        notebookSettings.select(0)
+        self.__buildSubsectionLoadData()
 
-        self._subsectionLoadData.update()
-        self._subsectionDataSelection.update()
-        self._subsectionTSModules.update()
-        settingsnotebook.select(1)
-        self.buildSubsectionDataSelection()
+        self.__subsectionLoadData.update()
+        self.__subsectionDataSelection.update()
+        self.__subsectionTSModules.update()
+        notebookSettings.select(1)
+        self.__buildSubsectionDataSelection()
 
-        self._subsectionLoadData.update()
-        self._subsectionDataSelection.update()
-        self._subsectionTSModules.update()
-        settingsnotebook.select(2)
-        self.buildSubsectionTSModules()
+        self.__subsectionLoadData.update()
+        self.__subsectionDataSelection.update()
+        self.__subsectionTSModules.update()
+        notebookSettings.select(2)
+        self.__buildSubsectionTSModules()
 
-        self._subsectionLoadData.update()
-        self._subsectionDataSelection.update()
-        self._subsectionTSModules.update()
-        settingsnotebook.select(0)
+        self.__subsectionLoadData.update()
+        self.__subsectionDataSelection.update()
+        self.__subsectionTSModules.update()
+        notebookSettings.select(0)
 
-    def buildSectionOutput(self):
+    def __buildSectionOutput(self):
         """Builds section with output functions that display and export data.
         """
-        self._sectionOutput.grid_columnconfigure(0, weight=1)
-        self._sectionOutput.grid_rowconfigure(0, weight=1)
+        self.__sectionOutput.grid_columnconfigure(0, weight=1)
+        self.__sectionOutput.grid_rowconfigure(0, weight=1)
 
-        outputnotebook = ttk.Notebook(self._sectionOutput)
+        notebookOutput = ttk.Notebook(self.__sectionOutput)
 
-        self._subsectionStatisctics = Frame(outputnotebook,width=self._sectionOutput.winfo_width(),height=self._sectionOutput.winfo_height())
-        self._subsectionLogger = Frame(outputnotebook,width=self._sectionOutput.winfo_width(),height=self._sectionOutput.winfo_height())
-        self._subsectionExportData = Frame(outputnotebook,width=self._sectionOutput.winfo_width(),height=self._sectionOutput.winfo_height())
+        self.__subsectionStatisctics = Frame(notebookOutput,width=self.__sectionOutput.winfo_width(),height=self.__sectionOutput.winfo_height())
+        self.__subsectionLogger = Frame(notebookOutput,width=self.__sectionOutput.winfo_width(),height=self.__sectionOutput.winfo_height())
+        self.__subsectionExportData = Frame(notebookOutput,width=self.__sectionOutput.winfo_width(),height=self.__sectionOutput.winfo_height())
 
-        outputnotebook.add(self._subsectionStatisctics, text=loader.lang["output"]["statistics"]["header"])
-        outputnotebook.add(self._subsectionLogger, text=loader.lang["output"]["logger"]["header"])
-        outputnotebook.add(self._subsectionExportData, text=loader.lang["output"]["exportdata"]["header"])
+        notebookOutput.add(self.__subsectionStatisctics, text=loader.lang["output"]["statistics"]["header"])
+        notebookOutput.add(self.__subsectionLogger, text=loader.lang["output"]["logger"]["header"])
+        notebookOutput.add(self.__subsectionExportData, text=loader.lang["output"]["exportdata"]["header"])
 
-        outputnotebook.pack(expand=1, fill='both')
+        notebookOutput.pack(expand=1, fill='both')
 
-        self._subsectionStatisctics.update()
-        self._subsectionLogger.update()
-        self._subsectionExportData.update()
-        outputnotebook.select(0)
-        self.buildSubsectionStatisctics()
+        self.__subsectionStatisctics.update()
+        self.__subsectionLogger.update()
+        self.__subsectionExportData.update()
+        notebookOutput.select(0)
+        self.__buildSubsectionStatisctics()
 
-        self._subsectionStatisctics.update()
-        self._subsectionLogger.update()
-        self._subsectionExportData.update()
-        outputnotebook.select(1)
-        self.buildSubsectionLogger()
+        self.__subsectionStatisctics.update()
+        self.__subsectionLogger.update()
+        self.__subsectionExportData.update()
+        notebookOutput.select(1)
+        self.__buildSubsectionLogger()
 
-        self._subsectionStatisctics.update()
-        self._subsectionLogger.update()
-        self._subsectionExportData.update()
-        outputnotebook.select(2)
-        self.buildSubsectionExportData()
+        self.__subsectionStatisctics.update()
+        self.__subsectionLogger.update()
+        self.__subsectionExportData.update()
+        notebookOutput.select(2)
+        self.__buildSubsectionExportData()
 
-        self._subsectionStatisctics.update()
-        self._subsectionLogger.update()
-        self._subsectionExportData.update()
-        outputnotebook.select(0)
+        self.__subsectionStatisctics.update()
+        self.__subsectionLogger.update()
+        self.__subsectionExportData.update()
+        notebookOutput.select(0)
 
-    def buildSections(self):
+    def _buildSections(self):
         """Constructs all sections of an application.
         """
-        self._hubimporters.loadImporters()
-        self._hubtsmodules.loadModules()
+        self.__hubImporters.loadImporters()
+        self.__hubTSModules.loadModules()
 
-        self._sectionChart = Frame(self._root,bg='white',width=loader.conf["width"]*0.75, height=loader.conf["height"]*0.5)
-        self._sectionSettings = Frame(self._root,bg='white',width=loader.conf["width"]*0.25, height=loader.conf["height"])
-        self._sectionOutput = Frame(self._root,bg='white',width=loader.conf["width"]*0.75, height=loader.conf["height"]*0.5)
+        self.__sectionChart = Frame(self.getRoot(),bg='white',width=loader.conf["width"]*0.75, height=loader.conf["height"]*0.5)
+        self.__sectionSettings = Frame(self.getRoot(),bg='white',width=loader.conf["width"]*0.25, height=loader.conf["height"])
+        self.__sectionOutput = Frame(self.getRoot(),bg='white',width=loader.conf["width"]*0.75, height=loader.conf["height"]*0.5)
 
-        self._sectionChart.grid(column=0,row=0,columnspan=3,rowspan=2,sticky=NSEW)
-        self._sectionSettings.grid(column=3,row=0,columnspan=1,rowspan=4,sticky=NSEW)
-        self._sectionOutput.grid(column=0,row=2,columnspan=3,rowspan=2,sticky=NSEW)
+        self.__sectionChart.grid(column=0,row=0,columnspan=3,rowspan=2,sticky=NSEW)
+        self.__sectionSettings.grid(column=3,row=0,columnspan=1,rowspan=4,sticky=NSEW)
+        self.__sectionOutput.grid(column=0,row=2,columnspan=3,rowspan=2,sticky=NSEW)
 
-        self._sectionChart.update()
-        self._sectionSettings.update()
-        self._sectionOutput.update()
+        self.__sectionChart.update()
+        self.__sectionSettings.update()
+        self.__sectionOutput.update()
 
-        self.buildSectionChart()
-        self.buildSectionSettings()
-        self.buildSectionOutput()
+        self.__buildSectionChart()
+        self.__buildSectionSettings()
+        self.__buildSectionOutput()
 
 class GeneratorGui(Gui):
-    _sectionChart: Frame = None
+    __sectionChart: Frame = None
     """Section with chart that displays current generated data."""
 
-    _sectionSettings: Frame = None
+    __sectionSettings: Frame = None
     """Section with settings that set properties of generated data."""
-    _sectionsubChartgenerator: Frame = None
+    __sectionsubChartGenerator: Frame = None
     """Subsection of settings section that configures parameters of generated chart."""
-    _subsectionExportData: Frame = None
+    __subsectionExportData: Frame = None
     """Subsection of settings section that allows exporting generated chart and statistics."""
 
-    _df = DataFrame()
+    __genDf = DataFrame()
     """Data frame of generated signal."""
-    _cps = None
-    """Generated change point indexes."""
-    _means = None
-    """Means in area between change points, before applying noise."""
-    _spreads = None
-    """Variances in area between change points, before applying noise."""
 
-    _cpCount = 2
+    __cpCount = 2
     """Number of change points in generated signal."""
-    _samples = 100
+    __samples = 100
     """Number of samples (data length) in generated signal."""
-    _meanVar = None
+    __outvarMean = None
     """Mean of all data in generated signal."""
-    _spreadVar = None
+    __outvarSpread = None
     """Spread of mean of all data in generated signal."""
-    _cpspreadVar = None
-    """Variance in areas between change points in generated signal."""
-    _spreadcpspreadVar = None
-    """Spread of variance in areas between change points in generated signal."""
+    __outvarCPSpread = None
+    """Gaussian noise scale in areas between change points in generated signal."""
+    __outvarSpreadCPSpread = None
+    """Spread of gaussian noise scale in areas between change points in generated signal."""
 
-    def _subsectionExportData_btnupdate_action(self):
+    __signalGenerator: SignalGenerator = SignalGenerator()
+
+    def __subsectionExportData_buttonUpdateData_action(self):
         """Method called when activating export button in
         subsection of settings section that allows exporting generated chart and statistics.
         Generates a new, randomized signal.
         """
-        for widget in self._sectionChart.winfo_children():
+        for widget in self.__sectionChart.winfo_children():
             widget.destroy()
 
-        step = self._samples/(self._cpCount+1)
+        self.__signalGenerator.generateSignal(self.__samples, self.__cpCount, self.__outvarMean.get(), self.__outvarSpread.get(), self.__outvarCPSpread.get(), self.__outvarSpreadCPSpread.get())
 
-        x = 0
-        self._cps = [0]
-        self._means = [random.uniform(self._meanVar.get()-self._spreadVar.get(), self._meanVar.get()+self._spreadVar.get())]
-        self._spreads = [abs(random.uniform(self._cpspreadVar.get()-self._spreadcpspreadVar.get(), self._cpspreadVar.get()+self._spreadcpspreadVar.get()))]
-
-        for i in range(self._cpCount):
-            x += step
-            self._cps.append(random.randint(int(x-step/2+1), int(x+step/2-1)))
-            self._means.append(random.uniform(self._meanVar.get()-self._spreadVar.get(), self._meanVar.get()+self._spreadVar.get()))
-            self._spreads.append(abs(random.uniform(self._cpspreadVar.get()-self._spreadcpspreadVar.get(), self._cpspreadVar.get()+self._spreadcpspreadVar.get())))
-            
-        self.dfdatay = []
-        rects = []
-        self._cps.append(self._samples)
-
-        for i in range(len(self._cps)-1):
-            cplen = self._cps[i+1]-self._cps[i]
-            data = numpy.random.normal(self._means[i], self._spreads[i], cplen)
-            self.dfdatay.extend(data)
-            rects.append(patches.Rectangle((self._cps[i], self._means[i]-self._spreads[i]), cplen, 2*self._spreads[i], linewidth=2, edgecolor='#FFFF00', facecolor='none'))
-
-        self._cps[len(self._cps)-1] -= 1
         self.dfdata = {
-            "X": [x for x in range(self._samples)],
-            "Y": self.dfdatay
+            "X": [x for x in range(self.__samples)],
+            "Y": self.__signalGenerator.getSignal()
         }
 
-        self._df = DataFrame(self.dfdata,columns=["X","Y"])
+        self.__genDf = DataFrame(self.dfdata,columns=["X","Y"])
         figure = plt.Figure(dpi=100)
         ax = figure.add_subplot(111)
 
-        figure = FigureCanvasTkAgg(figure, self._sectionChart)
+        figure = FigureCanvasTkAgg(figure, self.__sectionChart)
         figure.get_tk_widget().grid(row=0)
 
-        self._df = self._df[["X", "Y"]].groupby("X").sum()
-        self._df.plot(kind='line', legend=FALSE, ax=ax, color='r',marker='o', fontsize=4, markersize=2)
+        self.__genDf = self.__genDf[["X", "Y"]].groupby("X").sum()
+        self.__genDf.plot(kind='line', legend=FALSE, ax=ax, color='r',marker='o', fontsize=4, markersize=2)
 
-        for patch in rects:
-            ax.add_patch(patch)
-
+        self.__signalGenerator.applyPatchesToChart(ax)
         ax.set_title(loader.lang["settings-gen"]["chartname"])
-        self.btnexport['state'] = "normal"
+        self.__buttonExportData['state'] = "normal"
 
-    def _subsectionExportData_btnexport_action(self):
+    def __subsectionExportData_buttonExport_action(self):
         """Method called when activating export button in
         subsection of settings section that allows exporting generated chart and statistics.
         Exports generated data to text format and csv spreadsheet.
         """
-        if not self._df.empty:
+        
+        if not self.__genDf.empty:
+            (genCps, genMeans, genSpreads) = self.__signalGenerator.getGeneratedSignalProperties()
             f = open(loader.dirs["geninfo"], "w")
             f.write(loader.lang["settings-gen"]["results"]["cps"] + "\n")
-            f.write(' '.join([str(e) for e in self._cps]))
+            f.write(' '.join([str(e) for e in genCps]))
             f.write("\n\n")
             f.write(loader.lang["settings-gen"]["results"]["means"] + "\n")
-            f.write(' '.join([str(e) for e in self._means]))
+            f.write(' '.join([str(e) for e in genMeans]))
             f.write("\n\n")
             f.write(loader.lang["settings-gen"]["results"]["spreads"] + "\n")
-            f.write(' '.join([str(e) for e in self._spreads]))
+            f.write(' '.join([str(e) for e in genSpreads]))
             f.close()
-            self._df.to_csv(loader.dirs["gen"])
+            self.__genDf.to_csv(loader.dirs["gen"])
             messagebox.showinfo(loader.lang["messagebox"]["info"], loader.lang["settings-gen"]["results"]["exportinfo"] + "\n" + loader.dirs["geninfo"] + "\n" + loader.dirs["gen"])
 
 
-    def buildSubSectionChartGenerator(self):
+    def __buildSubSectionChartGenerator(self):
         """Builds subsection of settings section that configures parameters of generated chart.
         """
-        self._sectionsubChartgenerator.grid_columnconfigure(0, weight=1)
+        self.__sectionsubChartGenerator.grid_columnconfigure(0, weight=1)
 
-        labpoints = Label(self._sectionsubChartgenerator, text=loader.lang["settings-gen"]["generator"]["cpcount"], pady=5, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        labpoints.grid(row=1)
-        changePointCount = Scale(self._sectionsubChartgenerator, from_=0, to=10, tickinterval=2, orient=HORIZONTAL, length=int(self._sectionsubChartgenerator.winfo_width()))
-        changePointCount.set(self._cpCount)
-        changePointCount.grid(row=2)
+        labelPoints = Label(self.__sectionsubChartGenerator, text=loader.lang["settings-gen"]["generator"]["cpcount"], pady=5, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        labelPoints.grid(row=1)
+        sliderChangePointCount = Scale(self.__sectionsubChartGenerator, from_=0, to=10, tickinterval=2, orient=HORIZONTAL, length=int(self.__sectionsubChartGenerator.winfo_width()))
+        sliderChangePointCount.set(self.__cpCount)
+        sliderChangePointCount.grid(row=2)
 
         def updateChangePointCount(event):
-            self._cpCount = int(changePointCount.get())
+            self.__cpCount = int(sliderChangePointCount.get())
 
-        changePointCount.bind("<ButtonRelease-1>", updateChangePointCount)
+        sliderChangePointCount.bind("<ButtonRelease-1>", updateChangePointCount)
 
-        labsamples = Label(self._sectionsubChartgenerator, text=loader.lang["settings-gen"]["generator"]["samples"], pady=5, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        labsamples.grid(row=3)
-        self.samplesCount = Scale(self._sectionsubChartgenerator, from_=100, to=500, tickinterval=50, orient=HORIZONTAL, length=int(self._sectionsubChartgenerator.winfo_width()))
-        self.samplesCount.set(self._samples)
-        self.samplesCount.grid(row=4)
+        labelSamples = Label(self.__sectionsubChartGenerator, text=loader.lang["settings-gen"]["generator"]["samples"], pady=5, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        labelSamples.grid(row=3)
+        self.sliderSamples = Scale(self.__sectionsubChartGenerator, from_=100, to=500, tickinterval=50, orient=HORIZONTAL, length=int(self.__sectionsubChartGenerator.winfo_width()))
+        self.sliderSamples.set(self.__samples)
+        self.sliderSamples.grid(row=4)
 
         def updateSamplesCount(event):
-            self._samples = int(self.samplesCount.get())
+            self.__samples = int(self.sliderSamples.get())
 
-        self.samplesCount.bind("<ButtonRelease-1>", updateSamplesCount)
+        self.sliderSamples.bind("<ButtonRelease-1>", updateSamplesCount)
 
-        labmean = Label(self._sectionsubChartgenerator, text=loader.lang["settings-gen"]["generator"]["mean"], pady=5, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        labmean.grid(row=5)
-        if not self._meanVar:
-            self._meanVar = DoubleVar()
-            self._meanVar.set(0.0)
-        vcmd = (self._sectionsubChartgenerator.register(entryvalidators.validate_floatentries),'%P')
-        meanentry = Entry(self._sectionsubChartgenerator, textvariable=self._meanVar, validate='all', validatecommand=vcmd, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        meanentry.grid(row=6)
+        labelMean = Label(self.__sectionsubChartGenerator, text=loader.lang["settings-gen"]["generator"]["mean"], pady=5, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        labelMean.grid(row=5)
+        if not self.__outvarMean:
+            self.__outvarMean = DoubleVar()
+            self.__outvarMean.set(0.0)
+        vcmd = (self.__sectionsubChartGenerator.register(entryvalidators.validate_float),'%P')
+        entryMean = Entry(self.__sectionsubChartGenerator, textvariable=self.__outvarMean, validate='all', validatecommand=vcmd, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        entryMean.grid(row=6)
 
-        labspread = Label(self._sectionsubChartgenerator, text=loader.lang["settings-gen"]["generator"]["spread"], pady=5, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        labspread.grid(row=7)
-        if not self._spreadVar:
-            self._spreadVar = DoubleVar()
-            self._spreadVar.set(2.5)
-        vcmd = (self._sectionsubChartgenerator.register(entryvalidators.validate_floatentries),'%P')
-        spreadentry = Entry(self._sectionsubChartgenerator, textvariable=self._spreadVar, validate='all', validatecommand=vcmd, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        spreadentry.grid(row=8)
+        labelSpread = Label(self.__sectionsubChartGenerator, text=loader.lang["settings-gen"]["generator"]["spread"], pady=5, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        labelSpread.grid(row=7)
+        if not self.__outvarSpread:
+            self.__outvarSpread = DoubleVar()
+            self.__outvarSpread.set(2.5)
+        vcmd = (self.__sectionsubChartGenerator.register(entryvalidators.validate_float_pos_zero),'%P')
+        entrySpread = Entry(self.__sectionsubChartGenerator, textvariable=self.__outvarSpread, validate='all', validatecommand=vcmd, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        entrySpread.grid(row=8)
 
-        cpspread = Label(self._sectionsubChartgenerator, text=loader.lang["settings-gen"]["generator"]["cpspread"], pady=5, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        cpspread.grid(row=9)
-        if not self._cpspreadVar:
-            self._cpspreadVar = DoubleVar()
-            self._cpspreadVar.set(0.75)
-        vcmd = (self._sectionsubChartgenerator.register(entryvalidators.validate_floatentries),'%P')
-        cpspreadentry = Entry(self._sectionsubChartgenerator, textvariable=self._cpspreadVar, validate='all', validatecommand=vcmd, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        cpspreadentry.grid(row=10)
+        labelCPSpread = Label(self.__sectionsubChartGenerator, text=loader.lang["settings-gen"]["generator"]["cpspread"], pady=5, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        labelCPSpread.grid(row=9)
+        if not self.__outvarCPSpread:
+            self.__outvarCPSpread = DoubleVar()
+            self.__outvarCPSpread.set(0.75)
+        vcmd = (self.__sectionsubChartGenerator.register(entryvalidators.validate_float_pos_zero),'%P')
+        entryCPSpread = Entry(self.__sectionsubChartGenerator, textvariable=self.__outvarCPSpread, validate='all', validatecommand=vcmd, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        entryCPSpread.grid(row=10)
 
-        labspreadcpspread = Label(self._sectionsubChartgenerator, text=loader.lang["settings-gen"]["generator"]["spreadcpspread"], pady=5, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        labspreadcpspread.grid(row=11)
-        if not self._spreadcpspreadVar:
-            self._spreadcpspreadVar = DoubleVar()
-            self._spreadcpspreadVar.set(0.0)
-        vcmd = (self._sectionsubChartgenerator.register(entryvalidators.validate_floatentries),'%P')
-        spreadcpspreadentry = Entry(self._sectionsubChartgenerator, textvariable=self._spreadcpspreadVar, validate='all', validatecommand=vcmd, width=int((self._sectionsubChartgenerator.winfo_width()-13)/7)+1)
-        spreadcpspreadentry.grid(row=12)
+        labelSpreadCPSpread = Label(self.__sectionsubChartGenerator, text=loader.lang["settings-gen"]["generator"]["spreadcpspread"], pady=5, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        labelSpreadCPSpread.grid(row=11)
+        if not self.__outvarSpreadCPSpread:
+            self.__outvarSpreadCPSpread = DoubleVar()
+            self.__outvarSpreadCPSpread.set(0.0)
+        vcmd = (self.__sectionsubChartGenerator.register(entryvalidators.validate_float_pos_zero),'%P')
+        entrySpreadCPSpread = Entry(self.__sectionsubChartGenerator, textvariable=self.__outvarSpreadCPSpread, validate='all', validatecommand=vcmd, width=int((self.__sectionsubChartGenerator.winfo_width()-13)/7)+1)
+        entrySpreadCPSpread.grid(row=12)
 
-    def buildSubSectionExportData(self):
+    def __buildSubSectionExportData(self):
         """Builds subsection of settings section that allows exporting generated chart and statistics.
         """
-        self._subsectionExportData.grid_columnconfigure(0, weight=1)
+        self.__subsectionExportData.grid_columnconfigure(0, weight=1)
 
-        btnupdate = Button(self._subsectionExportData, text=loader.lang["settings-gen"]["output"]["update"], pady=5, width=int((self._subsectionExportData.winfo_width()-13)/7)+1)
-        btnupdate.grid(row=1)
+        __buttonUpdateData = Button(self.__subsectionExportData, text=loader.lang["settings-gen"]["output"]["update"], pady=5, width=int((self.__subsectionExportData.winfo_width()-13)/7)+1)
+        __buttonUpdateData.grid(row=1)
 
-        self.btnexport = Button(self._subsectionExportData, state="disabled", text=loader.lang["settings-gen"]["output"]["export"], pady=5, width=int((self._subsectionExportData.winfo_width()-13)/7)+1)
-        self.btnexport.grid(row=2)
+        self.__buttonExportData = Button(self.__subsectionExportData, state="disabled", text=loader.lang["settings-gen"]["output"]["export"], pady=5, width=int((self.__subsectionExportData.winfo_width()-13)/7)+1)
+        self.__buttonExportData.grid(row=2)
 
-        btnupdate.configure(command=self._subsectionExportData_btnupdate_action)
-        self.btnexport.configure(command=self._subsectionExportData_btnexport_action)
+        __buttonUpdateData.configure(command=self.__subsectionExportData_buttonUpdateData_action)
+        self.__buttonExportData.configure(command=self.__subsectionExportData_buttonExport_action)
         
 
-    def buildSectionChart(self):
+    def __buildSectionChart(self):
         """Builds section with chart that displays current generated data.
         """
-        self._sectionChart.grid_columnconfigure(0, weight=1)
-        self._sectionChart.grid_rowconfigure(0, weight=1)
+        self.__sectionChart.grid_columnconfigure(0, weight=1)
+        self.__sectionChart.grid_rowconfigure(0, weight=1)
 
-    def buildSectionSettings(self):
+    def __buildSectionSettings(self):
         """Builds section with settings that set properties of generated data.
         """
-        self._sectionSettings.grid_columnconfigure(0, weight=1)
-        self._sectionSettings.grid_rowconfigure(0, weight=1)
+        self.__sectionSettings.grid_columnconfigure(0, weight=1)
+        self.__sectionSettings.grid_rowconfigure(0, weight=1)
 
-        notebook = ttk.Notebook(self._sectionSettings)
+        notebookSettings = ttk.Notebook(self.__sectionSettings)
 
-        self._sectionsubChartgenerator = Frame(notebook,width=self._sectionSettings.winfo_width(),height=self._sectionSettings.winfo_height())
-        self._subsectionExportData = Frame(notebook,width=self._sectionSettings.winfo_width(),height=self._sectionSettings.winfo_height())
+        self.__sectionsubChartGenerator = Frame(notebookSettings,width=self.__sectionSettings.winfo_width(),height=self.__sectionSettings.winfo_height())
+        self.__subsectionExportData = Frame(notebookSettings,width=self.__sectionSettings.winfo_width(),height=self.__sectionSettings.winfo_height())
 
-        notebook.add(self._sectionsubChartgenerator, text=loader.lang["settings-gen"]["generator"]["header"])
-        notebook.add(self._subsectionExportData, text=loader.lang["settings-gen"]["output"]["header"])
+        notebookSettings.add(self.__sectionsubChartGenerator, text=loader.lang["settings-gen"]["generator"]["header"])
+        notebookSettings.add(self.__subsectionExportData, text=loader.lang["settings-gen"]["output"]["header"])
 
-        notebook.pack(expand=1, fill='both')
+        notebookSettings.pack(expand=1, fill='both')
 
-        self._sectionsubChartgenerator.update()
-        self._subsectionExportData.update()
-        notebook.select(0)
-        self.buildSubSectionChartGenerator()
+        self.__sectionsubChartGenerator.update()
+        self.__subsectionExportData.update()
+        notebookSettings.select(0)
+        self.__buildSubSectionChartGenerator()
 
-        self._sectionsubChartgenerator.update()
-        self._subsectionExportData.update()
-        notebook.select(1)
-        self.buildSubSectionExportData()
+        self.__sectionsubChartGenerator.update()
+        self.__subsectionExportData.update()
+        notebookSettings.select(1)
+        self.__buildSubSectionExportData()
 
-        self._sectionsubChartgenerator.update()
-        self._subsectionExportData.update()
-        notebook.select(0)
+        self.__sectionsubChartGenerator.update()
+        self.__subsectionExportData.update()
+        notebookSettings.select(0)
 
-    def buildSections(self):
+    def _buildSections(self):
         """Constructs all sections of an application.
         """
-        self._sectionChart = Frame(self._root,bg='white',width=loader.conf["width"])
-        self._sectionSettings = Frame(self._root,width=loader.conf["width"])
+        self.__sectionChart = Frame(self.getRoot(),bg='white',width=loader.conf["width"])
+        self.__sectionSettings = Frame(self.getRoot(),width=loader.conf["width"])
 
-        self._sectionChart.grid(column=0,row=0,columnspan=1,rowspan=1,sticky=NSEW)
-        self._sectionSettings.grid(column=0,row=1,columnspan=1,rowspan=1,sticky=NSEW)
+        self.__sectionChart.grid(column=0,row=0,columnspan=1,rowspan=1,sticky=NSEW)
+        self.__sectionSettings.grid(column=0,row=1,columnspan=1,rowspan=1,sticky=NSEW)
 
-        self._sectionChart.update()
-        self._sectionSettings.update()
+        self.__sectionChart.update()
+        self.__sectionSettings.update()
 
-        self.buildSectionChart()
-        self.buildSectionSettings()
+        self.__buildSectionChart()
+        self.__buildSectionSettings()

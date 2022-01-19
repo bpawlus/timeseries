@@ -11,6 +11,7 @@ importers.baseimport module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 importers.csvimport module
 --------------------------
@@ -19,6 +20,7 @@ importers.csvimport module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 importers.xlsimport module
 --------------------------
@@ -27,6 +29,7 @@ importers.xlsimport module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 Module contents
 ---------------
@@ -35,3 +38,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

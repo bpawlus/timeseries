@@ -11,6 +11,7 @@ tsmodules.autocorrelation module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 tsmodules.basemod module
 ------------------------
@@ -19,6 +20,7 @@ tsmodules.basemod module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 tsmodules.decompose module
 --------------------------
@@ -27,6 +29,7 @@ tsmodules.decompose module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 tsmodules.differentation module
 -------------------------------
@@ -35,6 +38,7 @@ tsmodules.differentation module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 tsmodules.originaldata module
 -----------------------------
@@ -43,6 +47,7 @@ tsmodules.originaldata module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 tsmodules.rollingmean module
 ----------------------------
@@ -51,6 +56,7 @@ tsmodules.rollingmean module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 tsmodules.rollingstd module
 ---------------------------
@@ -59,6 +65,7 @@ tsmodules.rollingstd module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 tsmodules.ruptureeval module
 ----------------------------
@@ -67,6 +74,7 @@ tsmodules.ruptureeval module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 tsmodules.rupturesmods module
 -----------------------------
@@ -75,6 +83,7 @@ tsmodules.rupturesmods module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 Module contents
 ---------------
@@ -83,3 +92,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

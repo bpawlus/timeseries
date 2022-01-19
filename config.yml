@@ -10,3 +10,4 @@ directories:
   exportchart: "bin/latest.png"
   gen: "generated/generated.csv"
   geninfo: "generated/generated.txt"
+  exporteval: "bin/eval.txt"

@@ -39,9 +39,8 @@ settings-gen:
     samples: "Liczba danych"
     mean: "Srednia danych"
     spread: "Rozpietosc sredniej danych"
-    cpspread: "Rozpietosc danych miedzy punktami zmian"
-    spreadcpspread: "Zmiana rozpietosci danych miedzy punktami zmian"
-    samples: "Liczba danych"
+    cpspread: "Skala szumu gaussowskiego miedzy punktami zmian"
+    spreadcpspread: "Rozpietosc skali szumu gaussowskiego miedzy punktami zmian"
   output:
     header: "Aktualizuj i Eksportuj"
     update: "Aktualizuj"
@@ -88,8 +87,8 @@ modules:
     sigmas: "Odch. std."
     penalty: "Wartosc parametru wygladzania"
     costfcs: "Funkcje kosztu"
-    cpoints: "Liczba punktow zmian"
-    cpointsconsider: "Znana liczba pkt. zmian"
+    cpointsconsider: "Czy znana lb. pkt. zmian"
+    cpoints: "Liczba pkt. zmian"
     costs:
       l1: "Najmniejsze odchylenie bezwzgledne"
       l2: "Najmniejsze odchylenie kwadratowe"
@@ -146,3 +145,15 @@ messagebox:
   error: "Blad"
   warning: "Ostrzezenie"
   info: "Informacja"
+efficiency:
+  description: "Program mierzy efektywnosc estymacji algorytmow punktow zmiany w szeregach czasowych.\nProgram dla zadanej liczby iteracji generuje okreslony sygnal i uruchamia na nich algorytmy punktow zmiany o zadanych parametrach."
+  iterations: "Liczba iteracji"
+  iteration: "Przetwarzanie operacji"
+  types:
+    digit: "Calkowita >0"
+    float: "Zmiennoprzecinkowa"
+    floatpos: "Zmiennoprzecinkowa >0"
+    floatposzero: "Zmiennoprzecinkowa >=0"
+    frommap: "Z dostepnych"
+    error: "Blad wprowadzenia, sprobuj ponownie"
+  finish: "Wyniki ewaluacji mozna znalezc w"

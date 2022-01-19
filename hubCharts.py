@@ -8,7 +8,7 @@ class HubCharts:
     """Class with methods concerning loaded data in form of charts.
     """
 
-    __allCharts = []
+    __allCharts = None
     """List containing loaded data."""
     __id = 0
     """ID that will be assigned to next generated chart."""
@@ -21,7 +21,7 @@ class HubCharts:
 
         :returns: Requested list.
         """
-        return [f'{ch.title} ({ch.id})' for ch in self.__allCharts]
+        return [f'{ch.getTitle()} ({ch.getId()})' for ch in self.__allCharts]
 
     def getChartById(self, chartId: int) -> Chart:
         """Returns chart of argument's id.
@@ -30,7 +30,7 @@ class HubCharts:
         :param chartId: ID of the chart.
         :returns: Requested list.
         """
-        return next((ch for ch in self.__allCharts if ch.id == chartId), None)
+        return next((ch for ch in self.__allCharts if ch.getId() == chartId), None)
 
     def getChartIdByDisplayName(self, name: str) -> int:
         """Returns id of chart with given display name.
@@ -54,7 +54,7 @@ class HubCharts:
 
         :param chartId: ID of chart to remove.
         """
-        self.__allCharts.remove(next((ch for ch in self.__allCharts if ch.id == chartId),None))
+        self.__allCharts.remove(next((ch for ch in self.__allCharts if ch.getId() == chartId),None))
 
     def displayChart(self, chartId: int, section: Frame, moduleDisplayer):
         """Displays chart in specified location.
@@ -65,3 +65,6 @@ class HubCharts:
         """
         chart = self.getChartById(chartId)
         chart.displayChart(section, moduleDisplayer)
+
+    def __init__(self) -> None:
+        self.__allCharts = []

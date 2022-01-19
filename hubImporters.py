@@ -7,9 +7,9 @@ class HubImporters:
     """Class with methods concerning data importers.
     """
 
-    __allMethods = ()
+    __allMethods = None
     """List containing all import method names."""
-    __allDrivers = ()
+    __allDrivers = None
     """List containing all import methods."""
 
     def getAllMethods(self):
@@ -35,11 +35,15 @@ class HubImporters:
         
         :param module: Import method to add.
         """
-        self.__allMethods = ((method.extension, method.displayname),) + self.__allMethods
-        self.__allDrivers = ((method.extension, method),)+self.__allDrivers
+        self.__allMethods = ((method.getExtension(), method.getFiledialogTitle()),) + self.__allMethods
+        self.__allDrivers = ((method.getExtension(), method),)+self.__allDrivers
 
     def loadImporters(self) -> None:
         """Loads the list with all provided importers.
         """
         self.addMethod(csvimport.CsvImportMethod(".csv", "csv", loader.lang["importer-xls"]["defaultTitle"]))
         self.addMethod(xlsimport.XlsImportMethod(".xls", "xls", loader.lang["importer-csv"]["defaultTitle"]))
+
+    def __init__(self) -> None:
+        self.__allMethods = ()
+        self.__allDrivers = ()

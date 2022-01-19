@@ -17,10 +17,10 @@ class RollingStdModule(basemod.TSModule):
         :param plotdf: Data frame with original signal.
         """
         dfrolling = plotdf.rename(columns={f'{plotdf.columns[1]}': f'{plotdf.columns[1]} {loader.lang["modules"]["rollingstd"]["rollingdisplay"]} {self.__rollCount}'})        
-        self.outputDataframe[plotdf.columns[0]] = [v[0] for v in plotdf.values]
+        self.outputDf[plotdf.columns[0]] = [v[0] for v in plotdf.values]
         dfrolling = dfrolling[[col for col in dfrolling.columns]].groupby(dfrolling.columns[0]).sum()
         dfrolling = dfrolling.rolling(self.__rollCount).std()
-        self.outputDataframe[dfrolling.columns[0]] = [v[0] for v in dfrolling.values]
+        self.outputDf[dfrolling.columns[0]] = [v[0] for v in dfrolling.values]
         dfrolling.plot(kind='line', legend=True, ax=ax, color=self.getDisplayColor(),marker='o', fontsize=5, markersize=2)
 
     def buildConfig(self, section: ttk.Frame):
@@ -28,13 +28,13 @@ class RollingStdModule(basemod.TSModule):
 
         :param section: GUI component where module configuration should be displayed.
         """
-        labroll = Label(section, text=loader.lang["modules"]["rollingstd"]["count"], pady=5, width=int((section.winfo_width()-13)/7)+1)
-        labroll.grid(row=1)
-        __rollCountScale = Scale(section, from_=2, to=16, tickinterval=7, orient=HORIZONTAL, length=int(section.winfo_width()))
-        __rollCountScale.set(self.__rollCount)
-        __rollCountScale.grid(row=2)
+        labelRollingCount = Label(section, text=loader.lang["modules"]["rollingstd"]["count"], pady=5, width=int((section.winfo_width()-13)/7)+1)
+        labelRollingCount.grid(row=1)
+        scaleRollingCount = Scale(section, from_=2, to=16, tickinterval=7, orient=HORIZONTAL, length=int(section.winfo_width()))
+        scaleRollingCount.set(self.__rollCount)
+        scaleRollingCount.grid(row=2)
 
         def updateChangePointCount(event):
-            self.__rollCount = int(__rollCountScale.get())
+            self.__rollCount = int(scaleRollingCount.get())
 
-        __rollCountScale.bind("<ButtonRelease-1>", updateChangePointCount)
+        scaleRollingCount.bind("<ButtonRelease-1>", updateChangePointCount)

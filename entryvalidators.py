@@ -1,22 +1,48 @@
-def validate_floatentries(val):
-    """Checks if values in text entries are positive float value.
+def validate_float_pos_zero(val):
+    """Checks if value is positive (or zero) float value.
 
     :param val: Value to check.
-    :returns: If val is positive float. Rollbacks operation if false.
+    :returns: If val meets requirements. Rollbacks operation if false.
     """
     try:
         fval = float(val)
-        if fval < 0:
-            return False
+        if fval >= 0:
+            return True
+    except:
+        return False
+    return False
+
+def validate_float(val):
+    """Checks if value is float value.
+
+    :param val: Value to check.
+    :returns: If val meets requirements. Rollbacks operation if false.
+    """
+    try:
+        fval = float(val)
     except:
         return False
     return True
 
-def validate_digit(val):
-    """Checks if values in text entries are positive integer value.
+def validate_float_pos(val):
+    """Checks if value is positive float value.
 
     :param val: Value to check.
-    :returns: If val is positive int. Rollbacks operation if false.
+    :returns: If val meets requirements. Rollbacks operation if false.
+    """
+    try:
+        fval = float(val)
+        if fval > 0:
+            return True
+    except:
+        return False
+    return False
+
+def validate_int_pos(val):
+    """Checks 0
+    
+    :param val: Value to check.
+    :returns: If val meets requirements. Rollbacks operation if false.
     """
     if str.isdigit(val):
         if int(val) > 0:

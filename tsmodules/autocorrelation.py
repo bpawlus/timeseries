@@ -10,7 +10,7 @@ class AutocorrelationsModule(basemod.TSModule):
     """Class implementing autocorrelation and partial autocorrelation time series module.
     """
 
-    __lagentryvar = None
+    __outvarLag = None
     """The length of the lag."""
 
     def displayModule(self, ax, plotdf: DataFrame):
@@ -20,25 +20,25 @@ class AutocorrelationsModule(basemod.TSModule):
         :param plotdf: Data frame with original signal.
         """
         
-        if self.__lagentryvar.get() > 0: 
-            self.outputDataframe[loader.lang["modules"]["autocorrelations"]["lag"]] = [i+1 for i in range(0, int(self.__lagentryvar.get()))]
-        acft = acf([v[1] for v in plotdf.values], nlags=self.__lagentryvar.get()).tolist()
-        pacft = pacf([v[1] for v in plotdf.values], nlags=self.__lagentryvar.get()).tolist()
+        if self.__outvarLag.get() > 0: 
+            self.outputDf[loader.lang["modules"]["autocorrelations"]["lag"]] = [i+1 for i in range(0, int(self.__outvarLag.get()))]
+        acft = acf([v[1] for v in plotdf.values], nlags=self.__outvarLag.get()).tolist()
+        pacft = pacf([v[1] for v in plotdf.values], nlags=self.__outvarLag.get()).tolist()
         acft.pop(0)
         pacft.pop(0)
-        self.outputDataframe[loader.lang["modules"]["autocorrelations"]["acorr"]] = acft
-        self.outputDataframe[loader.lang["modules"]["autocorrelations"]["partacorr"]] = pacft
+        self.outputDf[loader.lang["modules"]["autocorrelations"]["acorr"]] = acft
+        self.outputDf[loader.lang["modules"]["autocorrelations"]["partacorr"]] = pacft
 
     def buildConfig(self, section: ttk.Frame):
         """Provides GUI elements for time series module configuration.
 
         :param section: GUI component where module configuration should be displayed.
         """
-        lablag = Label(section, text=loader.lang["modules"]["autocorrelations"]["lag"], pady=5, width=int((section.winfo_width()-13)/7)+1)
-        lablag.grid(row=1)
-        if not self.__lagentryvar:
-            self.__lagentryvar = IntVar()
-            self.__lagentryvar.set(2)
-        vcmd = (section.register(entryvalidators.validate_digit),'%P')
-        lagentry = Entry(section, textvariable=self.__lagentryvar, validate='all', validatecommand=vcmd, width=int((section.winfo_width()-13)/7)+1)
-        lagentry.grid(row=2)
+        labelLag = Label(section, text=loader.lang["modules"]["autocorrelations"]["lag"], pady=5, width=int((section.winfo_width()-13)/7)+1)
+        labelLag.grid(row=1)
+        if not self.__outvarLag:
+            self.__outvarLag = IntVar()
+            self.__outvarLag.set(2)
+        vcmd = (section.register(entryvalidators.validate_int_pos),'%P')
+        entryLag = Entry(section, textvariable=self.__outvarLag, validate='all', validatecommand=vcmd, width=int((section.winfo_width()-13)/7)+1)
+        entryLag.grid(row=2)

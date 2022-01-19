@@ -45,9 +45,33 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class contains loaded time series data in form of charts.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="chart.Chart.df">
-<span class="sig-name descname"><span class="pre">df</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">pandas.core.frame.DataFrame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#chart.Chart.df" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="chart.Chart.__ax">
+<span class="sig-name descname"><span class="pre">__ax</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#chart.Chart.__ax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Axes of the chart.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chart.Chart.__df">
+<span class="sig-name descname"><span class="pre">__df</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">pandas.core.frame.DataFrame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#chart.Chart.__df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data frame of loaded signal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chart.Chart.__figure">
+<span class="sig-name descname"><span class="pre">__figure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">matplotlib.backends.backend_tkagg.FigureCanvasTkAgg</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#chart.Chart.__figure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Canvas of the chart.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chart.Chart.__id">
+<span class="sig-name descname"><span class="pre">__id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">int</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">0</span></em><a class="headerlink" href="#chart.Chart.__id" title="Permalink to this definition">¶</a></dt>
+<dd><p>ID of the chart.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="chart.Chart.__title">
+<span class="sig-name descname"><span class="pre">__title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#chart.Chart.__title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Title of the chart.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -75,16 +99,133 @@
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="chart.Chart.getDataframe">
+<span class="sig-name descname"><span class="pre">getDataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#chart.Chart.getDataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns data frame of loaded signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Data frame of loaded signal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chart.Chart.getId">
+<span class="sig-name descname"><span class="pre">getId</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#chart.Chart.getId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns ID of the chart.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>ID of the chart.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chart.Chart.getTitle">
+<span class="sig-name descname"><span class="pre">getTitle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#chart.Chart.getTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns title of the chart.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Title of the chart.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="chart.Chart.setTitle">
+<span class="sig-name descname"><span class="pre">setTitle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chart.Chart.setTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets title of the chart.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>title</strong> – New title of the chart.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-dataGenerator"></span><section id="module-dataGenerator">
+<span id="datagenerator-module"></span><h3>dataGenerator module<a class="headerlink" href="#module-dataGenerator" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="dataGenerator.SignalGenerator">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">dataGenerator.</span></span><span class="sig-name descname"><span class="pre">SignalGenerator</span></span><a class="headerlink" href="#dataGenerator.SignalGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class containing sample time series signal.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="chart.Chart.id">
-<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">int</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">0</span></em><a class="headerlink" href="#chart.Chart.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>ID of the chart.</p>
+<dt class="sig sig-object py" id="dataGenerator.SignalGenerator.__dataY">
+<span class="sig-name descname"><span class="pre">__dataY</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#dataGenerator.SignalGenerator.__dataY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generated signal.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="chart.Chart.title">
-<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#chart.Chart.title" title="Permalink to this definition">¶</a></dt>
-<dd><p>Title of the chart.</p>
+<dt class="sig sig-object py" id="dataGenerator.SignalGenerator.__genCps">
+<span class="sig-name descname"><span class="pre">__genCps</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#dataGenerator.SignalGenerator.__genCps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generated change point indexes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dataGenerator.SignalGenerator.__genMeans">
+<span class="sig-name descname"><span class="pre">__genMeans</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#dataGenerator.SignalGenerator.__genMeans" title="Permalink to this definition">¶</a></dt>
+<dd><p>Means in area between change points, before applying noise.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="dataGenerator.SignalGenerator.__genSpreads">
+<span class="sig-name descname"><span class="pre">__genSpreads</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#dataGenerator.SignalGenerator.__genSpreads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gaussian noise scale in area between change points.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dataGenerator.SignalGenerator.applyPatchesToChart">
+<span class="sig-name descname"><span class="pre">applyPatchesToChart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dataGenerator.SignalGenerator.applyPatchesToChart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualizes change points on charts’ axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ax</strong> – Chart’s axes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dataGenerator.SignalGenerator.generateSignal">
+<span class="sig-name descname"><span class="pre">generateSignal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpCount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meanSpread</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noiseScale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noiseScaleSpread</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dataGenerator.SignalGenerator.generateSignal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates signal based on parameters. Data is stored inside the class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> – Number of samples (data length) in generated signal.</p></li>
+<li><p><strong>cpCount</strong> – Number of change points in generated signal</p></li>
+<li><p><strong>mean</strong> – Mean of all data in generated signal</p></li>
+<li><p><strong>meanSpread</strong> – Spread of mean of all data in generated signal</p></li>
+<li><p><strong>noiseScale</strong> – Gaussian noise scale in areas between change points in generated signal.</p></li>
+<li><p><strong>noiseScaleSpread</strong> – Spread of gaussian noise scale in areas between change points in generated signal.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dataGenerator.SignalGenerator.getGeneratedSignalProperties">
+<span class="sig-name descname"><span class="pre">getGeneratedSignalProperties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#dataGenerator.SignalGenerator.getGeneratedSignalProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns properties of generated signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Properties of generated signal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dataGenerator.SignalGenerator.getSignal">
+<span class="sig-name descname"><span class="pre">getSignal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#dataGenerator.SignalGenerator.getSignal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns generated signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Generated signal.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -93,31 +234,53 @@
 <span id="document-entryvalidators"></span><section id="module-entryvalidators">
 <span id="entryvalidators-module"></span><h3>entryvalidators module<a class="headerlink" href="#module-entryvalidators" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="entryvalidators.validate_digit">
-<span class="sig-prename descclassname"><span class="pre">entryvalidators.</span></span><span class="sig-name descname"><span class="pre">validate_digit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entryvalidators.validate_digit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if values in text entries are positive integer value.</p>
+<dt class="sig sig-object py" id="entryvalidators.validate_float">
+<span class="sig-prename descclassname"><span class="pre">entryvalidators.</span></span><span class="sig-name descname"><span class="pre">validate_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entryvalidators.validate_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if value is float value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>val</strong> – Value to check.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>If val is positive int. Rollbacks operation if false.</p>
+<dd class="field-even"><p>If val meets requirements. Rollbacks operation if false.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="entryvalidators.validate_floatentries">
-<span class="sig-prename descclassname"><span class="pre">entryvalidators.</span></span><span class="sig-name descname"><span class="pre">validate_floatentries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entryvalidators.validate_floatentries" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if values in text entries are positive float value.</p>
+<dt class="sig sig-object py" id="entryvalidators.validate_float_pos">
+<span class="sig-prename descclassname"><span class="pre">entryvalidators.</span></span><span class="sig-name descname"><span class="pre">validate_float_pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entryvalidators.validate_float_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if value is positive float value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>val</strong> – Value to check.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>If val is positive float. Rollbacks operation if false.</p>
+<dd class="field-even"><p>If val meets requirements. Rollbacks operation if false.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="entryvalidators.validate_float_pos_zero">
+<span class="sig-prename descclassname"><span class="pre">entryvalidators.</span></span><span class="sig-name descname"><span class="pre">validate_float_pos_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entryvalidators.validate_float_pos_zero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if value is positive (or zero) float value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>val</strong> – Value to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If val meets requirements. Rollbacks operation if false.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="entryvalidators.validate_int_pos">
+<span class="sig-prename descclassname"><span class="pre">entryvalidators.</span></span><span class="sig-name descname"><span class="pre">validate_int_pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#entryvalidators.validate_int_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks 0
+:param val: Value to check.
+:returns: If val meets requirements. Rollbacks operation if false.</p>
 </dd></dl>
 
 </section>
@@ -129,93 +292,257 @@
 <dd><p>Bases: <a class="reference internal" href="#gui.Gui" title="gui.Gui"><code class="xref py py-class docutils literal notranslate"><span class="pre">gui.Gui</span></code></a></p>
 <p>Class contains window application of time series analyzer.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSectionChart">
-<span class="sig-name descname"><span class="pre">buildSectionChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSectionChart" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__buildSectionChart">
+<span class="sig-name descname"><span class="pre">__buildSectionChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__buildSectionChart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds section with chart that displays current data.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSectionOutput">
-<span class="sig-name descname"><span class="pre">buildSectionOutput</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSectionOutput" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__buildSectionOutput">
+<span class="sig-name descname"><span class="pre">__buildSectionOutput</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__buildSectionOutput" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds section with output functions that display and export data.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSectionSettings">
-<span class="sig-name descname"><span class="pre">buildSectionSettings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSectionSettings" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__buildSectionSettings">
+<span class="sig-name descname"><span class="pre">__buildSectionSettings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__buildSectionSettings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds section with settings that set properties of data.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSections">
-<span class="sig-name descname"><span class="pre">buildSections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSections" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructs all sections of an application.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSubsectionDataSelection">
-<span class="sig-name descname"><span class="pre">buildSubsectionDataSelection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSubsectionDataSelection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__buildSubsectionDataSelection">
+<span class="sig-name descname"><span class="pre">__buildSubsectionDataSelection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__buildSubsectionDataSelection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds subsection of settings section that allows user to choose displayed data, which was previously loaded.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSubsectionExportData">
-<span class="sig-name descname"><span class="pre">buildSubsectionExportData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSubsectionExportData" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__buildSubsectionExportData">
+<span class="sig-name descname"><span class="pre">__buildSubsectionExportData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__buildSubsectionExportData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds subsection of output section that allows exporting logs, chart and statistics.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSubsectionLoadData">
-<span class="sig-name descname"><span class="pre">buildSubsectionLoadData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSubsectionLoadData" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__buildSubsectionLoadData">
+<span class="sig-name descname"><span class="pre">__buildSubsectionLoadData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__buildSubsectionLoadData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds subsection of settings section that loads of data from memory.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSubsectionLogger">
-<span class="sig-name descname"><span class="pre">buildSubsectionLogger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSubsectionLogger" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__buildSubsectionLogger">
+<span class="sig-name descname"><span class="pre">__buildSubsectionLogger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__buildSubsectionLogger" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds subsection of output section that logs user’s actions.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSubsectionStatisctics">
-<span class="sig-name descname"><span class="pre">buildSubsectionStatisctics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSubsectionStatisctics" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__buildSubsectionStatisctics">
+<span class="sig-name descname"><span class="pre">__buildSubsectionStatisctics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__buildSubsectionStatisctics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds subsection of output section that displays data of modules in tabular form.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.buildSubsectionTSModules">
-<span class="sig-name descname"><span class="pre">buildSubsectionTSModules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.buildSubsectionTSModules" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__buildSubsectionTSModules">
+<span class="sig-name descname"><span class="pre">__buildSubsectionTSModules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__buildSubsectionTSModules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds subsection of settings section that allows user to choose displayed time series analyzing modules.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__chartId">
+<span class="sig-name descname"><span class="pre">__chartId</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">int</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">-1</span></em><a class="headerlink" href="#gui.AnalyzerGui.__chartId" title="Permalink to this definition">¶</a></dt>
+<dd><p>ID of currently displayed chart</p>
+</dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.clear_sectionChart">
-<span class="sig-name descname"><span class="pre">clear_sectionChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.clear_sectionChart" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__clearSectionChart">
+<span class="sig-name descname"><span class="pre">__clearSectionChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__clearSectionChart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method clears the view of section with chart.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.deleteChart">
-<span class="sig-name descname"><span class="pre">deleteChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.deleteChart" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__deleteChart">
+<span class="sig-name descname"><span class="pre">__deleteChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__deleteChart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deletes the current viewed chart.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.statisticstabRefresh">
-<span class="sig-name descname"><span class="pre">statisticstabRefresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.statisticstabRefresh" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes the content of combobox and table view with all active time series modules.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__hubCharts">
+<span class="sig-name descname"><span class="pre">__hubCharts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><a class="reference internal" href="index.html#hubCharts.HubCharts" title="hubCharts.HubCharts"><span class="pre">hubCharts.HubCharts</span></a></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">&lt;hubCharts.HubCharts</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#gui.AnalyzerGui.__hubCharts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functional component with methods concerning loaded data in form of charts.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__hubImporters">
+<span class="sig-name descname"><span class="pre">__hubImporters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><a class="reference internal" href="index.html#hubImporters.HubImporters" title="hubImporters.HubImporters"><span class="pre">hubImporters.HubImporters</span></a></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">&lt;hubImporters.HubImporters</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#gui.AnalyzerGui.__hubImporters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functional component with methods concerning data importers.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__hubTSModules">
+<span class="sig-name descname"><span class="pre">__hubTSModules</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><a class="reference internal" href="index.html#hubTSModules.HubTSModules" title="hubTSModules.HubTSModules"><span class="pre">hubTSModules.HubTSModules</span></a></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">&lt;hubTSModules.HubTSModules</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#gui.AnalyzerGui.__hubTSModules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functional component with methods concerning time series analyzing modules.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__importer">
+<span class="sig-name descname"><span class="pre">__importer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><a class="reference internal" href="index.html#importers.baseimport.ImportMethod" title="importers.baseimport.ImportMethod"><span class="pre">importers.baseimport.ImportMethod</span></a></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__importer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chosen by user importer function (ex. .xls import when loading microsoft excel spreadsheet).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.updateChart">
-<span class="sig-name descname"><span class="pre">updateChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.updateChart" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__refreshTreeviewStatistics">
+<span class="sig-name descname"><span class="pre">__refreshTreeviewStatistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__refreshTreeviewStatistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the content of combobox and table view with all active time series modules.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__sectionChart">
+<span class="sig-name descname"><span class="pre">__sectionChart</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__sectionChart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Section with chart that displays current data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__sectionOutput">
+<span class="sig-name descname"><span class="pre">__sectionOutput</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__sectionOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Section with output functions that display and export data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__sectionSettings">
+<span class="sig-name descname"><span class="pre">__sectionSettings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__sectionSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Section with settings that set properties of data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionDataSelection">
+<span class="sig-name descname"><span class="pre">__subsectionDataSelection</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__subsectionDataSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subsection of settings section that allows user to choose displayed data, which was previously loaded.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionDataSelection_buttonDeleteData_action">
+<span class="sig-name descname"><span class="pre">__subsectionDataSelection_buttonDeleteData_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionDataSelection_buttonDeleteData_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when activating delete button in
+subsection of settings section that allows user to choose displayed data, which was previously loaded.
+Deletes selected data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionDataSelection_buttonUpdateData_action">
+<span class="sig-name descname"><span class="pre">__subsectionDataSelection_buttonUpdateData_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionDataSelection_buttonUpdateData_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when activating update button in
+subsection of settings section that allows user to choose displayed data, which was previously loaded.
+Updates chart displays with chosen data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionDataSelection_chartscb_action">
+<span class="sig-name descname"><span class="pre">__subsectionDataSelection_chartscb_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionDataSelection_chartscb_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when updating charts combobox in
+subsection of settings section that allows user to choose displayed data, which was previously loaded.
+Updates the preview of selected data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionExportData">
+<span class="sig-name descname"><span class="pre">__subsectionExportData</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__subsectionExportData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subsection of output section that allows exporting logs, chart and statistics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionExportData_buttonExportChart_action">
+<span class="sig-name descname"><span class="pre">__subsectionExportData_buttonExportChart_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionExportData_buttonExportChart_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when activating export button in
+subsection of output section that allows exporting logs, chart and statistics
+Exports displayed chart to image format.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionExportData_buttonExportLogs_action">
+<span class="sig-name descname"><span class="pre">__subsectionExportData_buttonExportLogs_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionExportData_buttonExportLogs_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when activating export button in
+subsection of output section that allows exporting logs, chart and statistics
+Exports logs to text format.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionExportData_buttonExportStats_action">
+<span class="sig-name descname"><span class="pre">__subsectionExportData_buttonExportStats_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionExportData_buttonExportStats_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when activating export button in
+subsection of output section that allows exporting logs, chart and statistics
+Exports output modules data to text format.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionLoadData">
+<span class="sig-name descname"><span class="pre">__subsectionLoadData</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__subsectionLoadData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subsection of settings section that loads of data from memory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionLoadData_buttonImportDataFromFile_action">
+<span class="sig-name descname"><span class="pre">__subsectionLoadData_buttonImportDataFromFile_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionLoadData_buttonImportDataFromFile_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when activating export button in
+subsection of settings section that loads of data from memory.
+Exports data from importer to application’s memory.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionLoadData_buttonImportData_action">
+<span class="sig-name descname"><span class="pre">__subsectionLoadData_buttonImportData_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionLoadData_buttonImportData_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when activating import button in
+subsection of settings section that loads of data from memory.
+Configures chosen importer function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionLogger">
+<span class="sig-name descname"><span class="pre">__subsectionLogger</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__subsectionLogger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subsection of output section that logs user’s actions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionStatisctics">
+<span class="sig-name descname"><span class="pre">__subsectionStatisctics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__subsectionStatisctics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subsection of output section that displays data of modules in tabular form.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionStatisctics_comboboxOutputModules_action">
+<span class="sig-name descname"><span class="pre">__subsectionStatisctics_comboboxOutputModules_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionStatisctics_comboboxOutputModules_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when updating modules combobox in
+subsection of output section that displays data of modules in tabular form.
+Rebuilds a table view of analyzing module data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionTSModules">
+<span class="sig-name descname"><span class="pre">__subsectionTSModules</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.AnalyzerGui.__subsectionTSModules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subsection of settings section that allows user to choose displayed time series analyzing modules.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__subsectionTSModules_comboboxTSModule_action">
+<span class="sig-name descname"><span class="pre">__subsectionTSModules_comboboxTSModule_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__subsectionTSModules_comboboxTSModule_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when updating modules combobox in
+subsection of settings section that allows user to choose displayed time series analyzing modules.
+Rebuilds a menu with module parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__updateChart">
+<span class="sig-name descname"><span class="pre">__updateChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__updateChart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates the view of section with chart.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.AnalyzerGui.updateChartsCb">
-<span class="sig-name descname"><span class="pre">updateChartsCb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.updateChartsCb" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.AnalyzerGui.__updateComboboxCharts">
+<span class="sig-name descname"><span class="pre">__updateComboboxCharts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui.__updateComboboxCharts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Refreshes the content of combobox with all loaded time series modules.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.AnalyzerGui._buildSections">
+<span class="sig-name descname"><span class="pre">_buildSections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.AnalyzerGui._buildSections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs all sections of an application.</p>
 </dd></dl>
 
 </dd></dl>
@@ -225,33 +552,120 @@
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">gui.</span></span><span class="sig-name descname"><span class="pre">GeneratorGui</span></span><a class="headerlink" href="#gui.GeneratorGui" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gui.Gui" title="gui.Gui"><code class="xref py py-class docutils literal notranslate"><span class="pre">gui.Gui</span></code></a></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.GeneratorGui.buildSectionChart">
-<span class="sig-name descname"><span class="pre">buildSectionChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.buildSectionChart" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.GeneratorGui.__buildSectionChart">
+<span class="sig-name descname"><span class="pre">__buildSectionChart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.__buildSectionChart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds section with chart that displays current generated data.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.GeneratorGui.buildSectionSettings">
-<span class="sig-name descname"><span class="pre">buildSectionSettings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.buildSectionSettings" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.GeneratorGui.__buildSectionSettings">
+<span class="sig-name descname"><span class="pre">__buildSectionSettings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.__buildSectionSettings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds section with settings that set properties of generated data.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.GeneratorGui.buildSections">
-<span class="sig-name descname"><span class="pre">buildSections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.buildSections" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructs all sections of an application.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.GeneratorGui.buildSubSectionChartGenerator">
-<span class="sig-name descname"><span class="pre">buildSubSectionChartGenerator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.buildSubSectionChartGenerator" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.GeneratorGui.__buildSubSectionChartGenerator">
+<span class="sig-name descname"><span class="pre">__buildSubSectionChartGenerator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.__buildSubSectionChartGenerator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds subsection of settings section that configures parameters of generated chart.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.GeneratorGui.buildSubSectionExportData">
-<span class="sig-name descname"><span class="pre">buildSubSectionExportData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.buildSubSectionExportData" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="gui.GeneratorGui.__buildSubSectionExportData">
+<span class="sig-name descname"><span class="pre">__buildSubSectionExportData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.__buildSubSectionExportData" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds subsection of settings section that allows exporting generated chart and statistics.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__cpCount">
+<span class="sig-name descname"><span class="pre">__cpCount</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">2</span></em><a class="headerlink" href="#gui.GeneratorGui.__cpCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of change points in generated signal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__genDf">
+<span class="sig-name descname"><span class="pre">__genDf</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">Empty</span> <span class="pre">DataFrame</span> <span class="pre">Columns:</span> <span class="pre">[]</span> <span class="pre">Index:</span> <span class="pre">[]</span></em><a class="headerlink" href="#gui.GeneratorGui.__genDf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data frame of generated signal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__outvarCPSpread">
+<span class="sig-name descname"><span class="pre">__outvarCPSpread</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.__outvarCPSpread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gaussian noise scale in areas between change points in generated signal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__outvarMean">
+<span class="sig-name descname"><span class="pre">__outvarMean</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.__outvarMean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean of all data in generated signal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__outvarSpread">
+<span class="sig-name descname"><span class="pre">__outvarSpread</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.__outvarSpread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spread of mean of all data in generated signal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__outvarSpreadCPSpread">
+<span class="sig-name descname"><span class="pre">__outvarSpreadCPSpread</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.__outvarSpreadCPSpread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spread of gaussian noise scale in areas between change points in generated signal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__samples">
+<span class="sig-name descname"><span class="pre">__samples</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">100</span></em><a class="headerlink" href="#gui.GeneratorGui.__samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of samples (data length) in generated signal.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__sectionChart">
+<span class="sig-name descname"><span class="pre">__sectionChart</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.__sectionChart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Section with chart that displays current generated data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__sectionSettings">
+<span class="sig-name descname"><span class="pre">__sectionSettings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.__sectionSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Section with settings that set properties of generated data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__sectionsubChartGenerator">
+<span class="sig-name descname"><span class="pre">__sectionsubChartGenerator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.__sectionsubChartGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subsection of settings section that configures parameters of generated chart.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__signalGenerator">
+<span class="sig-name descname"><span class="pre">__signalGenerator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><a class="reference internal" href="index.html#dataGenerator.SignalGenerator" title="dataGenerator.SignalGenerator"><span class="pre">dataGenerator.SignalGenerator</span></a></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">&lt;dataGenerator.SignalGenerator</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#gui.GeneratorGui.__signalGenerator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__subsectionExportData">
+<span class="sig-name descname"><span class="pre">__subsectionExportData</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">tkinter.Frame</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.GeneratorGui.__subsectionExportData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subsection of settings section that allows exporting generated chart and statistics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__subsectionExportData_buttonExport_action">
+<span class="sig-name descname"><span class="pre">__subsectionExportData_buttonExport_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.__subsectionExportData_buttonExport_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when activating export button in
+subsection of settings section that allows exporting generated chart and statistics.
+Exports generated data to text format and csv spreadsheet.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.GeneratorGui.__subsectionExportData_buttonUpdateData_action">
+<span class="sig-name descname"><span class="pre">__subsectionExportData_buttonUpdateData_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui.__subsectionExportData_buttonUpdateData_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called when activating export button in
+subsection of settings section that allows exporting generated chart and statistics.
+Generates a new, randomized signal.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.GeneratorGui._buildSections">
+<span class="sig-name descname"><span class="pre">_buildSections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.GeneratorGui._buildSections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs all sections of an application.</p>
 </dd></dl>
 
 </dd></dl>
@@ -261,6 +675,19 @@
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">gui.</span></span><span class="sig-name descname"><span class="pre">Gui</span></span><a class="headerlink" href="#gui.Gui" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Base class responsible for constructing window application.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.Gui.__root">
+<span class="sig-name descname"><span class="pre">__root</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#gui.Gui.__root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference to root window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.Gui._buildSections">
+<span class="sig-name descname"><span class="pre">_buildSections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.Gui._buildSections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method meant to be overwritten.
+Constructs all sections of an application.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="gui.Gui.buildGui">
 <span class="sig-name descname"><span class="pre">buildGui</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.Gui.buildGui" title="Permalink to this definition">¶</a></dt>
@@ -268,11 +695,9 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.Gui.buildSections">
-<span class="sig-name descname"><span class="pre">buildSections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.Gui.buildSections" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method meant to be overwritten.
-Constructs all sections of an application.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="gui.Gui.getRoot">
+<span class="sig-name descname"><span class="pre">getRoot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.Gui.getRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -284,6 +709,18 @@ Constructs all sections of an application.</p>
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">hubCharts.</span></span><span class="sig-name descname"><span class="pre">HubCharts</span></span><a class="headerlink" href="#hubCharts.HubCharts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class with methods concerning loaded data in form of charts.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hubCharts.HubCharts.__allCharts">
+<span class="sig-name descname"><span class="pre">__allCharts</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#hubCharts.HubCharts.__allCharts" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing loaded data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hubCharts.HubCharts.__id">
+<span class="sig-name descname"><span class="pre">__id</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">0</span></em><a class="headerlink" href="#hubCharts.HubCharts.__id" title="Permalink to this definition">¶</a></dt>
+<dd><p>ID that will be assigned to next generated chart.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="hubCharts.HubCharts.addChart">
 <span class="sig-name descname"><span class="pre">addChart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hubCharts.HubCharts.addChart" title="Permalink to this definition">¶</a></dt>
@@ -379,6 +816,18 @@ Names should be unique in order to find a single instance</p>
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">hubImporters.</span></span><span class="sig-name descname"><span class="pre">HubImporters</span></span><a class="headerlink" href="#hubImporters.HubImporters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class with methods concerning data importers.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hubImporters.HubImporters.__allDrivers">
+<span class="sig-name descname"><span class="pre">__allDrivers</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#hubImporters.HubImporters.__allDrivers" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing all import methods.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hubImporters.HubImporters.__allMethods">
+<span class="sig-name descname"><span class="pre">__allMethods</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#hubImporters.HubImporters.__allMethods" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing all import method names.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="hubImporters.HubImporters.addMethod">
 <span class="sig-name descname"><span class="pre">addMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><a class="reference internal" href="index.html#importers.baseimport.ImportMethod" title="importers.baseimport.ImportMethod"><span class="pre">importers.baseimport.ImportMethod</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hubImporters.HubImporters.addMethod" title="Permalink to this definition">¶</a></dt>
@@ -439,6 +888,12 @@ import pandas as pd</p>
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">hubTSModules.</span></span><span class="sig-name descname"><span class="pre">HubTSModules</span></span><a class="headerlink" href="#hubTSModules.HubTSModules" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class with methods concerning loaded data in form of charts.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="hubTSModules.HubTSModules.__allModules">
+<span class="sig-name descname"><span class="pre">__allModules</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#hubTSModules.HubTSModules.__allModules" title="Permalink to this definition">¶</a></dt>
+<dd><p>List containing all loaded time series modules.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="hubTSModules.HubTSModules.addModule">
 <span class="sig-name descname"><span class="pre">addModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><a class="reference internal" href="index.html#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><span class="pre">tsmodules.basemod.TSModule</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hubTSModules.HubTSModules.addModule" title="Permalink to this definition">¶</a></dt>
@@ -534,31 +989,31 @@ import pandas as pd</p>
 <span id="importers-baseimport-module"></span><h4>importers.baseimport module<a class="headerlink" href="#module-importers.baseimport" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="importers.baseimport.ImportMethod">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">importers.baseimport.</span></span><span class="sig-name descname"><span class="pre">ImportMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">displayname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultTitle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.baseimport.ImportMethod" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">importers.baseimport.</span></span><span class="sig-name descname"><span class="pre">ImportMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedialogTitle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultTitle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.baseimport.ImportMethod" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Base class responsible for loading time series data from different files.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.defaultTitle">
-<span class="sig-name descname"><span class="pre">defaultTitle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#importers.baseimport.ImportMethod.defaultTitle" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.__defaultTitle">
+<span class="sig-name descname"><span class="pre">__defaultTitle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#importers.baseimport.ImportMethod.__defaultTitle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default, preffered title of dataset, which should be applied after extracting data.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.directory">
-<span class="sig-name descname"><span class="pre">directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#importers.baseimport.ImportMethod.directory" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.__directory">
+<span class="sig-name descname"><span class="pre">__directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#importers.baseimport.ImportMethod.__directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Directory where data is located.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.displayname">
-<span class="sig-name descname"><span class="pre">displayname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#importers.baseimport.ImportMethod.displayname" title="Permalink to this definition">¶</a></dt>
-<dd><p>Format of import method displayed in file dialog.</p>
+<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.__extension">
+<span class="sig-name descname"><span class="pre">__extension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#importers.baseimport.ImportMethod.__extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Supported format of import method.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.extension">
-<span class="sig-name descname"><span class="pre">extension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#importers.baseimport.ImportMethod.extension" title="Permalink to this definition">¶</a></dt>
-<dd><p>Supported format of import method.</p>
+<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.__filedialogTitle">
+<span class="sig-name descname"><span class="pre">__filedialogTitle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">''</span></em><a class="headerlink" href="#importers.baseimport.ImportMethod.__filedialogTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format of import method displayed in file dialog.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -569,6 +1024,50 @@ Extracts signal from provided data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Data frame of single, selected time series.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.getDefaultTitle">
+<span class="sig-name descname"><span class="pre">getDefaultTitle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#importers.baseimport.ImportMethod.getDefaultTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns default, preffered title of dataset, which should be applied after extracting data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Default, preffered title of dataset, which should be applied after extracting data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.getDirectory">
+<span class="sig-name descname"><span class="pre">getDirectory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#importers.baseimport.ImportMethod.getDirectory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns directory where data is located.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Directory where data is located.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.getExtension">
+<span class="sig-name descname"><span class="pre">getExtension</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#importers.baseimport.ImportMethod.getExtension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns supported format of import method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Format of import method displayed in file dialog.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.getFiledialogTitle">
+<span class="sig-name descname"><span class="pre">getFiledialogTitle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#importers.baseimport.ImportMethod.getFiledialogTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns format of import method displayed in file dialog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Format of import method displayed in file dialog.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -585,6 +1084,17 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="importers.baseimport.ImportMethod.setDirectory">
+<span class="sig-name descname"><span class="pre">setDirectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.baseimport.ImportMethod.setDirectory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets new directory where data should be located.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>directory</strong> – New directory where data should be located.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -592,9 +1102,69 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <span id="importers-csvimport-module"></span><h4>importers.csvimport module<a class="headerlink" href="#module-importers.csvimport" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">importers.csvimport.</span></span><span class="sig-name descname"><span class="pre">CsvImportMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">displayname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultTitle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.csvimport.CsvImportMethod" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">importers.csvimport.</span></span><span class="sig-name descname"><span class="pre">CsvImportMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedialogTitle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultTitle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.csvimport.CsvImportMethod" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#importers.baseimport.ImportMethod" title="importers.baseimport.ImportMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">importers.baseimport.ImportMethod</span></code></a></p>
 <p>Class responsible for loading time series data from .csv files.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__datax">
+<span class="sig-name descname"><span class="pre">__datax</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__datax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loaded X-axis data. Should contain indexes with constant intervals.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__datay">
+<span class="sig-name descname"><span class="pre">__datay</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__datay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loaded Y-axis data. Should data of observed phenomenon.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__defaultTitle">
+<span class="sig-name descname"><span class="pre">__defaultTitle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__defaultTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default, preffered title of dataset, which should be applied after extracting data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__directory">
+<span class="sig-name descname"><span class="pre">__directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directory where data is located.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__extension">
+<span class="sig-name descname"><span class="pre">__extension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Supported format of import method.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__filedialogTitle">
+<span class="sig-name descname"><span class="pre">__filedialogTitle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__filedialogTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format of import method displayed in file dialog.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__xSeries">
+<span class="sig-name descname"><span class="pre">__xSeries</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__xSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chosen X-axis name from chosen sheet</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__xSeriesProvided">
+<span class="sig-name descname"><span class="pre">__xSeriesProvided</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">False</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__xSeriesProvided" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auxiliary variable, determines if user provided X-axis data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__ySeries">
+<span class="sig-name descname"><span class="pre">__ySeries</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__ySeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chosen Y-axis name from chosen sheet.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.__ySeriesProvided">
+<span class="sig-name descname"><span class="pre">__ySeriesProvided</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">False</span></em><a class="headerlink" href="#importers.csvimport.CsvImportMethod.__ySeriesProvided" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auxiliary variable, determines if user provided Y-axis data.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="importers.csvimport.CsvImportMethod.extractData">
 <span class="sig-name descname"><span class="pre">extractData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#importers.csvimport.CsvImportMethod.extractData" title="Permalink to this definition">¶</a></dt>
@@ -637,9 +1207,75 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <span id="importers-xlsimport-module"></span><h4>importers.xlsimport module<a class="headerlink" href="#module-importers.xlsimport" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">importers.xlsimport.</span></span><span class="sig-name descname"><span class="pre">XlsImportMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">displayname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultTitle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.xlsimport.XlsImportMethod" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">importers.xlsimport.</span></span><span class="sig-name descname"><span class="pre">XlsImportMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filedialogTitle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultTitle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#importers.xlsimport.XlsImportMethod" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#importers.baseimport.ImportMethod" title="importers.baseimport.ImportMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">importers.baseimport.ImportMethod</span></code></a></p>
 <p>Class responsible for loading time series data from .xls files.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__datax">
+<span class="sig-name descname"><span class="pre">__datax</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">[]</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__datax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loaded X-axis data. Should contain indexes with constant intervals.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__datay">
+<span class="sig-name descname"><span class="pre">__datay</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">[]</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__datay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loaded Y-axis data. Should data of observed phenomenon.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__defaultTitle">
+<span class="sig-name descname"><span class="pre">__defaultTitle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__defaultTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default, preffered title of dataset, which should be applied after extracting data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__directory">
+<span class="sig-name descname"><span class="pre">__directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directory where data is located.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__extension">
+<span class="sig-name descname"><span class="pre">__extension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Supported format of import method.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__filedialogTitle">
+<span class="sig-name descname"><span class="pre">__filedialogTitle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="pre">str</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__filedialogTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format of import method displayed in file dialog.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__sheet">
+<span class="sig-name descname"><span class="pre">__sheet</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__sheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chosen sheet name from spreadsheet.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__xSeries">
+<span class="sig-name descname"><span class="pre">__xSeries</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__xSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chosen X-axis name from chosen sheet</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__xSeriesProvided">
+<span class="sig-name descname"><span class="pre">__xSeriesProvided</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">False</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__xSeriesProvided" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auxiliary variable, determines if user provided X-axis data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__ySeries">
+<span class="sig-name descname"><span class="pre">__ySeries</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__ySeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chosen Y-axis name from chosen sheet.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.__ySeriesProvided">
+<span class="sig-name descname"><span class="pre">__ySeriesProvided</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">False</span></em><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.__ySeriesProvided" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auxiliary variable, determines if user provided Y-axis data.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="importers.xlsimport.XlsImportMethod.extractData">
 <span class="sig-name descname"><span class="pre">extractData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#importers.xlsimport.XlsImportMethod.extractData" title="Permalink to this definition">¶</a></dt>
@@ -743,6 +1379,207 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 </dd></dl>
 
 </section>
+<span id="document-rupturesefficiency"></span><section id="module-rupturesefficiency">
+<span id="rupturesefficiency-module"></span><h3>rupturesefficiency module<a class="headerlink" href="#module-rupturesefficiency" title="Permalink to this headline">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">rupturesefficiency.</span></span><span class="sig-name descname"><span class="pre">RupturesEfficiency</span></span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class evaluating efficiency of implemented change point detection algorithms.
+It has no gui, it’s intended to be displayed in command prompt.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settrue</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seteval</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates change point detection results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>settrue</strong> – Set of true change points.</p></li>
+<li><p><strong>seteval</strong> – Set of estimated change points.</p></li>
+<li><p><strong>m</strong> – Precision’s and recall’s margin argument.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>User input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.f">
+<span class="sig-name descname"><span class="pre">f</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle to file, where results should be stored.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.outputCPs">
+<span class="sig-name descname"><span class="pre">outputCPs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.outputCPs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes results of change point detection algorithms in single iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header</strong> – Display that helps the user read final file.</p></li>
+<li><p><strong>res</strong> – List of change points</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.outputSummary">
+<span class="sig-name descname"><span class="pre">outputSummary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eval</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><a class="reference internal" href="index.html#rupturesefficiency.RupturesEvaluations" title="rupturesefficiency.RupturesEvaluations"><span class="pre">rupturesefficiency.RupturesEvaluations</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.outputSummary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes results of evaluation metrics</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>header</strong> – Display that helps the user read final file.</p></li>
+<li><p><strong>eval</strong> – Class concatenating evaluations of change point finding algorithms.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.provideFloat">
+<span class="sig-name descname"><span class="pre">provideFloat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.provideFloat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asks user for input in form of float value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>display</strong> – Display that helps the user what he is about to put.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.provideFromMap">
+<span class="sig-name descname"><span class="pre">provideFromMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">map</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.provideFromMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asks user for input in form of single occurence from the map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>display</strong> – Display that helps the user what he is about to put.</p></li>
+<li><p><strong>dict</strong> – Map with possible values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>User input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.providePositiveBool">
+<span class="sig-name descname"><span class="pre">providePositiveBool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.providePositiveBool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asks user for input in form of bool value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>display</strong> – Display that helps the user what he is about to put.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>User input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.providePositiveFloat">
+<span class="sig-name descname"><span class="pre">providePositiveFloat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.providePositiveFloat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asks user for input in form of positive float value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>display</strong> – Display that helps the user what he is about to put.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>User input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.providePositiveFloatOrZero">
+<span class="sig-name descname"><span class="pre">providePositiveFloatOrZero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.providePositiveFloatOrZero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asks user for input in form of positive float (or zero) value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>display</strong> – Display that helps the user what he is about to put.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>User input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.providePositiveInt">
+<span class="sig-name descname"><span class="pre">providePositiveInt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.providePositiveInt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asks user for input in form of positive int value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>display</strong> – Display that helps the user what he is about to put.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>User input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEfficiency.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rupturesefficiency.RupturesEfficiency.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs evaluation of efficiency of implemented change point detection algorithms.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEvaluations">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">rupturesefficiency.</span></span><span class="sig-name descname"><span class="pre">RupturesEvaluations</span></span><a class="headerlink" href="#rupturesefficiency.RupturesEvaluations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class concatenating evaluations of change point finding algorithms.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEvaluations.appendAll">
+<span class="sig-name descname"><span class="pre">appendAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rupturesefficiency.RupturesEvaluations.appendAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a record to metrics arrays</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> – Array of metrics to add.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEvaluations.hs">
+<span class="sig-name descname"><span class="pre">hs</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#rupturesefficiency.RupturesEvaluations.hs" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of Hausdorff Metrics results.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEvaluations.l">
+<span class="sig-name descname"><span class="pre">l</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#rupturesefficiency.RupturesEvaluations.l" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimated:True change point count ratio</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEvaluations.ps">
+<span class="sig-name descname"><span class="pre">ps</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#rupturesefficiency.RupturesEvaluations.ps" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of Precision Metrics results.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEvaluations.ris">
+<span class="sig-name descname"><span class="pre">ris</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#rupturesefficiency.RupturesEvaluations.ris" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of Rand index Metrics results.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rupturesefficiency.RupturesEvaluations.rs">
+<span class="sig-name descname"><span class="pre">rs</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#rupturesefficiency.RupturesEvaluations.rs" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of Recall Metrics results.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 <span id="document-tsmodules"></span><section id="tsmodules-package">
 <h3>tsmodules package<a class="headerlink" href="#tsmodules-package" title="Permalink to this headline">¶</a></h3>
 <section id="submodules">
@@ -752,9 +1589,15 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <span id="tsmodules-autocorrelation-module"></span><h4>tsmodules.autocorrelation module<a class="headerlink" href="#module-tsmodules.autocorrelation" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationsModule">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.autocorrelation.</span></span><span class="sig-name descname"><span class="pre">AutocorrelationsModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationsModule" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.autocorrelation.</span></span><span class="sig-name descname"><span class="pre">AutocorrelationsModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_TSModule__name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationsModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
 <p>Class implementing autocorrelation and partial autocorrelation time series module.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationsModule.__outvarLag">
+<span class="sig-name descname"><span class="pre">__outvarLag</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationsModule.__outvarLag" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the lag.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.autocorrelation.AutocorrelationsModule.buildConfig">
 <span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.autocorrelation.AutocorrelationsModule.buildConfig" title="Permalink to this definition">¶</a></dt>
@@ -787,9 +1630,33 @@ Provides GUI elements for selection of specific signal from provided data.</p>
 <span id="tsmodules-basemod-module"></span><h4>tsmodules.basemod module<a class="headerlink" href="#module-tsmodules.basemod" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsmodules.basemod.TSModule">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.basemod.</span></span><span class="sig-name descname"><span class="pre">TSModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.basemod.TSModule" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.basemod.</span></span><span class="sig-name descname"><span class="pre">TSModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_TSModule__name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.basemod.TSModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Base class for implementation of single time series module.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.__dictColor">
+<span class="sig-name descname"><span class="pre">__dictColor</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.basemod.TSModule.__dictColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary of colors, that can be used to display module’s data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.__name">
+<span class="sig-name descname"><span class="pre">__name</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">'Unnamed</span> <span class="pre">Module'</span></em><a class="headerlink" href="#tsmodules.basemod.TSModule.__name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of time series module.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.__outvarActive">
+<span class="sig-name descname"><span class="pre">__outvarActive</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.basemod.TSModule.__outvarActive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Should this module be considered in time series data analysis.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.__outvarColor">
+<span class="sig-name descname"><span class="pre">__outvarColor</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.basemod.TSModule.__outvarColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chosen color used to display module’s data.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.basemod.TSModule.buildCheckbox">
 <span class="sig-name descname"><span class="pre">buildCheckbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.basemod.TSModule.buildCheckbox" title="Permalink to this definition">¶</a></dt>
@@ -850,21 +1717,31 @@ Processes analyzing module and displays results on chart’s axes.</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.isactive">
-<span class="sig-name descname"><span class="pre">isactive</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.basemod.TSModule.isactive" title="Permalink to this definition">¶</a></dt>
-<dd><p>Should this module be considered in time series data analysis.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.getModuleName">
+<span class="sig-name descname"><span class="pre">getModuleName</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tsmodules.basemod.TSModule.getModuleName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns name of time series module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Name of time series module.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.isModelActive">
+<span class="sig-name descname"><span class="pre">isModelActive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tsmodules.basemod.TSModule.isModelActive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this module be considered in time series data analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Should this module be considered in time series data analysis.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">'Unnamed</span> <span class="pre">Module'</span></em><a class="headerlink" href="#tsmodules.basemod.TSModule.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name of time series module.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.outputDataframe">
-<span class="sig-name descname"><span class="pre">outputDataframe</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">Empty</span> <span class="pre">DataFrame</span> <span class="pre">Columns:</span> <span class="pre">[]</span> <span class="pre">Index:</span> <span class="pre">[]</span></em><a class="headerlink" href="#tsmodules.basemod.TSModule.outputDataframe" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tsmodules.basemod.TSModule.outputDf">
+<span class="sig-name descname"><span class="pre">outputDf</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">Empty</span> <span class="pre">DataFrame</span> <span class="pre">Columns:</span> <span class="pre">[]</span> <span class="pre">Index:</span> <span class="pre">[]</span></em><a class="headerlink" href="#tsmodules.basemod.TSModule.outputDf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data frame with processed time series module data, that was displayed on chart’s axes, or that couldn’t be displayed with line graph.</p>
 </dd></dl>
 
@@ -878,6 +1755,36 @@ Processes analyzing module and displays results on chart’s axes.</p>
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.decompose.</span></span><span class="sig-name descname"><span class="pre">DecomposeModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.decompose.DecomposeModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
 <p>Class implementing decomposition of time series.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.decompose.DecomposeModule.__allComponents">
+<span class="sig-name descname"><span class="pre">__allComponents</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.decompose.DecomposeModule.__allComponents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Components of explanatory parts of time series.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.decompose.DecomposeModule.__modelDict">
+<span class="sig-name descname"><span class="pre">__modelDict</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.decompose.DecomposeModule.__modelDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary of decompose models, that can be used in seasonal decomposition function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.decompose.DecomposeModule.__outvarLag">
+<span class="sig-name descname"><span class="pre">__outvarLag</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.decompose.DecomposeModule.__outvarLag" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the lag.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.decompose.DecomposeModule.__outvarModel">
+<span class="sig-name descname"><span class="pre">__outvarModel</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.decompose.DecomposeModule.__outvarModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model of time series to decompose.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.decompose.DecomposeModule.__selectedComponents">
+<span class="sig-name descname"><span class="pre">__selectedComponents</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.decompose.DecomposeModule.__selectedComponents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selected components of explanatory parts of time series.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.decompose.DecomposeModule.buildConfig">
 <span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.decompose.DecomposeModule.buildConfig" title="Permalink to this definition">¶</a></dt>
@@ -910,9 +1817,15 @@ Processes analyzing module and displays results on chart’s axes.</p>
 <span id="tsmodules-differentation-module"></span><h4>tsmodules.differentation module<a class="headerlink" href="#module-tsmodules.differentation" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsmodules.differentation.DifferentiationModule">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.differentation.</span></span><span class="sig-name descname"><span class="pre">DifferentiationModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.differentation.DifferentiationModule" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.differentation.</span></span><span class="sig-name descname"><span class="pre">DifferentiationModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_TSModule__name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.differentation.DifferentiationModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
 <p>Class implementing differentiation time series module.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.differentation.DifferentiationModule.__outvarLag">
+<span class="sig-name descname"><span class="pre">__outvarLag</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.differentation.DifferentiationModule.__outvarLag" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the lag.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.differentation.DifferentiationModule.buildConfig">
 <span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.differentation.DifferentiationModule.buildConfig" title="Permalink to this definition">¶</a></dt>
@@ -945,7 +1858,7 @@ Processes analyzing module and displays results on chart’s axes.</p>
 <span id="tsmodules-originaldata-module"></span><h4>tsmodules.originaldata module<a class="headerlink" href="#module-tsmodules.originaldata" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsmodules.originaldata.OriginalDataDisplayModule">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.originaldata.</span></span><span class="sig-name descname"><span class="pre">OriginalDataDisplayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.originaldata.OriginalDataDisplayModule" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.originaldata.</span></span><span class="sig-name descname"><span class="pre">OriginalDataDisplayModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_TSModule__name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.originaldata.OriginalDataDisplayModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
 <p>Class implementing original data display time series module.</p>
 <dl class="py method">
@@ -969,9 +1882,15 @@ Processes analyzing module and displays results on chart’s axes.</p>
 <span id="tsmodules-rollingmean-module"></span><h4>tsmodules.rollingmean module<a class="headerlink" href="#module-tsmodules.rollingmean" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsmodules.rollingmean.RollingMeanModule">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rollingmean.</span></span><span class="sig-name descname"><span class="pre">RollingMeanModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingmean.RollingMeanModule" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rollingmean.</span></span><span class="sig-name descname"><span class="pre">RollingMeanModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_TSModule__name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingmean.RollingMeanModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
 <p>Class implementing rolling mean time series module.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.rollingmean.RollingMeanModule.__rollCount">
+<span class="sig-name descname"><span class="pre">__rollCount</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">5</span></em><a class="headerlink" href="#tsmodules.rollingmean.RollingMeanModule.__rollCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quanity of rolling value.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.rollingmean.RollingMeanModule.buildConfig">
 <span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingmean.RollingMeanModule.buildConfig" title="Permalink to this definition">¶</a></dt>
@@ -1004,9 +1923,15 @@ Processes analyzing module and displays results on chart’s axes.</p>
 <span id="tsmodules-rollingstd-module"></span><h4>tsmodules.rollingstd module<a class="headerlink" href="#module-tsmodules.rollingstd" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsmodules.rollingstd.RollingStdModule">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rollingstd.</span></span><span class="sig-name descname"><span class="pre">RollingStdModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingstd.RollingStdModule" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rollingstd.</span></span><span class="sig-name descname"><span class="pre">RollingStdModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_TSModule__name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingstd.RollingStdModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
 <p>Class implementing rolling standard deviation time series module.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.rollingstd.RollingStdModule.__rollCount">
+<span class="sig-name descname"><span class="pre">__rollCount</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">5</span></em><a class="headerlink" href="#tsmodules.rollingstd.RollingStdModule.__rollCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quanity of rolling value.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.rollingstd.RollingStdModule.buildConfig">
 <span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rollingstd.RollingStdModule.buildConfig" title="Permalink to this definition">¶</a></dt>
@@ -1039,10 +1964,34 @@ Processes analyzing module and displays results on chart’s axes.</p>
 <span id="tsmodules-ruptureeval-module"></span><h4>tsmodules.ruptureeval module<a class="headerlink" href="#module-tsmodules.ruptureeval" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="tsmodules.ruptureeval.RupturesEvaluation">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.ruptureeval.</span></span><span class="sig-name descname"><span class="pre">RupturesEvaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.ruptureeval.</span></span><span class="sig-name descname"><span class="pre">RupturesEvaluation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_TSModule__name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
 <p>Class implementing change point detection evaluation in time series modules.
 Evaluations include Hausdorff metric, rand index, precision and recall.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.ruptureeval.RupturesEvaluation.__argError">
+<span class="sig-name descname"><span class="pre">__argError</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation.__argError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method displayed when sets have been wrongly filled.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.ruptureeval.RupturesEvaluation.__outvarEstset">
+<span class="sig-name descname"><span class="pre">__outvarEstset</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation.__outvarEstset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Second (predicted) set of change point indexes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.ruptureeval.RupturesEvaluation.__outvarMargin">
+<span class="sig-name descname"><span class="pre">__outvarMargin</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation.__outvarMargin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Margin value used to calculate true positives.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.ruptureeval.RupturesEvaluation.__outvarOrigset">
+<span class="sig-name descname"><span class="pre">__outvarOrigset</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation.__outvarOrigset" title="Permalink to this definition">¶</a></dt>
+<dd><p>First (original) set of change point indexes.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.ruptureeval.RupturesEvaluation.buildConfig">
 <span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.ruptureeval.RupturesEvaluation.buildConfig" title="Permalink to this definition">¶</a></dt>
@@ -1120,6 +2069,36 @@ Evaluations include Hausdorff metric, rand index, precision and recall.</p>
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rupturesmods.</span></span><span class="sig-name descname"><span class="pre">RupturesModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.basemod.TSModule" title="tsmodules.basemod.TSModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.basemod.TSModule</span></code></a></p>
 <p>Class implementing change point detection algorithms in time series modules.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.__dictCost">
+<span class="sig-name descname"><span class="pre">__dictCost</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.__dictCost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary of cost functions, that can be used to in change point detection algorithms.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.__outvarCPoints">
+<span class="sig-name descname"><span class="pre">__outvarCPoints</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.__outvarCPoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>How many change points should be found in algorithm.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.__outvarCPointsConsider">
+<span class="sig-name descname"><span class="pre">__outvarCPointsConsider</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.__outvarCPointsConsider" title="Permalink to this definition">¶</a></dt>
+<dd><p>If number of change points is known, number of change points is taken as an argument instead of penalty value in change point detection algorithms.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.__outvarCost">
+<span class="sig-name descname"><span class="pre">__outvarCost</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.__outvarCost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chosen cost function, that can be used to in change point detection algorithms.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.__outvarPenalty">
+<span class="sig-name descname"><span class="pre">__outvarPenalty</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.__outvarPenalty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear penalty parameter. Value determines how many change points might detection algorithms find.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.buildConfig">
 <span class="sig-name descname"><span class="pre">buildConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.buildConfig" title="Permalink to this definition">¶</a></dt>
@@ -1172,6 +2151,50 @@ Calculates change point indexes.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.getCPointsCount">
+<span class="sig-name descname"><span class="pre">getCPointsCount</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.getCPointsCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns how many change points should be found in algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>How many change points should be found in algorithm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.getCostFunction">
+<span class="sig-name descname"><span class="pre">getCostFunction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.getCostFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns chosen cost function, that can be used to in change point detection algorithms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Chosen cost function, that can be used to in change point detection algorithms.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.getLinearPenalty">
+<span class="sig-name descname"><span class="pre">getLinearPenalty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.getLinearPenalty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns linear penalty parameter. Value determines how many change points might detection algorithms find.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Linear penalty parameter. Value determines how many change points might detection algorithms find.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesModule.shouldConsiderCPoints">
+<span class="sig-name descname"><span class="pre">shouldConsiderCPoints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesModule.shouldConsiderCPoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the indicator if number of change should be taken as an argument instead of penalty value in change point detection algorithms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The indicator if number of change should be taken as an argument instead of penalty value in change point detection algorithms.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1200,6 +2223,12 @@ Calculates change point indexes.</p>
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">tsmodules.rupturesmods.</span></span><span class="sig-name descname"><span class="pre">RupturesWindowModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesWindowModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#tsmodules.rupturesmods.RupturesModule" title="tsmodules.rupturesmods.RupturesModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">tsmodules.rupturesmods.RupturesModule</span></code></a></p>
 <p>Class implementing Window algorithm that detects change points.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesWindowModule._outvarWidth">
+<span class="sig-name descname"><span class="pre">_outvarWidth</span></span><em class="property"><span class="w">  </span><span class="p"><span class="pre">=</span></span><span class="w">  </span><span class="pre">None</span></em><a class="headerlink" href="#tsmodules.rupturesmods.RupturesWindowModule._outvarWidth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Length of the window.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="tsmodules.rupturesmods.RupturesWindowModule.buildConfigAlgoParams">
 <span class="sig-name descname"><span class="pre">buildConfigAlgoParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="p"><span class="pre">:</span></span><span class="w">  </span><span class="n"><span class="pre">tkinter.ttk.Frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tsmodules.rupturesmods.RupturesWindowModule.buildConfigAlgoParams" title="Permalink to this definition">¶</a></dt>

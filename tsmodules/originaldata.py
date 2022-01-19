@@ -13,4 +13,4 @@ class OriginalDataDisplayModule(basemod.TSModule):
         """
         origdf = plotdf[[col for col in plotdf.columns]].groupby(plotdf.columns[0]).sum()
         origdf.plot(kind='line', legend=True, ax=ax, color=self.getDisplayColor(),marker='o', fontsize=4, markersize=2)
-        self.outputDataframe = plotdf
+        self.outputDf = plotdf

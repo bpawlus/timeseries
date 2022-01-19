@@ -5,6 +5,7 @@ Projekt
    :maxdepth: 4
 
    chart
+   dataGenerator
    devstart
    entryvalidators
    gui
@@ -14,6 +15,6 @@ Projekt
    importers
    loader
    logger
-   sandbox
+   rupturesefficiency
    starter
    tsmodules

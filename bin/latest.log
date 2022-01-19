@@ -1,2 +1,24 @@
-[04:37:35] Initiated
+[08:52:34] Initiated
+[08:52:40] Started importing XLS file from: C:/Studia/Praca Inzynierska/Projekt/data/rand_set.xls
+[08:52:43] Importing XLS columns (X/Y): X/AA from sheet rand_set.csv
+[08:52:44] Created chart id = 0
+[08:52:49] Importing XLS columns (X/Y): X/BB from sheet arkusz drugi
+[08:52:50] Created chart id = 1
+[08:52:55] Started importing CSV file from: C:/Studia/Praca Inzynierska/Projekt/data/AirPassengers.csv
+[08:52:59] Importing XLS columns (X/Y): Month/Passengers
+[08:52:59] Created chart id = 2
+[08:53:04] Displaying chart id = 0
+[08:53:07] Displaying chart id = 0
+[08:53:07] Displaying module: Oryginalne dane
+[08:53:15] Displaying chart id = 2
+[08:53:15] Displaying module: Oryginalne dane
+[08:53:19] Displaying chart id = 2
+[08:53:19] Displaying module: Oryginalne dane
+[08:53:23] Displaying chart id = 2
+[08:53:23] Displaying module: Oryginalne dane
+[08:53:23] Displaying module: Srednia ruchoma
+[08:53:30] Displaying chart id = 2
+[08:53:30] Displaying module: Oryginalne dane
+[08:53:30] Displaying module: Srednia ruchoma
+[08:53:30] Displaying module: Odchylenie std. ruchome
 

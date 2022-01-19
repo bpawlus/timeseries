@@ -41,8 +41,8 @@ class HubImporters:
     def loadImporters(self) -> None:
         """Loads the list with all provided importers.
         """
-        self.addMethod(csvimport.CsvImportMethod(".csv", "csv", loader.lang["importer-xls"]["defaultTitle"]))
-        self.addMethod(xlsimport.XlsImportMethod(".xls", "xls", loader.lang["importer-csv"]["defaultTitle"]))
+        self.addMethod(csvimport.CsvImportMethod(".csv", "csv", loader.lang["importer-csv"]["defaultTitle"]))
+        self.addMethod(xlsimport.XlsImportMethod(".xls", "xls", loader.lang["importer-xls"]["defaultTitle"]))
 
     def __init__(self) -> None:
         self.__allMethods = ()

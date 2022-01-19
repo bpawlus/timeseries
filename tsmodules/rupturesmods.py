@@ -66,7 +66,6 @@ class RupturesModule(basemod.TSModule):
             cps = self.calculateChangePoints(signal)
 
             cps.insert(0,0)
-            cps[len(cps)-1] -= 1
             cpstarts = []
             cpends = []
             cpstartsidx = []
